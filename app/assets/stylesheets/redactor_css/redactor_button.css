@@ -1,0 +1,29 @@
+.btn_blue,
+.btn_green,
+.btn_orange
+{
+ height: 40px;
+ display: block;
+ font-size: 16px;
+ line-height: 40px;
+ text-align: center;
+ margin: 15px auto;
+ border-radius: 4px;
+ text-transform: uppercase;
+ color: white !important;
+ width: 50%;
+ max-width: 50%;
+ font-weight: bold;
+}
+
+.btn_blue{
+ background-color: #37A6E1;
+}
+
+.btn_green{
+ background-color: #55bb63;
+}
+
+.btn_orange{
+ background-color: #ff5722;
+}

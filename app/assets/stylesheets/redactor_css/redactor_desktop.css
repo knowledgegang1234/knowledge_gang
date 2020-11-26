@@ -1,0 +1,122 @@
+.redactor-content figure {
+ text-align: center;
+ margin-bottom: 10px;
+}
+
+.redactor-content figure img {
+ max-width: 100%;
+ height: auto;
+ margin-bottom: 10px;
+}
+
+.redactor-content ul {
+ list-style: disc;
+}
+
+.redactor-content ol {
+ list-style: decimal;
+}
+
+.redactor-content ol,
+.redactor-content ul {
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+
+/*.redactor-content a {
+ color: #111;
+}*/
+
+.redactor-content iframe {
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: block;
+ /*transform: translate(50%, 0%);*/
+}
+
+.seo-content-sideview iframe {
+  width: 100%;
+  height: auto;
+}
+
+.redactor-content>img {
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.redactor-content h2 span {
+  color: #9c9c9c;
+  font-weight: 400
+}
+
+.redactor-content h4,
+.redactor-content .h4 {
+  color: #000;
+}
+
+.redactor-content .btn_blue,
+.redactor-content .btn_green,
+.redactor-content .btn_orange {
+  display: block;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+  margin: 10px auto;
+  border-radius: 4px;
+  text-transform: uppercase;
+  color: #fff;
+  width: 50%;
+  max-width: 50%;
+  font-weight: bold;
+}
+
+.redactor-content .btn_blue {
+  background-color: #37A6E1;
+}
+
+.redactor-content .btn_green {
+  background-color: #55bb63;
+}
+
+.redactor-content .btn_orange {
+  background-color: #ff5722;
+}
+
+.redactor-content img {
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.redactor-content .editor-emojiImg{
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.redactor-content a {
+  color: #428bca;
+}
+
+.redactor-content .dd-logo-inst{
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.redactor-content table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table-bordered {
+  border: 1px solid #d6d6d6;
+}
+
+.question{
+  margin: 0px 0px 10px; 
+  display: block;
+}
