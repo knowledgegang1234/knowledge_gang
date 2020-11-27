@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
     t.string "title"
     t.text "description"
     t.integer "likes_count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.string "slug"
@@ -32,24 +32,24 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "blog_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_bookmarks_on_blog_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
     t.index ["blog_id"], name: "index_comments_on_blog_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
     t.bigint "user_id", null: false
     t.string "followable_type"
     t.bigint "followable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["followable_type", "followable_id"], name: "index_followers_on_followable_type_and_followable_id"
     t.index ["user_id"], name: "index_followers_on_user_id"
   end
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
     t.index ["blog_id"], name: "index_likes_on_blog_id"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "blog_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_taggings_on_blog_id"
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.boolean "popular", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_190128) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
     t.string "uid"
     t.string "name"
