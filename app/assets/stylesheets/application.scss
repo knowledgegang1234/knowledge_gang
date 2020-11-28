@@ -1,1 +1,24 @@
 @import "bootstrap";
+
+.navbar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar-nav li{
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.navbar ul{
+  margin-left: 10px;
+}
+
+.navbar-brand{
+  font-size: 22px;
+}
+
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
