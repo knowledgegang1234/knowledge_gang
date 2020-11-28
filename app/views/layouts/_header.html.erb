@@ -20,20 +20,11 @@
           Categories
         </a>
         <div >
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Cricket</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Bollywood</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Politics</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Bollywood</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Politics</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Bollywood</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Politics</a>
+        <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+          <% Category.all.each do |category| %>
+            <%= link_to category.name.titleize, category_path(category), class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+          <% end %>
         </div>
       </li>
     </ul>
