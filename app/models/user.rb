@@ -29,4 +29,8 @@ class User < ApplicationRecord
     end
   end
 
+  def admin?
+    false #self.is_admin
+  end
+
 end

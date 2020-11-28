@@ -3,6 +3,7 @@
 .navbar {
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-top: 10px;
 }
 
 .navbar-nav li{
@@ -25,12 +26,18 @@
 
 .scrollable-menu {
   height: auto;
-  max-height: 400px;
+  max-height: 410px;
   overflow-x: hidden;
 }
 
 .navbar-nav .dropdown-menu {
   width: 300px;
+}
+
+.fixed {
+  position: fixed;
+  top:0; left:0;
+  width: 100%; 
 }
 
 @media only screen and (max-width: 430px) {

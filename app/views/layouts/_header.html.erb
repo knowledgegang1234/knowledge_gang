@@ -1,17 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 rounded">
+  <%= link_to root_path, class: "navbar-brand" do %>
     <img src= "<%= image_url("bootstrap-solid.svg") %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     Knowledge Gang
-  </a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Popular tags</a>
       </li>
@@ -20,7 +17,7 @@
           Categories
         </a>
         <div >
-        <div class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu scrollable-menu shadow p-2 mb-5 bg-white rounded" aria-labelledby="navbarDropdown">
           <% Category.all.each do |category| %>
             <%= link_to category.name.titleize, category_path(category), class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
