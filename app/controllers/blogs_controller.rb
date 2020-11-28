@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
 
-  before_action :set_category, only: [:show]
+  # before_action :set_category, only: [:show]
 
   def index
     @blogs = Blog.all
@@ -24,7 +24,13 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = @category.blogs.friendly.find(params[:id])
+    category = Category.find_by(slug: params[:category_id])
+    if category
+      @blog = category.blogs.friendly.find(params[:id])
+    else
+      @blog = Blog.friendly.find(params[:id])
+      redirect_to blog_show_path(id: @blog, category_id: @blog.category)
+    end
   end
 
   def edit
@@ -45,10 +51,6 @@ class BlogsController < ApplicationController
   end
 
   private
-
-  def set_category
-    @category = Category.friendly.find(params[:category_id])
-  end
 
   def blog_params
     params.require(:blog).permit(:id, :title, :description, :category_id, :tag_list)
