@@ -1,17 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+<div class="row">
+  <div class="col-md-6 order-md-2">
+    <h1 class="text-center mb-5 mt-4"><strong><%= @blog.title %></strong></h1>
 
-<p>
-  <strong>Body:</strong>
-  <%= @blog.description.gsub("<table>","<table class='table table-bordered'>").html_safe %>
-</p>
+    <div class="mb-5 description-container text-justify">
+      <%= @blog.description.gsub("<table>","<table class='table table-bordered'>").html_safe %>
+      <h3>Category: <%= link_to @blog.category.name, category_path(@blog.category) %></h3>
+      <p class="mt-3">Tags: <%= raw @blog.taggings.map { |t| link_to t.tag.name, tag_path(t.tag.slug) }.join(', ') %></p>
 
-<h3>Category: <%= @blog.category.name %></h3>
-<p class="mt-3">Tags: <%= raw @blog.taggings.map { |t| link_to t.tag.name, tag_path(t.tag.slug) }.join(', ') %></p>
+      <%= link_to 'Edit', edit_blog_path(@blog),class: "btn btn-outline-info btn-sm" %> |
+      <%= link_to 'Back', blogs_path,class: "btn btn-outline-primary btn-sm" %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_blog_path(@blog),class: "btn btn-outline-info btn-sm" %> |
-<%= link_to 'Back', blogs_path,class: "btn btn-outline-primary btn-sm" %>
+  <div class="col-md-3 order-md-1 d-none d-md-block">
+    <div class="position-fixed mt-5 text-center pl-5">
+      <p class="text-center">User Clap/likes</p>
+    </div>
+  </div>
+
+  <div class="col-md-3 order-md-3">
+    <p class="text-center">tags list/ Ads</p>
+  </div>
+  
+</div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'blogs#index'
   resources :blogs, except: [:show]
   resources :tags
+  get '/popular-tags' => 'tags#popular_tags', as: 'popular_tags'
   resources :categories
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'
