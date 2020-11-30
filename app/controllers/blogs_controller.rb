@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
 
   # before_action :set_category, only: [:show]
+  before_action :set_blog, only: [:edit, :update, :like]
 
   def index
     @blogs = Blog.all
@@ -34,11 +35,9 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.friendly.find(params[:id])
   end
 
   def update
-    @blog = Blog.friendly.find(params[:id])
     if @blog.update_attributes(blog_params.except(:tag_list))
       blog_params[:tag_list].gsub(' ', '').split(',').each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name)
@@ -50,7 +49,24 @@ class BlogsController < ApplicationController
     end
   end
 
+  def like
+    like = @blog.likes.find_or_initialize_by(user_id: current_user.id)
+    like.hits += 1
+    unless like.save
+      @errors = like.errors.full_messages
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
+
+  def set_blog
+    unless @blog = Blog.find_by(slug: params[:id])
+      render :file => 'public/404', :status => :not_found, :layout => true
+    end
+  end
 
   def blog_params
     params.require(:blog).permit(:id, :title, :description, :category_id, :tag_list)

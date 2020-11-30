@@ -1,5 +1,5 @@
 <% @blogs.each do |blog| %>
-  <div class="border shadow mx-5 mb-4 p-4 bg-light text-dark">
+  <div class="border shadow mx-5 mb-4 p-4 bg-light text-dark border-corner">
     <div><%= link_to(blog.user.name, root_path) %> in <%= link_to(blog.category.name, category_path(blog.category.slug)) %></div>
     <%= link_to blog_show_path(id: blog, category_id: blog.category) do %>
       <h4><%= blog.title %></h4>

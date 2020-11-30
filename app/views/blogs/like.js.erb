@@ -1,0 +1,10 @@
+<% if @errors %>
+
+<% else %>
+var hits = $(".hits-count").html();
+$(".hits-count").html(parseInt(hits) + 1);
+$('#like-side-blog').children('i').attr('class', 'fas fa-heart fa-lg');
+<% end %>
+
+
+

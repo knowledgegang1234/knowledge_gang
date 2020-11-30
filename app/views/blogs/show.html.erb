@@ -15,8 +15,22 @@
   </div>
 
   <div class="col-md-3 order-md-1 d-none d-md-block">
-    <div class="position-fixed mt-5 text-center pl-5">
-      <p class="text-center">User Clap/likes</p>
+    <div class="position-fixed mt-5 text-center ml-5">
+      <p class="inline-para">
+        <a href="javascript:void(0)" class="side-btn" id="like-side-blog" data-blog-slug="<%= @blog.slug %>">
+          <% if current_user&.liked_blog?(@blog) %>
+            <i class="fas fa-heart fa-lg"></i> 
+          <% else %>
+            <i class="far fa-heart fa-lg"></i> 
+          <% end %>
+          <span class="hits-count"><%= @blog.likes_count %></span></a>
+      </p>
+      <p class="inline-para">
+        <a href="javascript:void(0)" class="side-btn" id="comment-side-blog" data-blog-slug="<%= @blog.slug %>"><i class="far fa-comments fa-lg"></i><span class="comments-count"> <%= @blog.comments_count %></span></a>
+      </p>
+      <p class="inline-para">
+        <a href="javascript:void(0)" class="side-btn" id="bookmark-side-blog" data-blog-slug="<%= @blog.slug %>"><i class="far fa-bookmark fa-lg"></i></a>
+      </p>
     </div>
   </div>
 
@@ -25,3 +39,4 @@
   </div>
   
 </div>
+<%= javascript_include_tag 'blogs/show', 'data-turbolinks-track': 'reload' %>

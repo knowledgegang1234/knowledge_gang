@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   belongs_to :country, optional: true
   has_many :blogs
+  has_many :likes
   has_many :followers, as: :followable
 
   def self.new_with_session(params, session)
@@ -27,6 +28,10 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.avatar = auth.info.image
     end
+  end
+
+  def liked_blog?(blog)
+    likes.where(blog: blog).exists?
   end
 
   def admin?
