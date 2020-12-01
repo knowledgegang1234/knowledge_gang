@@ -68,6 +68,22 @@ a:hover {
   border-radius: 10px;
 }
 
+.share-icons {
+  float: right;
+}
+
+.text-15 {
+  font-size: 15px;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.comment-text p {
+  font-family: cursive;
+  opacity: 0.9;
+}
 
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {

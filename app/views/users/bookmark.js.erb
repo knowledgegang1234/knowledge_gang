@@ -1,0 +1,7 @@
+<% if @bookmark.active? %>
+  $('.bookmark-side-blog').children('i').attr('class', 'fas fa-bookmark fa-lg');
+  $('.read-it-later').html('Saved');
+<% else %>
+  $('.bookmark-side-blog').children('i').attr('class', 'far fa-bookmark fa-lg');
+  $('.read-it-later').html('Read it Later!');
+<% end %>

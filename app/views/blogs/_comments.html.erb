@@ -1,0 +1,17 @@
+<h3>Comments (<span class="comments-count"><%= @blog.comments_count %></span>)</h3>
+<div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
+  <%= form_for(Comment.new, remote: true) do |form| %>
+    <div class="my-3">
+      <%= hidden_field_tag :blog_id, @blog.slug %>
+      <%= form.text_area :body , class: "form-control redactor-comment", required: true %>
+    </div>
+    <%= form.submit 'Reply', class: 'btn btn-primary float-right' %>
+  <% end %>
+</div>
+<div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
+  <div id="comments">
+    <% @comments.each do |comment| %>
+      <%= render 'blogs/comments/show', comment: comment %>
+    <% end %>
+  </div>
+</div>

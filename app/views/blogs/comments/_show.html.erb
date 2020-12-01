@@ -1,0 +1,16 @@
+<div class="comment-<%= comment.id %> my-5">
+  <div class="row">
+    <div class="col-2">
+      <a><img src="<%= comment.user.avatar %>" class="rounded-circle"></a>
+    </div>
+    <div class="col-9 text-justify">
+      <span class="text-15 my-3">commented by</span> <span class="text-20"><b><%= comment.user.name %></b></span>
+      <div class="mt-1 comment-text">
+        <i class="fas fa-quote-left"></i><%= comment.body.html_safe %><i class="fas fa-quote-right float-right"></i>
+      </div>
+    </div>
+    <div class="col-1">
+      
+    </div>
+  </div>
+</div>

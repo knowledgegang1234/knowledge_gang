@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :blogs, except: [:show] do
     member do
       post 'like'
+      post 'bookmark' => 'users#bookmark'
     end
   end
+  resources :comments
   resources :tags
   get '/popular-tags' => 'tags#popular_tags', as: 'popular_tags'
   resources :categories

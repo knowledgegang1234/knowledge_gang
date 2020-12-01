@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
   # before_action :set_category, only: [:show]
-  before_action :set_blog, only: [:edit, :update, :like]
+  before_action :set_blog, only: [:edit, :update, :like, :bookmark]
 
   def index
     @blogs = Blog.all
@@ -32,6 +32,7 @@ class BlogsController < ApplicationController
       @blog = Blog.friendly.find(params[:id])
       redirect_to blog_show_path(id: @blog, category_id: @blog.category)
     end
+    @comments = @blog.comments.order(id: :desc)
   end
 
   def edit
