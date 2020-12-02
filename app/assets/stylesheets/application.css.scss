@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+:root {
+  --theme: #65CCB8;
+  --deeptheme: #57BA98;
+}
+
 .navbar {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -83,6 +88,32 @@ a:hover {
 .comment-text p {
   font-family: cursive;
   opacity: 0.9;
+}
+
+.btn-theme{
+  background-color: var(--theme);
+}
+
+.btn-theme:hover{
+  background-color: var(--deeptheme);
+}
+
+.btn-theme:active {
+  background-color: var(--deeptheme);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.fa-theme {
+  color: var(--theme);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--deeptheme);
+}
+
+.fa-theme-red {
+  color: red;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: red;
 }
 
 @media only screen and (max-width: 430px) {

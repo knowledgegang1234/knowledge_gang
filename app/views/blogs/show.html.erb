@@ -12,7 +12,7 @@
         <p class="inline-para">
           <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
             <% if current_user&.liked_blog?(@blog) %>
-              <i class="fas fa-heart fa-lg"></i> 
+              <i class="fas fa-heart fa-lg fa-theme-red"></i> 
             <% else %>
               <i class="far fa-heart fa-lg"></i> 
             <% end %>
@@ -58,7 +58,7 @@
       <p class="inline-para">
         <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
           <% if current_user&.liked_blog?(@blog) %>
-            <i class="fas fa-heart fa-lg"></i> 
+            <i class="fas fa-heart fa-lg fa-theme-red"></i> 
           <% else %>
             <i class="far fa-heart fa-lg"></i> 
           <% end %>

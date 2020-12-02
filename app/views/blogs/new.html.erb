@@ -1,7 +1,4 @@
 <%= stylesheet_link_tag 'blogs/new', media: 'all' %>
-<h3 class="mt-2 mb-4 text-capitalize text-center"><b>New Blog</b></h3>
-
 <%= render 'form', topic: @blog %>
 
-<%= link_to 'Back', blogs_path, class: "btn btn-outline-primary btn-sm" %>
 <%= javascript_include_tag 'blogs/new', 'data-turbolinks-track': 'reload' %>
