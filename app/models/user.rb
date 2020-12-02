@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :likes
   has_many :bookmarks
   has_many :followers, as: :followable
+  has_many :taggings
+  has_many :tags, through: :taggings
+  after_save :set_username
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -41,6 +44,23 @@ class User < ApplicationRecord
 
   def admin?
     false #self.is_admin
+  end
+
+  def set_username
+    user_name = ''
+    loop do
+      user_name = (email.split("@").first.gsub(".","") + rand(999).to_s)
+      break user_name unless User.where(username: user_name).exists?
+    end
+    self.update_column(:username, user_name)
+  end
+
+  def tags
+    super.group(:name).count
+  end
+
+  def top_tags
+    self.tags.sort_by{ |_, value| value }.reverse.first(5).to_h
   end
 
 end

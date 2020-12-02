@@ -9,6 +9,7 @@ class Blog < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :taggings
+  has_many :tags, through: :taggings
 
   after_save :process_description
 
