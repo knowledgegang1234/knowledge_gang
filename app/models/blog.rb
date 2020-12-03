@@ -12,6 +12,7 @@ class Blog < ApplicationRecord
   has_many :tags, through: :taggings
 
   after_save :process_description
+  after_create :update_blogs_count
 
   def self.trending_blogs
     where('created_at::DATE >= ?', Date.today - 14.days).order(likes_count: :desc)
@@ -22,6 +23,10 @@ class Blog < ApplicationRecord
   def process_description
     short_desc = ActionView::Base.full_sanitizer.sanitize(description).first(200) + ' .....'
     update_column(:short_description, short_desc)
+  end
+
+  def update_blogs_count
+    category.update_column(:blogs_count, category.blogs.count)
   end
 
 end

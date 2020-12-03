@@ -2,8 +2,25 @@
   <div class="col-md-8">
     <%= render 'blogs' %>
   </div>
-  <div class="col-md-3">
-    <div></div>
+  <div class="col-md-3 ml-4">
+    <div class="mb-4 text-dark">
+      <h6 class="mb-4"><b>Tags To Follow</b></h6>
+      <% @trending_tags.each do |tag_name, blog_count| %>
+        <div class="mr-2 overflow-hidden">
+          <p class="mb-1"><b><span class="text-20 ml-5"><%= tag_name %></span></b><button class="btn btn-theme float-right mr-4"> +Follow</button></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    <div class="mb-4 text-dark mt-5">
+      <h6 class="mb-4"><b>Categories To Follow</b></h6>
+      <% @trending_tags.each do |tag_name, blog_count| %>
+        <div class="mr-2 overflow-hidden">
+          <p class="mb-1"><b><span class="text-20 ml-5"><%= tag_name %></span></b><button class="btn btn-theme float-right mr-4"> +Follow</button></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
   </div>
 </div>
 <br>

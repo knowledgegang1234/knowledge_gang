@@ -5,6 +5,7 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.page(params[:page]).per(12)
+    @trending_tags = Tagging.trending_tags(4)
   end
 
   def new
