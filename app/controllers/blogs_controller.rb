@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :like, :bookmark]
 
   def index
-    @blogs = Blog.all
+    @blogs = Blog.page(params[:page]).per(12)
   end
 
   def new

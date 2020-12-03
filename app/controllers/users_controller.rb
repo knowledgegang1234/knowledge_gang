@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
 
   def show
-    @blogs = @user.blogs
+    @blogs = @user.blogs.page(params[:page]).per(12)
     @top_tags = @user.top_tags
   end
 
