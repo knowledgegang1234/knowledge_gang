@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-9 mb-5">
+    <%= render 'blogs/blogs' %>
+  </div>
+  <div class="col-md-3">
+    <div class="mb-4 text-dark">
+      <h5 class="mb-3"><b>Trending tags</b></h5>
+      <% @trending_tags.each do |tag_name, blog_count| %>
+        <button type="button" class="btn btn-primary mr-2 mb-2">
+          <%= tag_name %> <span class="badge badge-light"><%= blog_count %></span>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>

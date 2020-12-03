@@ -13,6 +13,10 @@ class Blog < ApplicationRecord
 
   after_save :process_description
 
+  def self.trending_blogs
+    where('created_at::DATE >= ?', Date.today - 14.days).order(likes_count: :desc)
+  end
+
   private
 
   def process_description

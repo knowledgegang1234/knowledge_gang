@@ -10,7 +10,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to 'Popular Tags', popular_tags_path, class: 'nav-link' %>
+        <%= link_to trending_path, class: 'nav-link' do %>
+          <i class="fas fa-fire"></i> <span>Trending</span>
+        <% end %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,27 +38,29 @@
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light"><i class="fas fa-bookmark"></i></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div >
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown_profile">
-          <%= link_to 'Create Blog', new_blog_path, class: "dropdown-item" %>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<%= user_path(current_user.username) %>">My Dashboard</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">My Performance</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Settings</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Recent Activity</a>
-          <div class="dropdown-divider"></div>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </li>
+      <% if current_user %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </a>
+          <div >
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown_profile">
+            <%= link_to 'Create Blog', new_blog_path, class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<%= user_path(current_user.username) %>">My Dashboard</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">My Performance</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Recent Activity</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>

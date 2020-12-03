@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   end
   resources :comments
   resources :tags
-  get '/popular-tags' => 'tags#popular_tags', as: 'popular_tags'
+  get '/trending' => 'home#trending', as: 'trending'
   resources :categories
-  resources :users, only: [:show, :edit, :update]
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  resources :users, only: [:show, :edit, :update]
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'
 end
