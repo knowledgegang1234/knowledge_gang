@@ -116,6 +116,16 @@ a:hover {
   -webkit-text-stroke-color: red;
 }
 
+.btn-outline-success{
+  color: var(--theme);
+  border-color: var(--theme);
+}
+
+.btn-outline-success:hover{
+  color: black;
+  background-color: var(--theme);
+}
+
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;
