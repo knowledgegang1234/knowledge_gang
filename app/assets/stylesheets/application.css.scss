@@ -126,6 +126,28 @@ a:hover {
   background-color: var(--theme);
 }
 
+.card {
+  height: 370px;
+}
+
+.card .rounded-circle{
+  width: fit-content;
+}
+
+.card .card-image{
+  height: 270px;
+}
+
+.card .card-image img{
+  margin: auto;
+  display: block;
+}
+
+.card-body{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;

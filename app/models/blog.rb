@@ -15,7 +15,8 @@ class Blog < ApplicationRecord
   after_create :update_blogs_count
 
   def self.trending_blogs
-    where('created_at::DATE >= ?', Date.today - 14.days).order(likes_count: :desc)
+    trending_days = 140
+    where('created_at::DATE >= ?', Date.today - trending_days.days).order(likes_count: :desc)
   end
 
   private
