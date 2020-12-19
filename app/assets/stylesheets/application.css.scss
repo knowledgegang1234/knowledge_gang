@@ -127,21 +127,26 @@ a:hover {
   background-color: var(--theme);
 }
 
-.card {
+.trending-card {
   height: 370px;
+  transition: box-shadow 0.3s;
 }
 
-.card .rounded-circle{
+.trending-card .rounded-circle{
   width: fit-content;
 }
 
-.card .card-image{
+.trending-card .card-image{
   height: 270px;
 }
 
-.card .card-image img{
+.trending-card .card-image img{
   margin: auto;
   display: block;
+}
+
+.trending-card:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
 
 .card-body{
@@ -150,8 +155,14 @@ a:hover {
   left: 0;
 }
 
+.highlight-hover{
+  transition: box-shadow 0.1s;
+}
+
 .highlight-hover:hover{
-  background-color: var(--ligntheme);
+  // background-color: var(--ligntheme);
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 430px) {

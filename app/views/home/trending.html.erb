@@ -6,7 +6,7 @@
         <% @trending_users.each do |user|%>
           <div class="col-3">
             <%= link_to user_path(id: user.username) do %>
-              <div class="card card-block">
+              <div class="card card-block trending-card">
                 <div class="card-image">
                   <% if user.avatar %>
                     <img src="<%= user.avatar %>" class="rounded-circle">

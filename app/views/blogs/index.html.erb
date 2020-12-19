@@ -4,10 +4,10 @@
   </div>
   <div class="col-md-3 ml-4">
     <div class="mb-5 text-dark">
-      <h6 class="mb-4"><b>Tags To Follow</b></h6>
+      <h6 class="mb-4"><b>Must Explore tags</b></h6>
       <% @home_tags.each do |tag_name, tag_detail| %>
         <%= link_to tag_path(tag_detail[:slug]) do %>
-          <div class="mr-2 pb-4 highlight-hover">
+          <div class="mr-2 pb-2 pt-2 mb-1 highlight-hover">
             <p class="mb-1"><b><span class="text-20 ml-3"><i class="fas fa-tag mr-2"></i><%= tag_name %></span></b><span class="float-right mr-4 inline"><i class="fas fa-hashtag mr-2"></i><%= tag_detail[:blog_count] %><i class="fas fa-user-tag mr-2 ml-2"></i><%= tag_detail[:followers_count] %></span></p>
           </div>
         <% end %>
@@ -17,7 +17,7 @@
       <h6 class="mb-4"><b>Top Categories</b></h6>
       <% @trending_categories.each do |category| %>
         <%= link_to category_path(category.slug)do %>
-          <div class="mr-2 pb-4 highlight-hover">
+          <div class="mr-2 pb-2 pt-2 mb-1 highlight-hover">
             <p class="mb-1"><b><span class="text-20 ml-3"><%= category.name %></span></b><span class="float-right mr-4 inline"><i class="fas fa-newspaper mr-2"></i><%= category.blogs_count || 0 %></span></p>
           </div>
         <% end %>
