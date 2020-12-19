@@ -5,8 +5,8 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.page(params[:page]).per(12)
-    @trending_tags = Tagging.trending_tags(4)
-    @trending_categories = Category.order(blogs_count: :desc).limit(4)
+    @home_tags = Tagging.home_tags(4)
+    @trending_categories = Category.select('id,name,blogs_count,slug').order(blogs_count: :desc).limit(4)
   end
 
   def new

@@ -3,6 +3,7 @@
 :root {
   --theme: #65CCB8;
   --deeptheme: #57BA98;
+  --ligntheme: rgb(101,204,184,0.1);
 }
 
 .navbar {
@@ -148,6 +149,11 @@ a:hover {
   bottom: 0;
   left: 0;
 }
+
+.highlight-hover:hover{
+  background-color: var(--ligntheme);
+}
+
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;
