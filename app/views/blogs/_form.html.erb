@@ -21,12 +21,12 @@
 
         <div class="my-3">
           <label>Description</label>
-          <%= form.text_area :description , class: "form-control redactor-textarea", required: true %>
+          <%= form.text_area :description , class: "form-control redactor-textarea", placeholder: 'Share your knowledge', required: true %>
         </div>
 
         <div class="my-3">
           <label>Category</label>
-          <%= form.select :category_id, options_for_select(get_categories, get_categories.first), {}, class: "form-control custom-select", required: true %>
+          <%= form.select :category_id, options_for_select(get_categories), { prompt: '--Select Category--' }, class: "form-control custom-select select_two", required: true %>
         </div>
 
          <div class="my-3">
