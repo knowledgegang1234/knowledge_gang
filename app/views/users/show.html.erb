@@ -6,7 +6,13 @@
           <a><img src="<%= @user.avatar %>" class="rounded-circle"></a>
         </div>
         <div class="col-10">
-          <span class="text-20"><b><%= @user.name %></b></span><p class="text-15"> writer since <%= @user.created_at.strftime("%B, %Y") %></p> 
+          <span class="text-20 mr-3"><b><%= @user.name %></b></span>
+          <% if current_user.id != @user.id %>
+            <div id="follow-container">
+              <%= render 'followers/follow_action' %>
+            </div>
+          <% end %>
+          <p class="text-15 mt-2"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
           <div class="mt-1 bio-text">
             <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
           </div>

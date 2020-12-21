@@ -17,3 +17,25 @@
 //= require activestorage
 //= require turbolinks
 //= require select2
+
+document.addEventListener("turbolinks:load", function() {
+  $('.follow-btn').click(function() {
+    var followable_type = $(this).data('followable_type');
+    var followable_id = $(this).data('followable_id');
+    var follow_action = $(this).data('follow_action');
+    $.ajax({
+      type: 'POST',
+      url: '/follow_update',
+      data: { 'followable_type': followable_type, 'followable_id': followable_id, 'follow_action': follow_action },
+      dataType: "script",
+      success: function () {
+      },
+      error: function () {
+      }
+    });
+  });
+})
+
+// $(document).ready(function() {
+
+// });

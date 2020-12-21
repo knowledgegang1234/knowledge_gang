@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :like, :bookmark]
 
   def index
-    @blogs = Blog.page(params[:page]).per(12)
+    @blogs = Blog.order(id: :desc).page(params[:page]).per(12)
     @home_tags = Tagging.home_tags(4)
     @trending_categories = Category.select('id,name,blogs_count,slug').order(blogs_count: :desc).limit(4)
   end

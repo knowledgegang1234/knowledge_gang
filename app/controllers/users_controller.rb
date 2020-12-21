@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   def show
     @blogs = @user.blogs.page(params[:page]).per(12)
     @top_tags = @user.top_tags
+    @follow_action = current_user.following?(@user) ? 'unfollow' : 'follow'
+    @followable_type = 'User'
+    @followable_id = @user.id
   end
 
   def edit

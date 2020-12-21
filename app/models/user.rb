@@ -34,6 +34,10 @@ class User < ApplicationRecord
     bookmarks.where(blog: blog, active: true).exists?
   end
 
+  def following?(resource)
+    send("following_#{resource.class.table_name}").where(followable_id: resource.id).exists?
+  end
+
   def admin?
     false #self.is_admin
   end
