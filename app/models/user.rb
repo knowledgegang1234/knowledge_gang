@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :followers, as: :followable
   has_many :taggings
   has_many :tags, through: :taggings
-  after_save :set_username
+  after_create :set_username
 
   def following_users
     Follower.where(user_id: id, followable_type: 'User')
@@ -76,7 +76,7 @@ class User < ApplicationRecord
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
         user.name = auth.info.name
-        user.avatar = auth.info.image
+        user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
       end
     end
   end
