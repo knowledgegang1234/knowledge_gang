@@ -51,12 +51,8 @@ class User < ApplicationRecord
     self.update_column(:username, user_name)
   end
 
-  def tags
-    super.group(:name).count
-  end
-
   def top_tags
-    self.tags.sort_by{ |_, value| value }.reverse.first(5).to_h
+    self.tags.select('tags.id,tags.name,tags.slug,count(taggings.tag_id) as count').group('tags.id,taggings.tag_id,tags.name,tags.slug').to_a.sort_by(&:count).reverse
   end
 
   class << self
