@@ -31,10 +31,12 @@
   <div class="col-md-3">
     <div class="mb-4 text-dark">
       <h5 class="mb-3"><b>Trending tags</b></h5>
-      <% @trending_tags.each do |tag_name, blog_count| %>
-        <button type="button" class="btn btn-primary mr-2 mb-2">
-          <%= tag_name %> <span class="badge badge-light"><%= blog_count %></span>
-        </button>
+      <% @trending_tags.each do |tag| %>
+        <%= link_to tag_path(tag.slug) do %>
+          <button type="button" class="btn btn-primary mr-2 mb-2">
+            <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+          </button>
+        <% end %>
       <% end %>
     </div>
   </div>

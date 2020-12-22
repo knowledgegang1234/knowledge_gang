@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
     if @blog = current_user.blogs.create(blog_params.except(:tag_list))
       blog_params[:tag_list].gsub(' ', '').split(',').each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name)
-        tagging = tag.taggings.new(blog_id: @blog.id)
+        tagging = tag.taggings.new(blog_id: @blog.id, user_id: current_user.id)
         tagging.save
       end
       redirect_to @blog
@@ -44,7 +44,7 @@ class BlogsController < ApplicationController
     if @blog.update_attributes(blog_params.except(:tag_list))
       blog_params[:tag_list].gsub(' ', '').split(',').each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name)
-        tagging = tag.taggings.find_or_create_by(blog_id: @blog.id)
+        tagging = tag.taggings.find_or_create_by(blog_id: @blog.id, user_id: current_user.id)
       end
       redirect_to @blog
     else
