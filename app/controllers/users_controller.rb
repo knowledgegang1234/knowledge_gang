@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def bookmarked
-    @blogs = Blog.includes(:category).where(id: current_user.bookmarks.pluck(:blog_id)).page(params[:page]).per(12)
+    @blogs = Blog.includes(:category).where(id: current_user.bookmarks.active.pluck(:blog_id)).page(params[:page]).per(12)
   end
 
   private
