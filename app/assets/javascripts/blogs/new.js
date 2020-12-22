@@ -6,7 +6,3 @@
 //= require redactor_js/redactor_button
 //= require redactor_js/redactor_emoji
 //= require redactor_js/redactor_desktop
-
-$(".select_two").select2({
-  theme: "bootstrap"
-});

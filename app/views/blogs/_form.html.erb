@@ -26,7 +26,7 @@
 
         <div class="my-3">
           <label>Category</label>
-          <%= form.select :category_id, options_for_select(get_categories), { prompt: '--Select Category--' }, class: "form-control custom-select select_two", required: true %>
+          <%= form.select :category_id, options_for_select(get_categories, @blog.category_id), { prompt: '--Select Category--' }, class: "form-control custom-select select_two", required: true %>
         </div>
 
          <div class="my-3">

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :authenticate_user!, only: [:bookmarked] 
+  before_action :authenticate_user!, only: [:bookmarked,:edit,:update,:bookmark]
+  before_action :authenticate_access, only: [:edit,:update]
 
   def show
     @blogs = @user.blogs.page(params[:page]).per(12)
@@ -11,14 +12,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user == current_user
-
-    end
   end
 
   def update
-    if @user == current_user
-      
+    if @user.update_attributes(user_params)
+      redirect_to user_path(@user.username)
+    else
+      render 'edit'
     end
   end
   
@@ -44,6 +44,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(username: params[:id])
+  end
+
+  def authenticate_access
+    render :file => 'public/404', status: 401 unless @user == current_user
   end
 
 end

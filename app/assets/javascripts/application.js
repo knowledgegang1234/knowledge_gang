@@ -19,6 +19,9 @@
 //= require select2
 
 document.addEventListener("turbolinks:load", function() {
+  $(".select_two").select2({
+    theme: "bootstrap"
+  });
   $('.follow-btn').click(function() {
     var followable_type = $(this).data('followable_type');
     var followable_id = $(this).data('followable_id');

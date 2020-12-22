@@ -1,0 +1,61 @@
+<!-- Note: Avatar is pending -->
+<div class="row">
+  <div class="col-md-8 order-md-2">
+    <h4 class="mb-3 text-center">Update Profile</h4>
+    <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner">
+      <%= form_for(@user, url: user_path(@user.username), method: :patch) do |form| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+            <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="my-3">
+          <label>Name</label>
+          <%= form.text_field :name, class: "form-control", required: true %>
+        </div>
+
+        <div class="my-3">
+          <label>Username</label>
+          <%= form.text_field :username, class: "form-control", required: true %>
+        </div>
+
+        <div class="my-3">
+          <label>Bio</label>
+          <%= form.text_area :bio , class: "form-control", placeholder: 'Share about yourself...', rows: 5 %>
+        </div>
+
+        <div class="my-3">
+          <label>Birth Date</label>
+          <%= form.date_field :birth_date, class: "form-control datepicker" %>
+        </div>
+
+        <div class="my-3">
+          <label>Mobile Number</label>
+          <%= form.text_field :mobile_number, class: "form-control" %>
+        </div>
+
+        <div class="my-3">
+          <label>Country</label>
+          <%= form.select :country_id, options_for_select(get_countries, @user.country_id), { prompt: '--Select Country--' }, class: "form-control custom-select select_two" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit 'Update Profile', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-1 order-md-1">
+    <p class="text-center"></p>
+  </div>
+  <div class="col-md-3 order-md-3">
+    <p class="text-center">Ads</p>
+  </div>
+</div>
