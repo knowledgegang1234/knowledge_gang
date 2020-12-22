@@ -36,7 +36,9 @@
         <a class="nav-link waves-effect waves-light"><i class="fas fa-bell"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect waves-light"><i class="fas fa-bookmark"></i></a>
+        <%= link_to bookmarked_articles_path, class: 'nav-link waves-effect waves-light' do %>
+          <i class="fas fa-bookmark"></i>
+        <% end %>
       </li>
       <% if current_user %>
         <li class="nav-item dropdown">

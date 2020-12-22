@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :blogs
   has_many :likes
   has_many :bookmarks
+  has_many :bookmarked_blogs, through: :bookmarks, source: :blog
   has_many :followers, as: :followable
   has_many :taggings
   has_many :tags, through: :taggings

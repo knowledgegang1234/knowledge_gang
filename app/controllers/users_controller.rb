@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
+  before_action :authenticate_user!, only: [:bookmarked] 
 
   def show
     @blogs = @user.blogs.page(params[:page]).per(12)
@@ -29,6 +30,10 @@ class UsersController < ApplicationController
     else
       render file: 'public/404', status: :not_found, layout: true
     end
+  end
+
+  def bookmarked
+    @blogs = Blog.includes(:category).where(id: current_user.bookmarks.pluck(:blog_id)).page(params[:page]).per(12)
   end
 
   private
