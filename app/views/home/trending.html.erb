@@ -2,12 +2,12 @@
   <div class="col-md-9 mb-5">
     <div class="container-fluid mb-5 ml-3">
       <h5 class="mb-3"><b>Trending Publishers</b></h5>
-      <div class="row flex-row flex-nowrap">
+      <div class="row flex-row flex-nowrap trending-users">
         <% @trending_users.each do |user|%>
           <div class="col-3">
             <%= link_to user_path(id: user.username) do %>
               <div class="card card-block trending-card">
-                <div class="card-image">
+                <div class="card-image pt-3">
                   <% if user.avatar %>
                     <img src="<%= user.avatar %>" class="rounded-circle">
                   <% else %>

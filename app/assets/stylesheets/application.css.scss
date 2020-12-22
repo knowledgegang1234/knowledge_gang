@@ -130,7 +130,8 @@ a:hover {
 }
 
 .trending-card {
-  height: 370px;
+  height: 250px;
+  width: 200px;
   transition: box-shadow 0.3s;
 }
 
@@ -139,16 +140,23 @@ a:hover {
 }
 
 .trending-card .card-image{
-  height: 270px;
+  height: 100px;
 }
 
-.trending-card .card-image img{
+.trending-card .card-image img {
   margin: auto;
   display: block;
+  max-height: 100%;
+  width: auto;
 }
 
 .trending-card:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.trending-users .col-3 {
+  flex: 0 0 10%;
+  max-width: 25%;
 }
 
 .card-body{
