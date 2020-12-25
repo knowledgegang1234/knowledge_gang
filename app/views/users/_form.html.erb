@@ -1,6 +1,6 @@
 <!-- Note: Avatar is pending -->
 <div class="row">
-  <div class="col-md-8 order-md-2">
+  <div class="col-md-8 ml-5">
     <h4 class="mb-3 text-center">Update Profile</h4>
     <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner">
       <%= form_for(@user, url: user_path(@user.username), method: :patch) do |form| %>
@@ -19,11 +19,6 @@
         <div class="my-3">
           <label>Name</label>
           <%= form.text_field :name, class: "form-control", required: true %>
-        </div>
-
-        <div class="my-3">
-          <label>Username</label>
-          <%= form.text_field :username, class: "form-control", required: true %>
         </div>
 
         <div class="my-3">
@@ -52,10 +47,51 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-1 order-md-1">
-    <p class="text-center"></p>
+  <div class="col-md-3">
+    <div class="border border-light shadow border-corner text-center mt-5">
+      <div class="pt-5">
+        <%= link_to 'javascript:void(0)' do %>
+          <% if @user.avatar %>
+            <img src="<%= @user.avatar %>" class="rounded-circle">
+          <% else %>
+            <img class="" src="<%= image_url('default_user.png') %>">
+          <% end %>
+        <% end %>
+      </div>
+      <div class="pt-5 pb-2">
+        <h5 class=""><%= @user.name %></h5>
+        <p class="">@<%= @user.username %>
+          <%= link_to 'javascript:void(0)', 'data-toggle'=>"modal", "data-target"=>"#updateUsername" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="col-md-3 order-md-3">
-    <p class="text-center">Ads</p>
+</div>
+
+<div class="modal fade" id="updateUsername" tabindex="-1" role="dialog" aria-labelledby="updateUsernameLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateUsernameLabel">Update Username</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for(@user, url: update_username_user_path(@user.username), method: :put, remote: true) do |form| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="username" class="col-form-label">Username:</label>
+            <%= form.text_field :username, class: 'form-control' %>
+            <span class="error"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= form.submit 'Update', class: 'btn btn-theme' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

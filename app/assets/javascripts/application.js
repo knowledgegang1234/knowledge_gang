@@ -37,6 +37,10 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
   });
+
+  $("#myBtn").click(function(){
+    $("#myModal").modal();
+  });
 })
 
 // $(document).ready(function() {

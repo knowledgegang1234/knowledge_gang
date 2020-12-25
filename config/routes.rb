@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   post '/follow_update' => 'followers#follow_update'
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
   get '/bookmarked-articles' => 'users#bookmarked', as: 'bookmarked_articles'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      put 'update_username'
+    end
+  end
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'
 end
