@@ -17,6 +17,8 @@
 //= require activestorage
 //= require turbolinks
 //= require select2
+//= require login_signup/placeholders.min
+//= require login_signup/main
 
 document.addEventListener("turbolinks:load", function() {
   $(".select_two").select2({
@@ -36,10 +38,6 @@ document.addEventListener("turbolinks:load", function() {
       error: function () {
       }
     });
-  });
-
-  $("#myBtn").click(function(){
-    $("#myModal").modal();
   });
 })
 

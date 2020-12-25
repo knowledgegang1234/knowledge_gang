@@ -1,0 +1,45 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+.js-signin-modal html, .js-signin-modal body, .js-signin-modal div, .js-signin-modal span, .js-signin-modal applet, .js-signin-modal object, .js-signin-modal iframe,
+h1, .js-signin-modal h2, .js-signin-modal h3, .js-signin-modal h4, .js-signin-modal h5, .js-signin-modal h6, .js-signin-modal p, .js-signin-modal blockquote, .js-signin-modal pre,
+a, .js-signin-modal abbr, .js-signin-modal acronym, .js-signin-modal address, .js-signin-modal big, .js-signin-modal cite, .js-signin-modal code,
+del, .js-signin-modal dfn, .js-signin-modal em, .js-signin-modal img, .js-signin-modal ins, .js-signin-modal kbd, .js-signin-modal q, .js-signin-modal s, .js-signin-modal samp,
+small, .js-signin-modal strike, .js-signin-modal strong, .js-signin-modal sub, .js-signin-modal sup, .js-signin-modal tt, .js-signin-modal var,
+b, .js-signin-modal u, .js-signin-modal i, .js-signin-modal center,
+dl, .js-signin-modal dt, .js-signin-modal dd, .js-signin-modal ol, .js-signin-modal ul, .js-signin-modal li,
+fieldset, .js-signin-modal form, .js-signin-modal label, .js-signin-modal legend,
+table, .js-signin-modal caption, .js-signin-modal tbody, .js-signin-modal tfoot, .js-signin-modal thead, .js-signin-modal tr, .js-signin-modal th, .js-signin-modal td,
+article, .js-signin-modal aside, .js-signin-modal canvas, .js-signin-modal details, .js-signin-modal embed, .js-signin-modal 
+figure, .js-signin-modal figcaption, .js-signin-modal footer, .js-signin-modal header, .js-signin-modal hgroup, .js-signin-modal 
+menu, .js-signin-modal nav, .js-signin-modal output, .js-signin-modal ruby, .js-signin-modal section, .js-signin-modal summary,
+time, .js-signin-modal mark, .js-signin-modal audio, .js-signin-modal video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+.js-signin-modal article,.js-signin-modal aside,.js-signin-modal details,.js-signin-modal figcaption,.js-signin-modal figure,.js-signin-modal 
+footer,.js-signin-modal header,.js-signin-modal hgroup,.js-signin-modal menu,.js-signin-modal nav,.js-signin-modal section,.js-signin-modal main {
+  display: block;
+}
+.js-signin-modal body {
+  line-height: 1;
+}
+.js-signin-modal blockquote, .js-signin-modal q {
+  quotes: none;
+}
+.js-signin-modal blockquote:before, blockquote:after,
+.js-signin-modal q:before, .js-signin-modal q: after {
+  content: '';
+  content: none;
+}
+.js-signin-modal table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
