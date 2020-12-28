@@ -1,89 +1,64 @@
-<%= stylesheet_link_tag 'login_signup/demo', media: 'all' %>
-<%= stylesheet_link_tag 'login_signup/style', media: 'all' %>
-<div class="cd-signin-modal js-signin-modal" id="signin-modal" role="dialog"> <!-- this is the entire modal form, including the background -->
-  <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-    <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-      <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-      <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-    </ul>
+<%= stylesheet_link_tag 'login_signup/style' %>
 
-    <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
-      <form class="cd-signin-modal__form">
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
-          <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
-          <label for="remember-me">Remember me</label>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
-        </p>
-      </form>
-      
-      <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
-    </div> <!-- cd-signin-modal__block -->
-
-    <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
-      <form class="cd-signin-modal__form">
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
-          <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
-          <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
-        </p>
-      </form>
-    </div> <!-- cd-signin-modal__block -->
-
-    <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
-      <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-
-      <form class="cd-signin-modal__form">
-        <p class="cd-signin-modal__fieldset">
-          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
-          <span class="cd-signin-modal__error">Error message here!</span>
-        </p>
-
-        <p class="cd-signin-modal__fieldset">
-          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
-        </p>
-      </form>
-
-      <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
+<p id="notice"><%= notice %></p>
+<div class="login-form">
+  <div class="form-box">
+    <div class="button-box">
+      <div id="btn"></div>
+      <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+      <button type="button" class="toggle-btn" onclick="register()">Register</button>
     </div>
-    <a href="#0" class="cd-signin-modal__close js-close">Close</a>
+    <div class="social-icons">
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <% if provider == :google_oauth2 %>
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <img src="https://res-4.cloudinary.com/linkisin/image/asset/f_auto,fl_lossy,q_auto/google-icon-252d781740e912efab287591e0942093.png" alt="Google icon">
+          <% end %>
+        <% elsif provider == :facebook %>
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <img src="https://res-1.cloudinary.com/linkisin/image/asset/f_auto,fl_lossy,q_auto/facebook-icon-244d6370cec26acde422cfaaf439a7f1.png" alt="Facebook icon">
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "input-group", id: "login" }) do |f| %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'Enter Email', required: true %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "input-field", placeholder: "Enter Password", required: true %>
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, class: "check-box" %>
+          <%= f.label :remember_me, 'Remember Password' %>
+        </div>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'mb-4' %>
+        <% end %>
+      <% end %>
+      <%= f.submit "Log in", class: "submit-btn" %>
+    <% end %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'input-group', id: 'register' }) do |f| %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'Enter Email', required: true %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Enter Password', class: 'input-field', required: "true" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Re-Enter Password', class: 'input-field', required: "true" %>
+      <input type="checkbox" name="remember" class="check-box" required="true"><span>I agree to the Terms and Conditions</span>
+      <%= f.submit "Sign up", class: "submit-btn" %>
+    <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  var x = document.getElementById("login");
+  var y = document.getElementById("register");
+  var z = document.getElementById("btn");
+
+  function register(){
+    x.style.left = "-400px";
+    y.style.left = "50px";
+    z.style.left = "110px";
+  }
+
+  function login(){
+    x.style.left = "50px";
+    y.style.left = "450px";
+    z.style.left = "0px";
+  }
+</script>

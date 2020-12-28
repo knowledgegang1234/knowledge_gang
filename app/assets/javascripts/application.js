@@ -17,13 +17,12 @@
 //= require activestorage
 //= require turbolinks
 //= require select2
-//= require login_signup/placeholders.min
-//= require login_signup/main
 
 document.addEventListener("turbolinks:load", function() {
   $(".select_two").select2({
     theme: "bootstrap"
   });
+
   $('.follow-btn').click(function() {
     var followable_type = $(this).data('followable_type');
     var followable_id = $(this).data('followable_id');
@@ -39,8 +38,4 @@ document.addEventListener("turbolinks:load", function() {
       }
     });
   });
-})
-
-// $(document).ready(function() {
-
-// });
+});

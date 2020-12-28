@@ -3,10 +3,14 @@
     <div class="border shadow mb-4 p-4 bg-light text-dark border-corner">
       <div class="row">
         <div class="col-2 pl-5">
-          <a><img src="<%= @user.avatar %>" class="rounded-circle"></a>
+          <% if @user.avatar %>
+            <img src="<%= @user.avatar %>" class="rounded-circle card-img-top">
+          <% else %>
+            <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>">
+          <% end %>
         </div>
         <div class="col-10">
-          <span class="text-20 mr-3"><b><%= @user.name %></b></span>
+          <span class="text-20 mr-3"><b><%= @user.name || @user.username %></b></span>
           <% if current_user.id != @user.id %>
             <div id="follow-container">
               <%= render 'followers/follow_action' %>

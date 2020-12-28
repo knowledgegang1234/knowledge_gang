@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, :email, uniqueness: true, allow_nil: true
 
   after_create :set_username
 
