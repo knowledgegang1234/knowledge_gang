@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'blogs/new', media: 'all' %>
+<%= stylesheet_link_tag 'blogs/show', media: 'all' %>
 <div class="row">
   <div class="col-md-6 order-md-2">
     <div class="mb-5 description-container text-justify border shadow mb-4 p-4 bg-light text-dark border-corner">
@@ -10,13 +10,21 @@
       <%#= link_to 'Edit', edit_blog_path(@blog),class: "btn btn-outline-info btn-sm" %>
       <div class="bottom-actions mb-3 mt-5">
         <p class="inline-para">
-          <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
-            <% if current_user&.liked_blog?(@blog) %>
-              <i class="fas fa-heart fa-lg fa-theme-red"></i> 
-            <% else %>
-              <i class="far fa-heart fa-lg"></i> 
-            <% end %>
-            <span class="hits-count"><%= @blog.likes_count %></span> <span>Likes</span></a>
+          <% if current_user %>
+            <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
+              <% if current_user.liked_blog?(@blog) %>
+                <i class="fas fa-heart fa-lg fa-theme-red"></i> 
+              <% else %>
+                <i class="far fa-heart fa-lg"></i> 
+              <% end %>
+              <span class="hits-count"><%= @blog.likes_count %></span> <span>Likes</span>
+            </a>
+          <% else %>
+            <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="side-btn">
+              <i class="far fa-heart fa-lg"></i>
+              <span class="hits-count"><%= @blog.likes_count %></span> <span>Likes</span>
+            </a>
+          <% end %>
         </p>
         <p class="inline-para">
           <a href="javascript:void(0)" class="side-btn comment-side-blog" data-blog-slug="<%= @blog.slug %>">
@@ -25,13 +33,19 @@
           </a>
         </p>
         <p class="inline-para">
-          <a href="javascript:void(0)" class="side-btn bookmark-side-blog" data-blog-slug="<%= @blog.slug %>">
-            <% if current_user.bookmarked?(@blog) %>
-              <i class="fas fa-bookmark fa-lg"></i> <span class="read-it-later">Saved</span>
-            <% else %>
+          <% if current_user %>
+            <a href="javascript:void(0)" class="side-btn bookmark-side-blog" data-blog-slug="<%= @blog.slug %>">
+              <% if current_user.bookmarked?(@blog) %>
+                <i class="fas fa-bookmark fa-lg"></i> <span class="read-it-later">Saved</span>
+              <% else %>
+                <i class="far fa-bookmark fa-lg"></i> <span class="read-it-later">Read it Later!</span>
+              <% end %>
+            </a>
+          <% else %>
+            <a href="javascript:void(0)" class="side-btn" onclick="showModalPopUp('login_modal')">
               <i class="far fa-bookmark fa-lg"></i> <span class="read-it-later">Read it Later!</span>
-            <% end %>
-          </a>
+            </a>
+          <% end %>
         </p>
         <div class="inline-para float-right">
           <% blog_url = blog_show_url(id: @blog, category_id: @blog.category) %>
@@ -56,25 +70,39 @@
   <div class="col-md-3 order-md-1 d-none d-md-block">
     <div class="position-fixed mt-5 text-center ml-5">
       <p class="inline-para">
-        <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
-          <% if current_user&.liked_blog?(@blog) %>
-            <i class="fas fa-heart fa-lg fa-theme-red"></i> 
-          <% else %>
-            <i class="far fa-heart fa-lg"></i> 
-          <% end %>
-          <span class="hits-count"><%= @blog.likes_count %></span></a>
+        <% if current_user %>
+          <a href="javascript:void(0)" class="side-btn like-side-blog" data-blog-slug="<%= @blog.slug %>">
+            <% if current_user.liked_blog?(@blog) %>
+              <i class="fas fa-heart fa-lg fa-theme-red"></i> 
+            <% else %>
+              <i class="far fa-heart fa-lg"></i> 
+            <% end %>
+            <span class="hits-count"><%= @blog.likes_count %></span>
+          </a>
+        <% else %>
+          <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="side-btn">
+            <i class="far fa-heart fa-lg"></i>
+            <span class="hits-count"><%= @blog.likes_count %></span>
+          </a>
+        <% end %>
       </p>
       <p class="inline-para">
         <a href="javascript:void(0)" class="side-btn" id="comment-side-blog" data-blog-slug="<%= @blog.slug %>"><i class="far fa-comments fa-lg"></i> <span class="comments-count"><%= @blog.comments_count %></span></a>
       </p>
       <p class="inline-para">
-        <a href="javascript:void(0)" class="side-btn bookmark-side-blog" data-blog-slug="<%= @blog.slug %>">
-          <% if current_user.bookmarked?(@blog) %>
-            <i class="fas fa-bookmark fa-lg"></i>
-          <% else %>
+        <% if current_user %>
+          <a href="javascript:void(0)" class="side-btn bookmark-side-blog" data-blog-slug="<%= @blog.slug %>">
+            <% if current_user.bookmarked?(@blog) %>
+              <i class="fas fa-bookmark fa-lg"></i>
+            <% else %>
+              <i class="far fa-bookmark fa-lg"></i>
+            <% end %>
+          </a>
+        <% else %>
+          <a href="javascript:void(0)" class="side-btn" onclick="showModalPopUp('login_modal')">
             <i class="far fa-bookmark fa-lg"></i>
-          <% end %>
-        </a>
+          </a>
+        <% end %>
       </p>
     </div>
   </div>

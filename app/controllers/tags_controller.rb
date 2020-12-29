@@ -6,7 +6,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.friendly.find(params[:id])
-    @follow_action = current_user.following?(@tag) ? 'unfollow' : 'follow'
+    @follow_action = current_user&.following?(@tag) ? 'unfollow' : 'follow'
     @followable_type = 'Tag'
     @followable_id = @tag.id
     @blogs_count = @tag.taggings.count

@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
 
   # before_action :set_category, only: [:show]
   before_action :set_blog, only: [:edit, :update, :like, :bookmark]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :like]
 
   def index
     @blogs = Blog.order(id: :desc).page(params[:page]).per(12)

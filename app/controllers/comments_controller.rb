@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     if blog = Blog.find_by(slug: params[:blog_id])

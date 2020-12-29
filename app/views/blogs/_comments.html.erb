@@ -1,13 +1,29 @@
 <h3>Comments (<span class="comments-count"><%= @blog.comments_count %></span>)</h3>
-<div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
-  <%= form_for(Comment.new, remote: true) do |form| %>
-    <div class="my-3">
-      <%= hidden_field_tag :blog_id, @blog.slug %>
-      <%= form.text_area :body , class: "form-control redactor-comment", required: true %>
+<% if current_user %>
+  <div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
+    <%= form_for(Comment.new, remote: true) do |form| %>
+      <div class="my-3">
+        <%= hidden_field_tag :blog_id, @blog.slug %>
+        <%= form.text_area :body , class: "form-control redactor-comment", required: true %>
+      </div>
+      <%= form.submit 'Reply', class: 'btn btn-primary float-right' %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
+    <i class="fas fa-unlock-alt mr-2"></i>Sign In to add your thoughts...
+    <button class="btn btn-outline-primary ml-3" onclick="showModalPopUp('login_modal')">LogIn</button>
+    <div class="disable-form-container mt-2">
+      <div class="hidden-form"></div>
+      <div class="disable-form">
+        <div class="my-3">
+          <%= text_area_tag :comment , "It's an Awesome article! ", class: "form-control", rows: "10"%>
+        </div>
+        <%= button_tag 'Reply', class: 'btn btn-primary float-right mr-3' %>
+      </div>
     </div>
-    <%= form.submit 'Reply', class: 'btn btn-primary float-right' %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 <div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
   <div id="comments">
     <% @comments.each do |comment| %>
