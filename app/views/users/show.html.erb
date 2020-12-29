@@ -11,7 +11,7 @@
         </div>
         <div class="col-10">
           <span class="text-20 mr-3"><b><%= @user.name || @user.username %></b></span>
-          <% if current_user.id != @user.id %>
+          <% if current_user&.id != @user.id %>
             <div id="follow-container">
               <%= render 'followers/follow_action' %>
             </div>
