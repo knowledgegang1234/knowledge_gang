@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   get '/trending' => 'home#trending', as: 'trending'
   resources :categories
   post '/follow_update' => 'followers#follow_update'
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    sessions: "sessions",
+    registrations: "registrations"
+  }
   get '/bookmarked-articles' => 'users#bookmarked', as: 'bookmarked_articles'
   resources :users, only: [:show, :edit, :update] do
     member do
