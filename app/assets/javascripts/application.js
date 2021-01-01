@@ -40,7 +40,7 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   $('.login-click').click(function() {
-    showModalPopUp('login_modal');
+    login()
   });
 });
 
@@ -48,3 +48,11 @@ function showModalPopUp(obj){
   $(".modal").modal("hide");
   $("#"+obj).modal('show');
 };
+
+function register(){
+  showModalPopUp('signup_modal');
+}
+
+function login(){
+  showModalPopUp('login_modal');
+}

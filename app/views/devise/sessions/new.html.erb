@@ -1,1 +1,39 @@
-<%= render 'layouts/login_signup' %>
+<%= stylesheet_link_tag 'login_signup/style' %>
+
+<p id="notice"><%= notice %></p>
+<div class="login-form">
+  <div class="form-box">
+    <div class="button-box">
+      <div id="login-form-btn"></div>
+      <a type="button" class="toggle-btn">Log In</a>
+      <a type="button" href="/users/sign_up" class="toggle-btn">Register</a>
+    </div>
+    <div class="social-icons">
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <% if provider == :google_oauth2 %>
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <img src="https://res-4.cloudinary.com/linkisin/image/asset/f_auto,fl_lossy,q_auto/google-icon-252d781740e912efab287591e0942093.png" alt="Google icon">
+          <% end %>
+        <% elsif provider == :facebook %>
+          <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+            <img src="https://res-1.cloudinary.com/linkisin/image/asset/f_auto,fl_lossy,q_auto/facebook-icon-244d6370cec26acde422cfaaf439a7f1.png" alt="Facebook icon">
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "input-group", id: "login" }) do |f| %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: 'login-email',class: "input-field", placeholder: 'Enter Email', required: true %>
+      <%= f.password_field :password, autocomplete: "current-password", id: 'login-password',class: "input-field", placeholder: "Enter Password", required: true %>
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me, class: "check-box" %>
+          <%= f.label :remember_me, 'Remember Password' %>
+        </div>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'mb-4' %>
+        <% end %>
+      <% end %>
+      <%= f.submit "Log in", class: "submit-btn" %>
+    <% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@
 <div class="login-form">
   <div class="form-box">
     <div class="button-box">
-      <div id="btn"></div>
+      <div id="login-form-btn"></div>
       <button type="button" class="toggle-btn" onclick="login()">Log In</button>
       <button type="button" class="toggle-btn" onclick="register()">Register</button>
     </div>
@@ -35,30 +35,5 @@
       <% end %>
       <%= f.submit "Log in", class: "submit-btn" %>
     <% end %>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'input-group', id: 'register' }) do |f| %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-field", placeholder: 'Enter Email', required: true %>
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Enter Password', class: 'input-field', required: "true" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Re-Enter Password', class: 'input-field', required: "true" %>
-      <input type="checkbox" name="remember" class="check-box" required="true"><span>I agree to the Terms and Conditions</span>
-      <%= f.submit "Sign up", class: "submit-btn" %>
-    <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-  var x = document.getElementById("login");
-  var y = document.getElementById("register");
-  var z = document.getElementById("btn");
-
-  function register(){
-    x.style.left = "-400px";
-    y.style.left = "50px";
-    z.style.left = "110px";
-  }
-
-  function login(){
-    x.style.left = "50px";
-    y.style.left = "450px";
-    z.style.left = "0px";
-  }
-</script>

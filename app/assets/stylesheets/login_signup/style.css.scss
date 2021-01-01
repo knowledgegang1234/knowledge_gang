@@ -39,7 +39,7 @@
   display: inline-block;
 }
 
-.login-form #btn{
+.login-form #login-form-btn{
   top: 0;
   left: 0;
   position: absolute;
@@ -112,9 +112,9 @@
 }
 
 .login-form #register{
-  left: 450px;
+  left: 50px;
 }
 
-.login-form button:focus {
+.login-form a:focus {
   outline: none;
 }

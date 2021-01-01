@@ -5,8 +5,8 @@
   <div class="form-box">
     <div class="button-box">
       <div id="login-form-btn" style="left: 110px;"></div>
-      <a type="button" href="/users/sign_in" class="toggle-btn">Log In</a>
-      <a type="button" class="toggle-btn">Register</a>
+      <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+      <button type="button" class="toggle-btn" onclick="register()">Register</button>
     </div>
     <div class="social-icons">
       <%- resource_class.omniauth_providers.each do |provider| %>
