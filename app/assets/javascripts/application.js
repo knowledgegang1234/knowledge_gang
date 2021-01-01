@@ -16,11 +16,32 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require select2
 
 document.addEventListener("turbolinks:load", function() {
   $(".select_two").select2({
     theme: "bootstrap"
+  });
+
+  var tagsname = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {
+      url: '/tags-name-list',
+      filter: function(list) {
+        return $.map(list, function(tagname) {
+          return { name: tagname }; });
+      }
+    }
+  });
+  tagsname.initialize();
+
+  $('.tag-select').tagsinput({
+    typeaheadjs: {
+      name: 'tagsname',
+      displayKey: 'name',
+      valueKey: 'name',
+      source: tagsname.ttAdapter()
+    }
   });
 
   $('.follow-btn').click(function() {

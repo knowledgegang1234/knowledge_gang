@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :comments
   resources :tags
+  get 'tags-name-list' => 'tags#name_list'
   get '/trending' => 'home#trending', as: 'trending'
   resources :categories
   post '/follow_update' => 'followers#follow_update'

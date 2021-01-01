@@ -15,4 +15,8 @@ class TagsController < ApplicationController
     @blogs = Blog.where(id: blog_ids).page(params[:page]).per(12)
   end
 
+  def name_list
+    render json: Tag.pluck(:name)
+  end
+
 end
