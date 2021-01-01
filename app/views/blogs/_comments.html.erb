@@ -24,7 +24,7 @@
     </div>
   </div>
 <% end %>
-<div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
+<div class="mb-5 border shadow p-4 text-dark border-corner overflow-hidden">
   <div id="comments">
     <% @comments.each do |comment| %>
       <%= render 'blogs/comments/show', comment: comment %>

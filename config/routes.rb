@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     member do
       put 'update_username'
+      get 'comments'
     end
   end
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'

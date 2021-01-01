@@ -1,7 +1,8 @@
 class BlogsController < ApplicationController
 
   # before_action :set_category, only: [:show]
-  before_action :set_blog, only: [:edit, :update, :like, :bookmark]
+  before_action :set_blog, only: [:like, :bookmark]
+  before_action :set_unscoped_blog, only: [:edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :like]
 
   def index
@@ -15,13 +16,15 @@ class BlogsController < ApplicationController
   end
 
   def create
-    if @blog = current_user.blogs.create(blog_params.except(:tag_list))
+    @blog = current_user.blogs.new(blog_params.except(:tag_list,:draft))
+    @blog.status = blog_params[:draft] ? 0 : 1
+    if @blog.save
       blog_params[:tag_list].gsub(' ', '').split(',').each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name)
         tagging = tag.taggings.new(blog_id: @blog.id, user_id: current_user.id)
         tagging.save
       end
-      redirect_to @blog
+      redirect_to @blog.draft! ? user_path(current_user.username) : @blog
     else
       render 'new'
     end
@@ -30,12 +33,15 @@ class BlogsController < ApplicationController
   def show
     category = Category.find_by(slug: params[:category_id])
     if category
-      @blog = category.blogs.friendly.find(params[:id])
+      @blog = category.blogs.find_by(slug: params[:id])
+      if @blog.blank?
+        render :file => 'public/404', :status => :not_found, :layout => true
+      end
     else
-      @blog = Blog.friendly.find(params[:id])
-      redirect_to blog_show_path(id: @blog, category_id: @blog.category)
+      set_blog
+      redirect_to blog_show_path(id: @blog, category_id: @blog.category) if @blog
     end
-    @comments = @blog.comments.order(id: :desc)
+    @comments = @blog.comments.order(id: :desc) if @blog
   end
 
   def edit
@@ -47,7 +53,7 @@ class BlogsController < ApplicationController
         tag = Tag.find_or_create_by(name: tag_name)
         tagging = tag.taggings.find_or_create_by(blog_id: @blog.id, user_id: current_user.id)
       end
-      redirect_to @blog
+      redirect_to @blog.draft! ? user_path(current_user.username) : @blog
     else
       render 'edit'
     end
@@ -72,7 +78,13 @@ class BlogsController < ApplicationController
     end
   end
 
+  def set_unscoped_blog
+    unless @blog = Blog.unscoped.find_by(slug: params[:id])
+      render :file => 'public/404', :status => :not_found, :layout => true
+    end
+  end
+
   def blog_params
-    params.require(:blog).permit(:id, :title, :description, :category_id, :tag_list)
+    params.require(:blog).permit(:id, :title, :description, :category_id, :tag_list, :draft)
   end
 end

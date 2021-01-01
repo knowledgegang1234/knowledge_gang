@@ -39,7 +39,12 @@
          </div>
 
         <div class="actions">
-          <%= form.submit 'Publish', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
+          <% if @blog.new_record? || @blog.draft? %>
+            <%= form.submit 'Publish', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
+            <%= form.button 'Save as Draft', value: true , type: :submit, name: "draft", data: {disable_with: "Please wait..."}, class: "btn btn-bg mt-4 mb-3 btn-theme ml-3" %>
+          <% else %>
+            <%= form.submit 'Update', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
+          <% end %>
         </div>
       <% end %>
     </div>

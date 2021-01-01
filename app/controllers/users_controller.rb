@@ -1,10 +1,19 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :update_username]
+  before_action :set_user, only: [:edit, :update, :show, :update_username, :comments]
   before_action :authenticate_user!, only: [:bookmarked, :edit, :update,:bookmark, :update_username]
   before_action :authenticate_access, only: [:edit, :update, :update_username]
 
   def show
-    @blogs = @user.blogs.page(params[:page]).per(12)
+    blog_status = params[:status] == 'draft' ? 0 : 1
+    @blogs = Blog.unscoped.where(user: @user, status: blog_status).page(params[:page]).per(12)
+    @top_tags = @user.top_tags
+    @follow_action = current_user&.following?(@user) ? 'unfollow' : 'follow'
+    @followable_type = 'User'
+    @followable_id = @user.id
+  end
+
+  def comments
+    @comments = @user.comments.order(id: :desc)
     @top_tags = @user.top_tags
     @follow_action = current_user&.following?(@user) ? 'unfollow' : 'follow'
     @followable_type = 'User'

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   belongs_to :country, optional: true
   has_many :blogs
   has_many :likes
+  has_many :comments
   has_many :bookmarks
   has_many :bookmarked_blogs, through: :bookmarks, source: :blog
   has_many :followers, as: :followable

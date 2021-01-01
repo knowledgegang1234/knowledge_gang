@@ -195,6 +195,21 @@ a:hover {
   font-size: 14px;
 }
 
+.user-articles nav{
+  height: 50px;
+}
+
+.user-articles nav .nav-link{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.user-articles nav .nav-link.active{
+  background-color: var(--theme);
+}
+
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;

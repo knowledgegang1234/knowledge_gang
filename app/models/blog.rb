@@ -14,6 +14,10 @@ class Blog < ApplicationRecord
   after_save :process_description
   after_create :update_blogs_count
 
+  enum status: {draft: 0, live: 1}
+
+  default_scope {where.not(status: 0)}
+
   def self.trending_blogs
     trending_days = 140
     where('created_at::DATE >= ?', Date.today - trending_days.days).order(likes_count: :desc)
