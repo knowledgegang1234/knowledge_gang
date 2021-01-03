@@ -159,6 +159,10 @@ a:hover {
   max-width: 25%;
 }
 
+.trending-users {
+  overflow-x: auto;
+}
+
 .card-body{
   position: absolute;
   bottom: 0;
@@ -320,5 +324,9 @@ a:hover {
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;
+  }
+
+  .trending-users .col-3 {
+    margin-right: 40px;
   }
 }
