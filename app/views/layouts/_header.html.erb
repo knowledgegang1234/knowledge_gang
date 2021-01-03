@@ -19,10 +19,14 @@
           Categories
         </a>
         <div >
-        <div class="dropdown-menu scrollable-menu shadow p-2 mb-5 bg-white rounded" aria-labelledby="navbarDropdown">
-          <% Category.all.each do |category| %>
-            <%= link_to category.name.titleize, category_path(category), class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
+        <div class="dropdown-menu scrollable-menu shadow p-2 mb-5 bg-white rounded dropdown-multicol multicol-dd" aria-labelledby="navbarDropdown">
+          <% Category.order(name: :asc).in_batches(of: 3).each do |categories| %>
+            <% categories.each do |category| %>
+              <div class="dropdown-col">
+                <%= link_to category.name.titleize, category_path(category), class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </li>

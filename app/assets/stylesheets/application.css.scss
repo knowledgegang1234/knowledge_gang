@@ -321,6 +321,28 @@ a:hover {
   display: none;
 }
 
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
+
+div.dropdown-row>a.dropdown-item{
+  display:inline-block;
+  width: 32%;
+}
+
+div.dropdown-multicol{
+  width: 30em;
+}
+div.dropdown-multicol>div.dropdown-col{
+  display:inline-block;
+  width: 32%;
+}
+
+.navbar-nav .multicol-dd {
+  width: 400px;
+}
+
 @media only screen and (max-width: 430px) {
   .navbar-nav .dropdown-menu {
     width: 90%;
