@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 order-md-2">
-    <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner">
+    <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner blog-form-tags">
       <%= form_with(model: @blog, local: true) do |form| %>
         <% if @blog.errors.any? %>
           <div id="error_explanation">
@@ -30,9 +30,9 @@
         </div>
 
         <div class="my-3">
-          <label>Tags (separated by commas)</label>
+          <label>Tags</label>
           <%#= select_tag :tag_list, options_for_select(Tag.pluck(:name)), class: 'form-control custom-select tag-select select_two', multiple: true %>
-          <input type="text" value="" data-role="tagsinput" class="tag-select" >
+          <%= form.text_field :tag_list, value: @blog.tags.pluck(:name).join(','), 'data-role': "tagsinput", class: "tag-select" %>
         </div>
 
         <div class="actions">

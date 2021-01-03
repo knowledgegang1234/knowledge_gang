@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
         tagging = tag.taggings.new(blog_id: @blog.id, user_id: current_user.id)
         tagging.save
       end
-      redirect_to @blog.draft! ? user_path(current_user.username) : @blog
+      redirect_to @blog.draft? ? user_path(current_user.username) : @blog
     else
       render 'new'
     end
