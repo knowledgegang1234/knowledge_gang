@@ -54,8 +54,6 @@ gem 'awesome_print'
 
 gem 'friendly_id', '~> 5.4.0'
 
-gem 'rails_admin', '~> 2.0'
-
 gem 'nokogiri'
 
 gem 'sidekiq'

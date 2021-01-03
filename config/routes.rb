@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: 'blogs#index'
   resources :blogs, except: [:show] do
     member do
