@@ -1,6 +1,8 @@
 <% if @error %>
 
 <% else %>
+  $('#comment-section').removeClass('d-none');
+  $('#no-comment-image').addClass('d-none');
   $('#comments').prepend("<%= escape_javascript(render 'blogs/comments/show', comment: @comment) %>");
   // $(".redactor-comment").redactor('code.set', '');
   var comment_count = $(".comments-count").html();

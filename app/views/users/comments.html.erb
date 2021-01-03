@@ -36,23 +36,33 @@
         <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border <%= draft_active %>"><b>Drafts</b></a>
         <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border <%= comments_active %>"><b>Comments</b></a>
     </nav>
-    <div class="mb-5 border shadow p-4 ml-5  text-dark border-corner overflow-hidden">
-      <div id="comments">
-        <% @comments.each do |comment| %>
-          <%= render 'blogs/comments/show', comment: comment %>
-        <% end %>
+    <% if @comments.present? %>
+      <div class="mb-5 border shadow p-4 ml-5  text-dark border-corner overflow-hidden">
+        <div id="comments">
+          <% @comments.each do |comment| %>
+            <%= render 'blogs/comments/show', comment: comment %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="mb-5 p-4 text-dark border-corner overflow-hidden text-center" id="no-comment-image">
+        <img src= "<%= image_url('no-comments-found.svg') %>" width= "60%" height= "60%" loading="lazy">
+      </div>
+    <% end %>
   </div>
   <div class="col-md-3">
     <div class="mb-4 text-dark mt-5">
       <h5 class="mb-3"><b>Top tags:</b></h5>
-      <% @top_tags.each do |tag| %>
-        <%= link_to tag_path(tag.slug) do %>
-          <button type="button" class="btn btn-primary mr-2 mb-2">
-            <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-          </button>
+      <% if @top_tags.present? %>
+        <% @top_tags.each do |tag| %>
+          <%= link_to tag_path(tag.slug) do %>
+            <button type="button" class="btn btn-primary mr-2 mb-2">
+              <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+            </button>
+          <% end %>
         <% end %>
+      <% else %>
+        <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
       <% end %>
     </div>
   </div>

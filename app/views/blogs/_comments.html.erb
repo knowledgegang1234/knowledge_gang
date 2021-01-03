@@ -24,10 +24,16 @@
     </div>
   </div>
 <% end %>
-<div class="mb-5 border shadow p-4 text-dark border-corner overflow-hidden">
-  <div id="comments">
+<div class="mb-5 border shadow p-4 text-dark border-corner overflow-hidden <%= 'd-none' unless @comments.present? %>" id="comment-section">
+  <div id="comments">  
     <% @comments.each do |comment| %>
       <%= render 'blogs/comments/show', comment: comment %>
     <% end %>
   </div>
 </div>
+<% unless @comments.present? %>
+  <div class="mb-5 p-4 text-dark border-corner overflow-hidden text-center" id="no-comment-image">
+    <img src= "<%= image_url('no-comments-found.svg') %>" width= "60%" height= "60%" loading="lazy">
+    <h5 class="pt-4">Be the first one to share your thoughts!</h5>
+  </div>
+<% end %>

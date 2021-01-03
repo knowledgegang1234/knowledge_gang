@@ -41,12 +41,16 @@
   <div class="col-md-3">
     <div class="mb-4 text-dark mt-5">
       <h5 class="mb-3"><b>Top tags:</b></h5>
-      <% @top_tags.each do |tag| %>
-        <%= link_to tag_path(tag.slug) do %>
-          <button type="button" class="btn btn-primary mr-2 mb-2">
-            <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-          </button>
+      <% if @top_tags.present? %>
+        <% @top_tags.each do |tag| %>
+          <%= link_to tag_path(tag.slug) do %>
+            <button type="button" class="btn btn-primary mr-2 mb-2">
+              <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+            </button>
+          <% end %>
         <% end %>
+      <% else %>
+        <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
       <% end %>
     </div>
   </div>
