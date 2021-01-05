@@ -1,43 +1,45 @@
-<div class="row">
-  <div class="col-md-9 mb-5">
-    <div class="container-fluid mb-5 ml-3 overflow-hidden">
-      <h5 class="mb-3"><b>Trending Publishers</b></h5>
-      <div class="row flex-row flex-nowrap trending-users">
-        <% @trending_users.each do |user|%>
-          <div class="col-3">
-            <%= link_to user_path(id: user.username) do %>
-              <div class="card card-block trending-card">
-                <div class="card-image pt-3">
-                  <% if user.avatar %>
-                    <img src="<%= user.avatar %>" class="rounded-circle">
-                  <% else %>
-                    <img class="card-img-top" src="<%= image_url('default_user.png') %>">
-                  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mb-5">
+      <div class="mb-5 ml-lg-3 overflow-hidden">
+        <h5 class="mb-3"><b>Trending Publishers</b></h5>
+        <div class="row flex-row flex-nowrap trending-users">
+          <% @trending_users.each do |user|%>
+            <div class="col-md-3">
+              <%= link_to user_path(id: user.username) do %>
+                <div class="card card-block trending-card">
+                  <div class="card-image pt-3">
+                    <% if user.avatar %>
+                      <img src="<%= user.avatar %>" class="rounded-circle">
+                    <% else %>
+                      <img class="card-img-top" src="<%= image_url('default_user.png') %>">
+                    <% end %>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title text-center two-line-text"><%= user.name %></h5>
+                    <p class="card-text"><%= user.username %></p>
+                    <p class="card-text"><b><%= user.blogs.count %></b> Articles published</p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title text-center two-line-text"><%= user.name %></h5>
-                  <p class="card-text"><%= user.username %></p>
-                  <p class="card-text"><b><%= user.blogs.count %></b> Articles published</p>
-                </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <h5 class="mb-3 ml-5"><b>Trending Articles</b></h5>
+      <%= render 'blogs/blogs' %>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-4 text-dark">
+        <h5 class="mb-3"><b>Trending tags</b></h5>
+        <% @trending_tags.each do |tag| %>
+          <%= link_to tag_path(tag.slug) do %>
+            <button type="button" class="btn btn-primary mr-2 mb-2">
+              <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+            </button>
+          <% end %>
         <% end %>
       </div>
-    </div>
-    <h5 class="mb-3 ml-5"><b>Trending Articles</b></h5>
-    <%= render 'blogs/blogs' %>
-  </div>
-  <div class="col-md-3">
-    <div class="mb-4 text-dark">
-      <h5 class="mb-3"><b>Trending tags</b></h5>
-      <% @trending_tags.each do |tag| %>
-        <%= link_to tag_path(tag.slug) do %>
-          <button type="button" class="btn btn-primary mr-2 mb-2">
-            <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-          </button>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>

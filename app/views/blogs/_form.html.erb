@@ -1,55 +1,57 @@
-<div class="row">
-  <div class="col-md-8 order-md-2">
-    <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner blog-form-tags">
-      <%= form_with(model: @blog, local: true) do |form| %>
-        <% if @blog.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 order-md-2">
+      <div class="mb-4 border border-light pb-3 pt-3 px-3 shadow border-corner blog-form-tags">
+        <%= form_with(model: @blog, local: true) do |form| %>
+          <% if @blog.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
 
-            <ul>
-            <% @blog.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+              <ul>
+              <% @blog.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="my-3">
+            <label>Title</label>
+            <%= form.text_field :title, class: "form-control", required: true %>
+          </div>
+
+          <div class="my-3">
+            <label>Description</label>
+            <%= form.text_area :description , class: "form-control redactor-textarea", placeholder: 'Share your knowledge', required: true %>
+          </div>
+
+          <div class="my-3">
+            <label>Category</label>
+            <%= form.select :category_id, options_for_select(get_categories, @blog.category_id), { prompt: '--Select Category--' }, class: "form-control custom-select select_two", required: true %>
+          </div>
+
+          <div class="my-3">
+            <label>Tags</label>
+            <%#= select_tag :tag_list, options_for_select(Tag.pluck(:name)), class: 'form-control custom-select tag-select select_two', multiple: true %>
+            <%= form.text_field :tag_list, value: @blog.tags.pluck(:name).join(','), 'data-role': "tagsinput", class: "tag-select" %>
+          </div>
+
+          <div class="actions">
+            <% if @blog.new_record? || @blog.draft? %>
+              <%= form.submit 'Publish', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
+              <%= form.button 'Save as Draft', value: true , type: :submit, name: "draft", data: {disable_with: "Please wait..."}, class: "btn btn-bg mt-4 mb-3 btn-theme ml-3" %>
+            <% else %>
+              <%= form.submit 'Update', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
             <% end %>
-            </ul>
           </div>
         <% end %>
-
-        <div class="my-3">
-          <label>Title</label>
-          <%= form.text_field :title, class: "form-control", required: true %>
-        </div>
-
-        <div class="my-3">
-          <label>Description</label>
-          <%= form.text_area :description , class: "form-control redactor-textarea", placeholder: 'Share your knowledge', required: true %>
-        </div>
-
-        <div class="my-3">
-          <label>Category</label>
-          <%= form.select :category_id, options_for_select(get_categories, @blog.category_id), { prompt: '--Select Category--' }, class: "form-control custom-select select_two", required: true %>
-        </div>
-
-        <div class="my-3">
-          <label>Tags</label>
-          <%#= select_tag :tag_list, options_for_select(Tag.pluck(:name)), class: 'form-control custom-select tag-select select_two', multiple: true %>
-          <%= form.text_field :tag_list, value: @blog.tags.pluck(:name).join(','), 'data-role': "tagsinput", class: "tag-select" %>
-        </div>
-
-        <div class="actions">
-          <% if @blog.new_record? || @blog.draft? %>
-            <%= form.submit 'Publish', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
-            <%= form.button 'Save as Draft', value: true , type: :submit, name: "draft", data: {disable_with: "Please wait..."}, class: "btn btn-bg mt-4 mb-3 btn-theme ml-3" %>
-          <% else %>
-            <%= form.submit 'Update', class: 'btn btn-bg mt-4 mb-3 btn-theme' %>
-          <% end %>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <div class="col-md-1 order-md-1">
-    <p class="text-center"></p>
-  </div>
-  <div class="col-md-3 order-md-3">
-    <p class="text-center">Ads</p>
+    <div class="col-md-1 order-md-1">
+      <p class="text-center"></p>
+    </div>
+    <div class="col-md-3 order-md-3">
+      <p class="text-center">Ads</p>
+    </div>
   </div>
 </div>
