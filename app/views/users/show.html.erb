@@ -1,24 +1,26 @@
-<div class="row user-profile ml-4">
-  <div class="col-md-9">
-    <div class="border shadow mb-4 p-4 bg-light text-dark border-corner">
-      <div class="row">
-        <div class="col-2 pl-5">
-          <% if @user.avatar %>
-            <img src="<%= @user.avatar %>" class="rounded-circle card-img-top">
-          <% else %>
-            <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>">
-          <% end %>
-        </div>
-        <div class="col-10">
-          <span class="text-20 mr-3"><b><%= @user.name || @user.username %></b></span>
-          <% if current_user&.id != @user.id %>
-            <div id="follow-container">
-              <%= render 'followers/follow_action' %>
+<div class="container-fluid">
+  <div class="row user-profile ml-lg-4">
+    <div class="col-md-9">
+      <div class="border shadow mb-4 p-4 bg-light text-dark border-corner">
+        <div class="row">
+          <div class="col-2 pl-5">
+            <% if @user.avatar %>
+              <img src="<%= @user.avatar %>" class="rounded-circle card-img-top">
+            <% else %>
+              <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>">
+            <% end %>
+          </div>
+          <div class="col-10">
+            <span class="text-20 mr-3"><b><%= @user.name || @user.username %></b></span>
+            <% if current_user&.id != @user.id %>
+              <div id="follow-container">
+                <%= render 'followers/follow_action' %>
+              </div>
+            <% end %>
+            <p class="text-15 mt-2"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
+            <div class="mt-1 bio-text">
+              <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
             </div>
-          <% end %>
-          <p class="text-15 mt-2"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
-          <div class="mt-1 bio-text">
-            <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
           </div>
         </div>
       </div>
@@ -26,34 +28,36 @@
   </div>
 </div>
 <br>
-<div class="row">
-  <div class="col-md-9 mb-5 user-articles">
-      <nav class="nav nav-pills nav-justified mt-3 mb-3 ml-5 shadow border-corner">
-        <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
-        <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
-        <% comments_active = action_name == 'comments' ? 'active' : ''%>
-        <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border <%= live_blog_active %>"><b>Published Articles</b></a>
-        <% if current_user == @user %>
-          <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border <%= draft_active %>"><b>Drafts</b></a>
-        <% end %>
-        <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border <%= comments_active %>"><b>Comments</b></a>
-      </nav>
-      <%= render 'blogs/blogs' %>
-  </div>
-  <div class="col-md-3">
-    <div class="mb-4 text-dark mt-5">
-      <h5 class="mb-3"><b>Top tags:</b></h5>
-      <% if @top_tags.present? %>
-        <% @top_tags.each do |tag| %>
-          <%= link_to tag_path(tag.slug) do %>
-            <button type="button" class="btn btn-primary mr-2 mb-2">
-              <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-            </button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mb-5 user-articles">
+        <nav class="nav nav-pills nav-justified mt-3 mb-3 ml-lg-5 shadow border-corner">
+          <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
+          <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
+          <% comments_active = action_name == 'comments' ? 'active' : ''%>
+          <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border <%= live_blog_active %>"><b>Published Articles</b></a>
+          <% if current_user == @user %>
+            <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border <%= draft_active %>"><b>Drafts</b></a>
           <% end %>
+          <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border <%= comments_active %>"><b>Comments</b></a>
+        </nav>
+        <%= render 'blogs/blogs' %>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-4 text-dark mt-5">
+        <h5 class="mb-3"><b>Top tags:</b></h5>
+        <% if @top_tags.present? %>
+          <% @top_tags.each do |tag| %>
+            <%= link_to tag_path(tag.slug) do %>
+              <button type="button" class="btn btn-primary mr-2 mb-2">
+                <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+              </button>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
         <% end %>
-      <% else %>
-        <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

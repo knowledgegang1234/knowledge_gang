@@ -343,11 +343,12 @@ div.dropdown-multicol>div.dropdown-col{
   width: 400px;
 }
 
-@media only screen and (max-width: 430px) {
-  .navbar-nav .dropdown-menu {
-    width: 90%;
-  }
+.content-inside{
+  overflow-wrap: break-word;
+}
 
+@media only screen and (max-width: 430px) {
+  
   .trending-users .col-3 {
     margin-right: 40px;
   }
