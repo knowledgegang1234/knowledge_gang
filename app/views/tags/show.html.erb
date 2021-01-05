@@ -1,16 +1,18 @@
-<div class="row">
-  <div class="col-md-9">
-    <div class="ml-5 mb-2 p-4">
-      <h3><i class="fas fa-tag mr-2"></i><%= @tag.name %>
-        <div id="follow-container">
-          <%= render 'followers/follow_action' %>
-        </div>
-      </h3>
-      <p class="mt-3">Tagged in <%= @blogs_count %> articles, Followed by <%= @followers_count %> readers</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="ml-5 mb-2 p-4">
+        <h3><i class="fas fa-tag mr-2"></i><%= @tag.name %>
+          <div id="follow-container">
+            <%= render 'followers/follow_action' %>
+          </div>
+        </h3>
+        <p class="mt-3">Tagged in <%= @blogs_count %> articles, Followed by <%= @followers_count %> readers</p>
+      </div>
+      <%= render 'blogs/blogs' %>
     </div>
-    <%= render 'blogs/blogs' %>
-  </div>
-  <div class="col-md-3">
-    <div></div>
+    <div class="col-md-3">
+      <div></div>
+    </div>
   </div>
 </div>

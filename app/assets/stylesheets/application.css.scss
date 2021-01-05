@@ -347,9 +347,30 @@ div.dropdown-multicol>div.dropdown-col{
   overflow-wrap: break-word;
 }
 
+.description-container img{
+  max-width: 100%;
+}
+
 @media only screen and (max-width: 430px) {
-  
+
   .trending-users .col-3 {
     margin-right: 40px;
+  }
+
+  .card-img-top{
+    width: 70%;
+  }
+  .user-detail-profile{
+    margin-top: 10px;
+    padding-left: 15px;
+  }
+  .username-profile{
+    text-align: center;
+  }
+  .username-profile span{
+    margin: auto;
+  }
+  .user-articles nav{
+    height: auto;
   }
 }
