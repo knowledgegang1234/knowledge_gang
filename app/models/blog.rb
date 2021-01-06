@@ -1,8 +1,18 @@
 class Blog < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   extend FriendlyId
 
   friendly_id :title, use: :slugged
+
+  after_commit on: [:create, :update] do
+    es_reindex
+  end
+
+  after_commit on: [:destroy] do
+    es_delete_index
+  end
 
   belongs_to :user
   belongs_to :category
@@ -18,9 +28,34 @@ class Blog < ApplicationRecord
 
   default_scope {where.not(status: 0)}
 
+  def es_reindex
+    Indexer.perform_async(:index, self.id)
+  end
+
+  def es_delete_index
+    Indexer.perform_async(:delete, self.id)
+  end
+
   def self.trending_blogs
     trending_days = 140
     where('created_at::DATE >= ?', Date.today - trending_days.days).order(likes_count: :desc)
+  end
+
+  def as_indexed_json(options = {})
+    self.as_json(
+      only: [:title, :description],
+      include: {
+        user: {
+          only: [:username, :name]
+        },
+        category: {
+          only: [:name]
+        },
+        tags: {
+          only: [:name]
+        }
+      }
+    )
   end
 
   private
