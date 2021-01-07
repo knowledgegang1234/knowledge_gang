@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  include Searchable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,6 +21,12 @@ class User < ApplicationRecord
   validates :username, :email, uniqueness: true, allow_nil: true
 
   after_create :set_username
+
+  def as_indexed_json(options = {})
+    self.as_json(
+      only: [:username, :name, :email]
+    )
+  end
 
   def following_users
     Follower.where(user_id: id, followable_type: 'User')

@@ -1,0 +1,21 @@
+---
+:verbose: false
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+development:
+  :concurrency: 20
+  :queues:
+    - [default, 1]
+    - [elasticsearch, 1]
+staging:
+  :concurrency: 5
+  :queues:
+    - [default, 1]
+    - [elasticsearch, 1]
+
+production:
+  :concurrency: 20
+  :queues:
+    - [default, 1]
+    - [elasticsearch, 1]
+

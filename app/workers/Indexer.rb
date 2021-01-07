@@ -2,10 +2,10 @@ class Indexer
   include Sidekiq::Worker
   sidekiq_options queue: 'elasticsearch', retry: false
 
-  def perform(operation, record_id)
+  def perform(operation, class_name, record_id)
     case operation.to_s
       when /index/
-        record = Blog.find(record_id)
+        record = class_name.constantize.find(record_id)
         Elasticsearch::Model.client.index  index: 'blogs', id: record.id, body: record.__elasticsearch__.as_indexed_json
       when /delete/
         begin

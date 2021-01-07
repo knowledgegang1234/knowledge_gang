@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+
+  include Searchable
 
   extend FriendlyId
 
@@ -27,14 +27,6 @@ class Blog < ApplicationRecord
   enum status: {draft: 0, live: 1}
 
   default_scope {where.not(status: 0)}
-
-  def es_reindex
-    Indexer.perform_async(:index, self.id)
-  end
-
-  def es_delete_index
-    Indexer.perform_async(:delete, self.id)
-  end
 
   def self.trending_blogs
     trending_days = 140

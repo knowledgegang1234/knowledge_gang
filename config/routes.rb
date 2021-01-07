@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   root to: 'blogs#index'
   resources :blogs, except: [:show] do
     member do
