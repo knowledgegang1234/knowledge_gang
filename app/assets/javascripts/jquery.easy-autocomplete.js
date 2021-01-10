@@ -1016,7 +1016,7 @@ var EasyAutocomplete = (function(scope) {
 
 			function adjustWrapperWidth() {
 				var fieldWidth = $field.outerWidth();
-
+				if (fieldWidth == 0) return;
 				$field.parent().css("width", fieldWidth);				
 			}
 
