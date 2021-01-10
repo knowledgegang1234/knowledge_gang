@@ -22,19 +22,19 @@ document.addEventListener("turbolinks:load", function() {
     categories: [
       {
         listLocation: 'tags',
-        header: '<b style="color: #65CCB8;">Tags</b>'
+        header: '<b>Tags</b>'
       },
       {
         listLocation: 'categories',
-        header: '<b style="color: #65CCB8;">Categories</b>'
+        header: '<b>Categories</b>'
       },
       {
         listLocation: 'users',
-        header: '<b style="color: #65CCB8;">Users</b>'
+        header: '<b>Users</b>'
       },
       {
         listLocation: 'articles',
-        header: '<b style="color: #65CCB8;">Articles</b>'
+        header: '<b>Articles</b>'
       }
     ],
     list: {
