@@ -16,6 +16,8 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery.easy-autocomplete
+//= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
   $(".select_two").select2({

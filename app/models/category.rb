@@ -11,7 +11,7 @@ class Category < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:name]
+      only: [:name, :slug]
     )
   end
 

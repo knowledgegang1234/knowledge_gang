@@ -6,7 +6,7 @@ class Indexer
     case operation.to_s
       when /index/
         record = class_name.constantize.find(record_id)
-        Elasticsearch::Model.client.index  index: 'blogs', id: record.id, body: record.__elasticsearch__.as_indexed_json
+        Elasticsearch::Model.client.index  index: record.class.table_name, id: record.id, body: record.__elasticsearch__.as_indexed_json
       when /delete/
         begin
           Elasticsearch::Model.client.delete index: 'blogs', id: record_id

@@ -1,6 +1,8 @@
 @import "bootstrap";
 @import "select2";
 @import "select2-bootstrap";
+@import "easy-autocomplete";
+@import "easy-autocomplete.themes";
 
 :root {
   --theme: #65CCB8;
@@ -19,7 +21,7 @@
   margin-left: 10px;
 }
 
-.navbar ul{
+.navbar .mr-ul{
   margin-left: 10px;
 }
 

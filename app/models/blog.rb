@@ -35,18 +35,7 @@ class Blog < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:title, :description],
-      include: {
-        user: {
-          only: [:username, :name]
-        },
-        category: {
-          only: [:name]
-        },
-        tags: {
-          only: [:name]
-        }
-      }
+      only: [:title, :description, :slug]
     )
   end
 

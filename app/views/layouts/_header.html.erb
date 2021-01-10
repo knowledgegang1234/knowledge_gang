@@ -8,7 +8,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto mr-ul">
       <li class="nav-item">
         <%= link_to trending_path, class: 'nav-link' do %>
           <i class="fas fa-fire"></i> <span>Trending</span>
@@ -31,11 +31,11 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" id="search-article" placeholder="Search" aria-label="Search">
-      <button class="btn btn-theme my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <ul class="navbar-nav">
+    <%= form_with url: search_path, local: true, method: :get, html: { class: 'form-inline my-2 my-lg-0' } do |form| %>
+      <%= form.text_field :q, placeholder: 'Search', class: 'form-control mr-sm-2', 'aria-label': "Search", data: { behavior: 'autocomplete' } %>
+      <%= form.button 'Search', class: 'btn btn-theme my-2 my-sm-0' %>
+    <% end %>
+    <ul class="navbar-nav mr-ul">
       <% if current_user %>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light"><i class="fas fa-bell"></i></a>

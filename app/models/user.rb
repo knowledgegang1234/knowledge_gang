@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:username, :name, :email]
+      only: [:username, :name, :avatar]
     )
   end
 
