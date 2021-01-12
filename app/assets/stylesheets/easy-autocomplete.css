@@ -257,6 +257,8 @@
   padding-left: 0;
   position: relative;
   top: -1px;
+  max-height:250px;
+  overflow-y:scroll;
 }
 .easy-autocomplete-container ul li, .easy-autocomplete-container ul .eac-category {
   background: inherit;

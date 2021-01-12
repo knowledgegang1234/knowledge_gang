@@ -17,7 +17,7 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery.easy-autocomplete
-//= require_tree .
+//= require search
 
 document.addEventListener("turbolinks:load", function() {
   $(".select_two").select2({

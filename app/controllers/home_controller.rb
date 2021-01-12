@@ -17,16 +17,16 @@ class HomeController < ApplicationController
         },
       }
     )
-    @categories = Category.__elasticsearch__.search(
-      {
-        query: {
-          query_string: {
-            query: "*#{params[:q]}*",
-            fields: ['name', 'slug']
-          }
-        },
-      }
-    )
+    # @categories = Category.__elasticsearch__.search(
+    #   {
+    #     query: {
+    #       query_string: {
+    #         query: "*#{params[:q]}*",
+    #         fields: ['name', 'slug']
+    #       }
+    #     },
+    #   }
+    # )
     @articles = Blog.__elasticsearch__.search(
       {
         query: {
@@ -52,7 +52,7 @@ class HomeController < ApplicationController
       format.html {}
       format.json {
         @tags = @tags.limit(5)
-        @categories = @categories.limit(5)
+        # @categories = @categories.limit(5)
         @articles = @articles.limit(5)
         @users = @users.limit(5)
       }

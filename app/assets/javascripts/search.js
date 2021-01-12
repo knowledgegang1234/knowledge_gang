@@ -24,10 +24,10 @@ document.addEventListener("turbolinks:load", function() {
         listLocation: 'tags',
         header: '<b>Tags</b>'
       },
-      {
-        listLocation: 'categories',
-        header: '<b>Categories</b>'
-      },
+      // {
+      //   listLocation: 'categories',
+      //   header: '<b>Categories</b>'
+      // },
       {
         listLocation: 'users',
         header: '<b>Users</b>'
@@ -41,7 +41,8 @@ document.addEventListener("turbolinks:load", function() {
       onChooseEvent: function() {
         var url = $input.getSelectedItemData().url;
         $input.val('');
-        Turbolinks.visit(url);
+        // Turbolinks.visit(url);
+        window.location.href = url;
       }
     }
   }

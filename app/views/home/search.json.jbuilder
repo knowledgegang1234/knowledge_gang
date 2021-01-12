@@ -6,13 +6,13 @@ json.tags do
   end
 end
 
-json.categories do
-  json.array!(@categories) do |category|
-    json.name category.name
-    json.type 'category'
-    json.url category_path(category.slug)
-  end
-end
+# json.categories do
+#   json.array!(@categories) do |category|
+#     json.name category.name
+#     json.type 'category'
+#     json.url category_path(category.slug)
+#   end
+# end
 
 json.articles do
   json.array!(@articles) do |article|

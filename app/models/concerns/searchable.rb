@@ -14,11 +14,11 @@ module Searchable
     end
 
     def es_reindex
-      Indexer.perform_async(:index, self.class.name, self.id)
+      Indexer.new.perform(:index, self.class.name, self.id)
     end
 
     def es_delete_index
-      Indexer.perform_async(:delete, self.class.name, self.id)
+      Indexer.new.perform(:delete, self.class.name, self.id)
     end
   end
 
