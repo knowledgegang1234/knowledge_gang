@@ -23,6 +23,7 @@ class Blog < ApplicationRecord
 
   after_save :process_description
   after_create :update_blogs_count
+  after_commit :blog_count_update
 
   enum status: {draft: 0, live: 1}
 
@@ -35,11 +36,32 @@ class Blog < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:title, :description, :slug]
+      only: [:title, :description, :slug, :short_description, :updated_at, :likes_count, :comments_count],
+      methods: [ :user_name, :user_username, :category_name, :category_slug ]
     )
   end
 
+  def user_name
+    user.name || ''
+  end
+
+  def user_username
+    user.username
+  end
+
+  def category_slug
+    category.slug
+  end
+
+  def category_name
+    category.name
+  end
+
   private
+
+  def blog_count_update
+    user.update_attribute(:blogs_count, user.blogs.count)
+  end
 
   def process_description
     short_desc = ActionView::Base.full_sanitizer.sanitize(description).first(200) + ' .....'

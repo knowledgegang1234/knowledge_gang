@@ -22,9 +22,11 @@ class User < ApplicationRecord
 
   after_create :set_username
 
+  before_save :reindex_blogs, if: proc {|user| user.name_changed? || user.username_changed?}
+
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:username, :name, :avatar]
+      only: [:username, :name, :avatar, :blogs_count]
     )
   end
 
@@ -67,6 +69,12 @@ class User < ApplicationRecord
 
   def top_tags
     self.tags.select('tags.id,tags.name,tags.slug,count(taggings.tag_id) as count').group('tags.id,taggings.tag_id,tags.name,tags.slug').to_a.sort_by(&:count).reverse
+  end
+
+  def reindex_blogs
+    blogs.each do |blog|
+      blog.es_reindex
+    end
   end
 
   class << self

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'tags-name-list' => 'tags#name_list'
   get '/trending' => 'home#trending', as: 'trending'
   get '/search' => 'home#search', as: 'search'
+  get '/search_users' => 'home#search_users', as: 'search_users'
+  get '/search_tags' => 'home#search_tags', as: 'search_tags'
+  get '/search_blogs' => 'home#search_blogs', as: 'search_blogs'
   resources :categories
   post '/follow_update' => 'followers#follow_update'
   devise_for :users, :controllers => {

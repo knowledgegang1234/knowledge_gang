@@ -16,4 +16,11 @@ namespace :onetime do
     end
   end
 
+  desc 'Blogs count in user table'
+  task blogs_count_user: [:environment] do
+    User.all.each do |user|
+      user.update_attribute(:blogs_count, user.blogs.count)
+    end
+  end  
+
 end
