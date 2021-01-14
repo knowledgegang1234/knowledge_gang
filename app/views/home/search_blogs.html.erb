@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mb-5">
+      <h5 class="mb-3 ml-lg-3"><b>Searched Articles</b></h5>
+      <% if @articles.present? %>
+        <% @articles.each_with_index do |blog, index| %>
+          <%= render 'search_blog', blog: blog, index: index%>
+        <% end %>
+        <div class="ml-lg-5 float-right">
+          <%= paginate @articles %>
+        </div>
+      <% else %>
+        <%= render 'blog_no_articles' %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-4 text-dark">
+        <h5 class="mb-3"><b>Ads will be here!</b></h5>
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,7 +50,15 @@ class HomeController < ApplicationController
     )
 
     respond_to do |format|
-      format.html {}
+      format.html {
+        if params[:type] == 'users'
+          @users = @users.page(params[:page]).per(12)
+          render 'search_users'
+        elsif params[:type] == 'blogs'
+          @articles = @articles.page(params[:page]).per(12)
+          render 'search_blogs'
+        end
+      }
       format.json {
         @tags = @tags.limit(5)
         # @categories = @categories.limit(5)

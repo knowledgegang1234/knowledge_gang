@@ -1,0 +1,11 @@
+<div class="ml-lg-5 mb-4 p-4 text-dark border-corner text-center">
+  <img src= "<%= image_url('no-content-found.svg') %>" width= "60%" height= "60%" loading="lazy">
+  <div class="text-center" style="display: inline-block;">
+    <span>No articles found </span>
+    <% if current_user %>
+      <%= link_to 'Write your Own', new_blog_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
+    <% else %>
+      <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="btn btn-bg mt-3 mb-3 btn-theme">Write your Own</a>
+    <% end %>
+  </div>
+</div>

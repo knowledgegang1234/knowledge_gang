@@ -5,62 +5,20 @@
         <div class="mb-5 ml-lg-3 overflow-hidden">
           <h5 class="mb-3"><b>Searched Users</b></h5>
           <div class="row flex-row flex-nowrap trending-users">
-            <% @users.each do |user|%>
-              <div class="col-md-3">
-                <%= link_to user_path(id: user.username) do %>
-                  <div class="card card-block trending-card">
-                    <div class="card-image pt-3">
-                      <% if user.avatar %>
-                        <img src="<%= user.avatar %>" class="rounded-circle">
-                      <% else %>
-                        <img class="card-img-top" src="<%= image_url('default_user.png') %>">
-                      <% end %>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title text-center two-line-text"><%= user.name %></h5>
-                      <p class="card-text"><%= user.username %></p>
-                      <p class="card-text"><b><%= user.blogs_count %></b> Articles published</p>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
+            <% @users.each do |user| %>
+              <%= render 'search_user', user: user %>
             <% end %>
           </div>
         </div>
         <hr>
-      <% else %>
       <% end %>
       <h5 class="mb-3 ml-lg-3"><b>Searched Articles</b></h5>
       <% if @articles.present? %>
         <% @articles.each_with_index do |blog, index| %>
-          <% if ((index + 1) % 4 == 0) %>
-            <div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner">
-              <div>google ad</div>
-            </div>
-          <% end %>
-          <div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner content-inside">
-            <div><%= link_to(blog.user_name, user_path(id: blog.user_username)) %> in <%= link_to(blog.category_name, category_path(blog.category_slug)) %></div>
-            <%= link_to blog_show_path(id: blog.slug, category_id: blog.category_slug) do %>
-              <h4><%= blog.title %></h4>
-              <p class="mt-3"><%= raw blog.short_description %></p>
-            <% end %>
-            <p class="mt-3 inline-para"><%= blog.updated_at.to_time.strftime('%b %d, %Y') %></p>
-            <p class="mt-3 inline-para"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></p>
-            <p class="mt-3 inline-para"><%= blog.comments_count %> <i class="fas fa-comments"></i></p>
-          </div>
+          <%= render 'search_blog', blog: blog, index: index%>
         <% end %>
       <% else %>
-        <div class="ml-lg-5 mb-4 p-4 text-dark border-corner text-center">
-          <img src= "<%= image_url('no-content-found.svg') %>" width= "60%" height= "60%" loading="lazy">
-          <div class="text-center" style="display: inline-block;">
-            <span>No articles found </span>
-            <% if current_user %>
-              <%= link_to 'Write your Own', new_blog_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
-            <% else %>
-              <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="btn btn-bg mt-3 mb-3 btn-theme">Write your Own</a>
-            <% end %>
-          </div>
-        </div>
+        <%= render 'blog_no_articles' %>
       <% end %>
     </div>
     <div class="col-md-3">

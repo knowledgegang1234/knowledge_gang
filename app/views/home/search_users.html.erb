@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9 mb-5">
+      <% if @users.present? %>
+        <div class="mb-5 ml-lg-3 overflow-hidden">
+          <h5 class="mb-3"><b>Searched Users</b></h5>
+          <div class="row flex-row flex-nowrap trending-users">
+            <% @users.each do |user|%>
+              <%= render 'search_user', user: user %>
+            <% end %>
+            <div class="ml-lg-5 float-right">
+              <%= paginate @users %>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="ml-lg-5 mb-4 p-4 text-dark border-corner text-center">
+          <img src= "<%= image_url('no-content-found.svg') %>" width= "60%" height= "60%" loading="lazy">
+          <div class="text-center" style="display: inline-block;">
+            <span>No Users found </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-4 text-dark">
+        <h5 class="mb-3"><b>Ads will be here!</b></h5>
+      </div>
+    </div>
+  </div>
+</div>

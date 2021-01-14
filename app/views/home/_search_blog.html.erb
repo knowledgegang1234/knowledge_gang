@@ -1,0 +1,15 @@
+<% if ((index + 1) % 4 == 0) %>
+  <div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner">
+    <div>google ad</div>
+  </div>
+<% end %>
+<div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner content-inside">
+  <div><%= link_to(blog.user_name, user_path(id: blog.user_username)) %> in <%= link_to(blog.category_name, category_path(blog.category_slug)) %></div>
+  <%= link_to blog_show_path(id: blog.slug, category_id: blog.category_slug) do %>
+    <h4><%= blog.title %></h4>
+    <p class="mt-3"><%= raw blog.short_description %></p>
+  <% end %>
+  <p class="mt-3 inline-para"><%= blog.updated_at.to_time.strftime('%b %d, %Y') %></p>
+  <p class="mt-3 inline-para"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></p>
+  <p class="mt-3 inline-para"><%= blog.comments_count %> <i class="fas fa-comments"></i></p>
+</div>
