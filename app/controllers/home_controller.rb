@@ -51,6 +51,10 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.html {
+        unless params[:type]
+          @users = @users.limit(5)
+          @articles = @articles.limit(10)
+        end
         if params[:type] == 'users'
           @users = @users.page(params[:page]).per(12)
           render 'search_users'
