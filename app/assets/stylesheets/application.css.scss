@@ -97,10 +97,12 @@ a:hover {
 
 .btn-theme{
   background-color: var(--theme);
+  color: white;
 }
 
 .btn-theme:hover{
   background-color: var(--deeptheme);
+  color: white;
 }
 
 .btn-theme:active {
@@ -133,7 +135,7 @@ a:hover {
 
 .trending-card {
   height: 250px;
-  width: 200px;
+  width: 100%;
   transition: box-shadow 0.3s;
 }
 
@@ -366,6 +368,18 @@ div.dropdown-multicol>div.dropdown-col{
   color: white;
 }
 
+.tags-load-more {
+  margin-top: 10px;
+}
+
+.badge {
+  color: var(--theme);
+}
+
+.tags-hover:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
 @media only screen and (max-width: 430px) {
 
   .trending-users .col-3 {
@@ -391,5 +405,11 @@ div.dropdown-multicol>div.dropdown-col{
 
   .login-form .form-box {
     max-width: 350px!important;
+  }
+
+  .trending-card {
+    height: 250px;
+    width: 200px;
+    transition: box-shadow 0.3s;
   }
 }

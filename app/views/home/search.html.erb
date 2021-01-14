@@ -10,7 +10,7 @@
             <% end %>
           </div>
         </div>
-        <% if @users.count > 5 %>
+        <% if @users.count > 4 %>
           <%= link_to search_path(q: params[:q], type: 'users'), class: "btn btn-outline-success follow-btn" do %>
             More users search results →
           <% end %>
@@ -35,13 +35,20 @@
       <div class="border shadow p-4 mr-lg-3 text-dark border-corner">
         <h5 class="mb-3"><b>Searched tags</b></h5>
         <% if @tags.present? %>
-          <% @tags.each do |tag| %>
-            <%= link_to tag_path(tag.slug) do %>
-              <button type="button" class="btn btn-primary mr-2 mb-2">
-                <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-              </button>
+          <div class="tags-div">
+            <% @tags.each do |tag| %>
+              <%= link_to tag_path(tag.slug) do %>
+                <button type="button" class="btn btn-theme mr-2 mb-2 tags-hover">
+                  <b><%= tag.name %> <span class="badge badge-light"><%= tag.count %></span></b>
+                </button>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
+          <!-- <div class="tags-load-more text-center"> -->
+            <%#= link_to 'javascript:void(0)', class: 'btn btn-outline-success follow-btn' do %>
+              <!-- <i class="fas fa-plus-circle"></i> -->
+            <!-- <%# end %> -->
+          <!-- </div> -->
         <% else %>
           <i class="fas fa-tag mr-2"></i><span>No Tags found </span>
         <% end %>

@@ -5,7 +5,7 @@
         <h5 class="mb-3"><b>Trending Publishers</b></h5>
         <div class="row flex-row flex-nowrap trending-users">
           <% @trending_users.each do |user|%>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <%= link_to user_path(id: user.username) do %>
                 <div class="card card-block trending-card">
                   <div class="card-image pt-3">
@@ -34,8 +34,8 @@
         <h5 class="mb-3"><b>Trending tags</b></h5>
         <% @trending_tags.each do |tag| %>
           <%= link_to tag_path(tag.slug) do %>
-            <button type="button" class="btn btn-primary mr-2 mb-2">
-              <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+            <button type="button" class="btn btn-theme mr-2 mb-2 tags-hover">
+              <b><%= tag.name %> <span class="badge badge-light"><%= tag.count %></span></b>
             </button>
           <% end %>
         <% end %>

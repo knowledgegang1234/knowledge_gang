@@ -2,6 +2,7 @@ document.addEventListener("turbolinks:load", function() {
   $input = $("[data-behavior='autocomplete']");
 
   var options = {
+    minCharNumber: 3,
     getValue: "name",
     url: function(phrase) {
       return "/search.json?q=" + phrase;
