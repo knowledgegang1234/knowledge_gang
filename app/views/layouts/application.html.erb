@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KnowledgeGang</title>
+    <% unless controller_name == 'blogs' && action_name == 'index' %>
+      <title><%= yield(:title) %> | Knowledge Gang</title>
+    <% else %>
+      <title>Knowledge Gang | Share your knowledge for Cricket, Bollywood, Startups, Mythology, Gaming, Politics, Fitness</title>
+    <% end %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
