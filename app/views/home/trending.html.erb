@@ -6,7 +6,7 @@
         <h5 class="mb-3"><b>Trending Publishers</b></h5>
         <div class="row flex-row flex-nowrap trending-users">
           <% @trending_users.each do |user|%>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <%= link_to user_path(id: user.username) do %>
                 <div class="card card-block trending-card">
                   <div class="card-image pt-3">
