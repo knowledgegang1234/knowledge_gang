@@ -86,8 +86,12 @@ a:hover {
   font-size: 15px;
 }
 
-.text-20 {
-  font-size: 20px;
+.text-15 {
+  font-size: 15px;
+}
+
+.text-60 {
+  font-size: 60px;
 }
 
 .comment-text p, .bio-text p {
@@ -212,6 +216,18 @@ a:hover {
   justify-content: center;
   align-content: center;
   flex-direction: column;
+}
+
+.home-banner-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ .home-banner-image img{
+  width: 300px; 
+  height: 300px;
+  mix-blend-mode: multiply;
 }
 
 .user-articles nav .nav-link.active{
@@ -380,6 +396,10 @@ div.dropdown-multicol>div.dropdown-col{
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
+.home-banner-padding {
+  padding-left: 140px;
+}
+
 @media only screen and (max-width: 430px) {
 
   .trending-users .col-3 {
@@ -411,5 +431,10 @@ div.dropdown-multicol>div.dropdown-col{
     height: 250px;
     width: 200px;
     transition: box-shadow 0.3s;
+  }
+
+  .home-banner-padding {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
