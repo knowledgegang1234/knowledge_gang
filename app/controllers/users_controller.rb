@@ -63,7 +63,9 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(username: params[:id])
+    unless @user = User.find_by(username: params[:id])
+      render file: 'public/404', status: :not_found, layout: true
+    end
   end
 
   def authenticate_access

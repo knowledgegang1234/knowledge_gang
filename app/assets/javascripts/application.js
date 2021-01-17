@@ -20,6 +20,11 @@
 //= require search
 
 document.addEventListener("turbolinks:load", function() {
+
+  setTimeout(function() {
+    $('.alert').fadeOut('slow');
+  }, 3000);
+
   $(".select_two").select2({
     theme: "bootstrap"
   });
@@ -65,6 +70,10 @@ document.addEventListener("turbolinks:load", function() {
   $('.login-click').click(function() {
     login()
   });
+
+  $('.login-click').on('hidden.bs.modal', function () {
+    $('.error-msg').html('');
+  });
 });
 
 function showModalPopUp(obj){
@@ -73,9 +82,11 @@ function showModalPopUp(obj){
 };
 
 function register(){
+  $('.error-msg').html('');
   showModalPopUp('signup_modal');
 }
 
 function login(){
+  $('.error-msg').html('');
   showModalPopUp('login_modal');
 }

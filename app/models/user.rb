@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
   before_save :reindex_blogs, if: proc {|user| user.name_changed? || user.username_changed?}
 
+  enum status: { active: 1, pending: 2 }
+
   def as_indexed_json(options = {})
     self.as_json(
       only: [:username, :name, :avatar, :blogs_count]
@@ -90,12 +92,15 @@ class User < ApplicationRecord
     end
 
     def from_omniauth(auth)
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.name = auth.info.name
-        user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
-      end
+      user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+      user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
+      user.status = User.statuses[:active] if user.pending?
+      user.skip_confirmation! if user.new_record?
+      user.save!
+      user
     end
   end
 

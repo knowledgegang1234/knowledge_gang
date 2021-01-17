@@ -10,24 +10,31 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.create(user_params)
-    unless @user.errors.full_messages.present?
-      sign_in(:user, @user)
-      flash[:notice] = "Registered successfully."
-      if session[:return_to].present?
-        url = session[:return_to]
-        session[:return_to] = nil
-        redirect_to url and return
-      else
-        redirect_to root_path and return
-      end
-    else
+    if @user.errors.full_messages.present?
       respond_to do |format|
         format.js
       end
+    elsif !@user.confirmed?
+      flash[:alert] = "We have sent you an email. Please confirm you email address."
+      redirect_to_url
+    else
+      sign_in(:user, @user)
+      flash[:notice] = "Registered successfully."
+      redirect_to_url
     end
   end
 
   private
+
+  def redirect_to_url
+    if session[:return_to].present?
+      url = session[:return_to]
+      session[:return_to] = nil
+      redirect_to url and return
+    else
+      redirect_to root_path and return
+    end
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :remember)
