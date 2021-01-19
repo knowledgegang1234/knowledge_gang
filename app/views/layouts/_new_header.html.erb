@@ -54,14 +54,14 @@
             <%= link_to 'Create Blog', new_blog_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<%= user_path(current_user.username) %>">My Dashboard</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">My Performance</a> -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">My Performance</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<%= edit_user_path(current_user.username) %>">Edit Profile</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Settings</a> -->
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Recent Activity</a> -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Recent Activity</a>
             <div class="dropdown-divider"></div>
             <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

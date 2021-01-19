@@ -26,6 +26,9 @@ class User < ApplicationRecord
 
   enum status: { active: 1, pending: 2 }
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default_user.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   def as_indexed_json(options = {})
     self.as_json(
       only: [:username, :name, :avatar, :blogs_count]
