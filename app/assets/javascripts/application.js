@@ -18,7 +18,7 @@
 //= require jquery.easy-autocomplete
 //= require search
 
-document.addEventListener(, function() {
+$(document).ready(function() {
 
   setTimeout(function() {
     $('.alert').fadeOut('slow');

@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:like, :bookmark]
   before_action :set_unscoped_blog, only: [:edit, :update]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :like]
+  before_action :authorize_user, only: [:edit, :update]
 
   def index
     @blogs = Blog.order(id: :desc).page(params[:page]).per(12)
@@ -53,7 +54,7 @@ class BlogsController < ApplicationController
         tag = Tag.find_or_create_by(name: tag_name)
         tagging = tag.taggings.find_or_create_by(blog_id: @blog.id, user_id: current_user.id)
       end
-      redirect_to @blog.draft! ? user_path(current_user.username) : @blog
+      redirect_to @blog.draft? ? user_path(current_user.username) : @blog
     else
       render 'edit'
     end
@@ -86,5 +87,11 @@ class BlogsController < ApplicationController
 
   def blog_params
     params.require(:blog).permit(:id, :title, :description, :category_id, :tag_list, :draft)
+  end
+
+  def authorize_user
+    unless @blog.user == current_user
+      render :file => 'public/404', :status => :not_found, :layout => true
+    end
   end
 end

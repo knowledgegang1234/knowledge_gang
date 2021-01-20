@@ -4,6 +4,13 @@
   <div class="row">
     <div class="col-md-6 order-md-2">
       <div class="mb-5 description-container text-justify border shadow mb-4 p-4 text-dark border-corner">
+        <% if @blog.user == current_user %>
+          <div class="float-right">
+            <%= link_to edit_blog_path(@blog.slug) do %>
+              <i class="fas fa-edit" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        <% end %>
         <h1 class="text-center mb-5 mt-4"><strong><%= @blog.title %></strong></h1>
         <%= @blog.description.gsub("<table>","<table class='table table-bordered'>").html_safe %>
         <h3>Category: <%= link_to @blog.category.name, category_path(@blog.category) %></h3>
