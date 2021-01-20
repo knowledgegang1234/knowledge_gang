@@ -1,5 +1,6 @@
 <% content_for :title, "Knowledge Gang" %>
-<div class="container-fluid bg-light py-5 shadow-sm mb-3">
+<!-- banner -->
+<!-- <div class="container-fluid bg-light py-5 shadow-sm mb-3">
   <div class="row">
     <div class="col-md-6 home-banner-padding home-banner-text">
       <div class="text-verticle-center">
@@ -12,36 +13,53 @@
       <img src= "<%= image_url('knowledge-home.jpg') %>" loading="lazy">
     </div>
   </div>
-</div>
-<div class="container-fluid mt-lg-5">
-  <div class="row">
-    <div class="col-md-8">
-      <%= render 'blogs' %>
-    </div>
-    <div class="col-md-3 ml-4">
-      <div class="text-dark mb-5">
-        <h6 class="mb-4"><b>Top Categories</b></h6>
-        <% @trending_categories.each do |category| %>
-          <%= link_to category_path(category.slug)do %>
-            <div class="mr-2 pb-2 pt-2 mb-1 highlight-hover">
-              <p class="mb-1"><b><span class="ml-3"><%= category.name %></span></b><span class="float-right mr-4 inline"><i class="fas fa-newspaper mr-2"></i><%= category.blogs_count || 0 %></span></p>
-            </div>
-          <% end %>
-        <% end %>
+</div> -->
+<!-- end of banner -->
+<div class="main-container">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="left-sidenav c-wrap">
+          <div class="">
+            <h3 class="mb-0">Trending</h3>
+          </div>
+        </div>
       </div>
-      <div class="mt-5 text-dark">
-        <h6 class="mb-4"><b>Must Explore tags</b></h6>
-        <% @home_tags.each do |tag_name, tag_detail| %>
-          <%= link_to tag_path(tag_detail[:slug]) do %>
-            <div class="mr-2 pb-2 pt-2 mb-1 highlight-hover">
-              <p class="mb-1"><b><span class="ml-3"><i class="fas fa-tag mr-2"></i><%= tag_name %></span></b><span class="float-right mr-4 inline"><i class="fas fa-user-tag mr-2 ml-2"></i><%= tag_detail[:blog_count] %></span></p>
+      <div class="col-lg-6 px-0">
+        <%= render 'blogs' %>
+      </div>
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="right-sidenav bg-white c-border">
+          <div class="text-dark">
+            <h2 class="p-3 category text-capitalize border-bottom mb-0">Top Categories</h2>
+            <% @trending_categories.each do |category| %>
+              <%= link_to category_path(category.slug)do %>
+                <div class="category-wrap d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="category-img"></div>
+                    <span class="category-name"><%= category.name %></span>
+                  </div>
+                  <span class="category-count">
+                    <i class="fas fa-newspaper mr-2"></i><%= category.blogs_count || 0 %>
+                  </span>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="p-3 mt-3 border-top">
+              <div class="tag-wrap">
+                <% @home_tags.each do |tag_name, tag_detail| %>
+                  <div class="tag mr-2 mb-2 btn btn-sm btn-outline-dark text-capitalize">
+                    <%= link_to tag_path(tag_detail[:slug]) do %>
+                      <i class="fa fa-tag mr-1"></i>
+                      <%= tag_name %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<br>
-Resource Credit:
-<a href='https://www.freepik.com/vectors/abstract'>Abstract vector created by vectorjuice - www.freepik.com</a>

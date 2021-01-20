@@ -10,15 +10,26 @@
   --ligntheme: rgb(101,204,184,0.1);
 }
 
-.navbar {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-top: 10px;
+$primaryColor: #f6f7f8;
+$secondaryColor: #65ccb8;
+$darkColor: #444444;
+$cgrey: #eeeeee;
+
+html *
+{
+   font-size: 14px;
+   line-height: 1.6;
+   color: #000;
+   font-family: 'Roboto', sans-serif;
 }
 
-.navbar-nav li{
-  margin-right: 5px;
-  margin-left: 10px;
+body{
+  background-color: $primaryColor;
+}
+
+.main-container{
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .navbar .mr-ul{
@@ -138,9 +149,14 @@ a:hover {
 }
 
 .trending-card {
-  height: 250px;
   width: 100%;
   transition: box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0px;
 }
 
 .trending-card .rounded-circle{
@@ -159,7 +175,7 @@ a:hover {
 }
 
 .trending-card:hover {
-  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  box-shadow: 0 0 6px 2px #eee; 
 }
 
 .trending-users .col-3 {
@@ -436,5 +452,122 @@ div.dropdown-multicol>div.dropdown-col{
   .home-banner-padding {
     padding-left: 15px;
     padding-right: 15px;
+  }
+}
+
+.c-wrap
+{
+  color: #000;
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 15px;
+}
+
+.user-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: $primaryColor;
+  margin-right: 10px;
+}
+
+.blog-info {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.u_name a {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.blog-category *,
+.user-detail-username
+{
+  color: #888;
+}
+
+.blog-desc {
+  padding-top: 15px;
+  border-top: solid 1px $primaryColor;
+}
+
+.blog-activity{
+  display: none;
+}
+
+.blog-desc h3 {
+  font-weight: bold;
+}
+
+.tag-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: $darkColor;
+  margin-right: 10px;
+}
+
+.btn-outline-dark:hover * {
+  color: white;
+}
+
+.category-wrap {
+  padding: 15px;
+}
+
+span.category-count * {
+  color: $darkColor;
+}
+
+.tag {
+  flex-grow: 1;
+}
+
+.c-border{
+  border: solid 1px $cgrey;
+}
+
+.c-dark{
+  color: $darkColor;
+}
+
+.c-input.form-control {
+  border: solid 1px  $cgrey;
+  box-shadow: none;
+  background: $primaryColor;
+}
+
+.c-input.form-control:focus,
+.c-input.form-control:active
+{
+  border: solid 1px $darkColor;
+  background-color: #ffffff;
+}
+
+.popover-body {
+  padding: 3px 8px;
+  color: $darkColor;
+}
+
+.category-follow-img {
+  background: #f6f7f8;
+  height: 86px;
+  width: 86px;
+  border-radius: 50%;
+}
+
+
+@media screen and (min-width:600px){
+  .c-wrap
+  {
+    border: solid 1px $cgrey;
+    margin-bottom: 15px;
   }
 }

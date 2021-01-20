@@ -90,3 +90,7 @@ function login(){
   $('.error-msg').html('');
   showModalPopUp('login_modal');
 }
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
