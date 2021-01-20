@@ -6,7 +6,7 @@ $R('.redactor-textarea', {
     plugins: ['table', 'alignment', 'addbutton', 'nofollow', 'widget'],
     buttons: ["html","format","bold","italic", "deleted", "underline","lists","link","file","image","horizontalrule"],
     // handle: "/users.json",
-    imageUpload: '/upload/images',
+    imageUpload: '/image_upload',
     minHeight: '400px',
     // handleStart: '1'
 });

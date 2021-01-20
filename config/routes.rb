@@ -28,4 +28,5 @@ Rails.application.routes.draw do
     end
   end
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'
+  post '/image_upload' => 'attachments#image_upload'
 end
