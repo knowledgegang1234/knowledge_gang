@@ -2,7 +2,6 @@
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
       <img src= "<%= image_url("bootstrap-solid.svg") %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-      Knowledge Gang
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,9 +9,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item mx-3"  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
+        <li class="nav-item mx-2"  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
           <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
             <i class="fas fa-fire c-dark"></i>
+          <% end %>
+        </li>
+        <li class="nav-item ml-2 mr-3"  data-container="body" data-toggle="popover" data-placement="top" data-content="Popular" data-trigger="hover">
+          <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
+            <i class="fas fa-chart-line c-dark"></i>
           <% end %>
         </li>
         <!-- dropdown menu -->
