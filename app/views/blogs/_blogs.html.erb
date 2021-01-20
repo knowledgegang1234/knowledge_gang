@@ -8,7 +8,9 @@
     <!-- .content-wrap -->
     <div class="content-wrap c-wrap">
       <div class="blog-info">
-        <div class="user-img"></div>
+        <div class="user-img">
+          <img src="<%= blog.user.avatar %>" class="rounded-circle">
+        </div>
         <div class="blog-detail">
           <div class="u_name">
             <%= link_to(blog.user.name, user_path(id: blog.user.username)) %>
@@ -26,7 +28,7 @@
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h3 class="blog-title mb-0"><%= blog.title %></h3>
               <div class="blog-activity">
-                <span class="mx-2"><%= blog.likes_count %> <i class="fas fa-heart dark-color"></i></span>
+                <span class="mx-2"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></span>
                 <span><%= blog.comments_count %> <i class="fas fa-comments dark-color"></i></span>
               </div>
             </div>
