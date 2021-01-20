@@ -35,3 +35,7 @@ $('.bookmark-side-blog').click(function() {
     }
   });
 });
+
+if($('.twitter-tweet').length > 0){
+  $.getScript("https://platform.twitter.com/widgets.js");
+}
