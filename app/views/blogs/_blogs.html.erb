@@ -23,7 +23,13 @@
       <div class="blog-desc">
         <% if blog.live? %>
           <%= link_to blog_show_path(id: blog, category_id: blog.category) do %>
-            <h3><%= blog.title %></h3>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h3 class="blog-title mb-0"><%= blog.title %></h3>
+              <div class="blog-activity">
+                <span class="mx-2"><%= blog.likes_count %> <i class="fas fa-heart dark-color"></i></span>
+                <span><%= blog.comments_count %> <i class="fas fa-comments dark-color"></i></span>
+              </div>
+            </div>
             <p class="mb-0"><%= raw blog.short_description %></p>
           <% end %>
         <% else %>
@@ -32,11 +38,6 @@
             <p class="mb-0"><%= raw blog.short_description %></p>
           <% end %>
         <% end %>
-      </div>
-      <div class="blog-activity">
-        
-        <p class="mt-3 inline-para"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></p>
-        <p class="mt-3 inline-para"><%= blog.comments_count %> <i class="fas fa-comments"></i></p>
       </div>
     </div>
     <!-- end of .content-wrap -->

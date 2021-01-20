@@ -5,8 +5,8 @@
 @import "easy-autocomplete.themes";
 
 :root {
-  --theme: #65CCB8;
-  --deeptheme: #57BA98;
+  --theme: #0056b3;
+  --deeptheme: #0257b3;
   --ligntheme: rgb(101,204,184,0.1);
 }
 
@@ -19,7 +19,7 @@ html *
 {
    font-size: 14px;
    line-height: 1.6;
-   color: #000;
+   color: #222;
    font-family: 'Roboto', sans-serif;
 }
 
@@ -67,12 +67,10 @@ body{
 }
 
 a {
-  color: #000;
   text-decoration: none;
 }
 
 a:hover {
-  color: #000;
   text-decoration: none;
 }
 
@@ -457,7 +455,6 @@ div.dropdown-multicol>div.dropdown-col{
 
 .c-wrap
 {
-  color: #000;
   background-color: white;
   margin-bottom: 5px;
   padding: 15px;
@@ -491,10 +488,6 @@ div.dropdown-multicol>div.dropdown-col{
 .blog-desc {
   padding-top: 15px;
   border-top: solid 1px $primaryColor;
-}
-
-.blog-activity{
-  display: none;
 }
 
 .blog-desc h3 {
@@ -542,6 +535,7 @@ span.category-count * {
   border: solid 1px  $cgrey;
   box-shadow: none;
   background: $primaryColor;
+  font-size: 14px;
 }
 
 .c-input.form-control:focus,
@@ -557,12 +551,26 @@ span.category-count * {
 }
 
 .category-follow-img {
-  background: #f6f7f8;
+  background: $primaryColor;
   height: 86px;
   width: 86px;
   border-radius: 50%;
 }
 
+.blog-title {
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark-color{
+  color: $darkColor;;
+}
+
+.nav-search{
+  padding: 6px 10px;
+}
 
 @media screen and (min-width:600px){
   .c-wrap

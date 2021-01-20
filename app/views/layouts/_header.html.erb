@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 <%= 'mb-5' unless (controller_name == 'blogs' && action_name == 'index') %>">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-1 <%= 'mb-5' unless (controller_name == 'blogs' && action_name == 'index') %>">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
       <img src= "<%= image_url("bootstrap-solid.svg") %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
@@ -34,7 +34,7 @@
       </ul>
       <%= form_with url: search_path, local: true, method: :get, html: { class: 'form-inline' } do |form| %>
         <%= form.text_field :q, placeholder: 'Search', class: 'form-control c-input rounded-0', style: 'width: 250px;', 'aria-label': "Search", data: { behavior: 'autocomplete' } %>
-        <%= form.button 'Search', class: 'btn btn-theme my-2 my-sm-0 rounded-0' %>
+        <%= form.button 'Search', class: 'btn btn-theme btn-sm nav-search rounded-0' %>
       <% end %>
       <ul class="navbar-nav mr-ul">
         <% if current_user %>
