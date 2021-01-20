@@ -99,7 +99,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
-      user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
+      # user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
       user.status = User.statuses[:active] if user.pending?
       user.skip_confirmation! if user.new_record?
       user.save!

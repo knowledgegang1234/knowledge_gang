@@ -14,6 +14,7 @@ $R('.redactor-textarea', {
 $R('.redactor-comment', {
     imageFigure: false,
     plugins: ['alignment'],
+    buttons: ["format","bold","italic", "deleted", "underline","lists","link","file","image","horizontalrule"],
     // handle: "/users.json",
     minHeight: '200px',
     // handleStart: '1'

@@ -414,6 +414,18 @@ div.dropdown-multicol>div.dropdown-col{
   padding-left: 140px;
 }
 
+#user-show {
+  display: flex;
+}
+
+.user-show-profile {
+  flex: 0 0 12%;
+}
+
+.user-show-follow {
+  flex: 1;
+}
+
 @media only screen and (max-width: 430px) {
 
   .trending-users .col-3 {

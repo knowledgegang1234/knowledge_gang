@@ -12,12 +12,14 @@
             <% end %>
           </div>
           <div class="col-md-10 user-detail-profile">
-            <div class="username-profile mb-2"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
-            <% if current_user&.id != @user.id %>
-              <div id="follow-container">
-                <%= render 'followers/follow_action' %>
-              </div>
-            <% end %>
+            <div id="user-show">
+              <div class="username-profile mb-2 user-show-profile"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
+              <% if current_user&.id != @user.id %>
+                <div id="follow-container" class="user-show-follow">
+                  <%= render 'followers/follow_action' %>
+                </div>
+              <% end %>
+            </div>
             <p class="text-15 mt-2 text-capitalize"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
             <div class="mt-1 bio-text">
               <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
