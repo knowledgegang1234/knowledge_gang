@@ -15,11 +15,10 @@
 //= require bootstrap
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery.easy-autocomplete
 //= require search
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener(, function() {
 
   setTimeout(function() {
     $('.alert').fadeOut('slow');
