@@ -3,7 +3,8 @@
 
 $R('.redactor-textarea', {
     imageFigure: false,
-    plugins: ['table', 'alignment', 'addbutton', 'nofollow'],
+    plugins: ['table', 'alignment', 'addbutton', 'nofollow', 'widget'],
+    buttons: ["html","format","bold","italic", "deleted", "underline","lists","link","file","image","horizontalrule"],
     // handle: "/users.json",
     imageUpload: '/upload/images',
     minHeight: '400px',
