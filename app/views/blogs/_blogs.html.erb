@@ -55,7 +55,7 @@
       <% if current_user %>
         <%= link_to 'Write your Own', new_blog_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
       <% else %>
-        <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="btn btn-bg mt-3 mb-3 btn-theme">Write your Own</a>
+        <%= link_to 'Write your Own', new_user_session_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
       <% end %>
     </div>
   </div>

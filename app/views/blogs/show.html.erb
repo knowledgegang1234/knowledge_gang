@@ -29,7 +29,7 @@
                 <span class="hits-count"><%= @blog.likes_count %></span> <span>Likes</span>
               </a>
             <% else %>
-              <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="side-btn">
+              <a href="<%= new_user_session_path %>" class="side-btn">
                 <i class="far fa-heart fa-lg"></i>
                 <span class="hits-count"><%= @blog.likes_count %></span> <span>Likes</span>
               </a>
@@ -51,7 +51,7 @@
                 <% end %>
               </a>
             <% else %>
-              <a href="javascript:void(0)" class="side-btn" onclick="showModalPopUp('login_modal')">
+              <a href="<%= new_user_session_path %>" class="side-btn" >
                 <i class="far fa-bookmark fa-lg"></i> <span class="read-it-later">Read it Later!</span>
               </a>
             <% end %>
@@ -89,7 +89,7 @@
               <span class="hits-count"><%= @blog.likes_count %></span>
             </a>
           <% else %>
-            <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="side-btn">
+            <a href="<%= new_user_session_path %>" class="side-btn">
               <i class="far fa-heart fa-lg"></i>
               <span class="hits-count"><%= @blog.likes_count %></span>
             </a>
@@ -108,7 +108,7 @@
               <% end %>
             </a>
           <% else %>
-            <a href="javascript:void(0)" class="side-btn" onclick="showModalPopUp('login_modal')">
+            <a href="<%= new_user_session_path %>" class="side-btn">
               <i class="far fa-bookmark fa-lg"></i>
             </a>
           <% end %>

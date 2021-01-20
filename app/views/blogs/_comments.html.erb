@@ -12,7 +12,7 @@
 <% else %>
   <div class="mb-5 border shadow p-4 bg-light text-dark border-corner overflow-hidden">
     <i class="fas fa-unlock-alt mr-2"></i>Sign In to add your thoughts...
-    <button class="btn btn-outline-primary ml-3" onclick="showModalPopUp('login_modal')">LogIn</button>
+    <a class="btn btn-outline-primary ml-3" href="<%= new_user_session_path %>">LogIn</a>
     <div class="disable-form-container mt-2">
       <div class="hidden-form"></div>
       <div class="disable-form">
