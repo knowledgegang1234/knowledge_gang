@@ -26,8 +26,7 @@ class User < ApplicationRecord
 
   enum status: { active: 1, pending: 2 }
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ActionController::Base.helpers.asset_url("default_user.png")
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  mount_uploader :avatar, ImageUploader
 
   def as_indexed_json(options = {})
     self.as_json(

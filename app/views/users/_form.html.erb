@@ -51,12 +51,13 @@
     <div class="col-md-3">
       <div class="user-form-avatar border border-light shadow border-corner text-center mt-5">
         <div class="pt-5">
+          <% if @user.avatar.present? %>
+            <%= cl_image_tag(@user.avatar, :secure=>true, :transformation=>[], :class => 'rounded-circle') %>
+          <% else %>
+            <img class="rounded-circle" src="<%= image_url('default_user.png') %>">
+          <% end %>
           <%= link_to 'javascript:void(0)' do %>
-            <% if @user.avatar %>
-              <img src="<%= @user.avatar %>" class="rounded-circle">
-            <% else %>
-              <img class="" src="<%= image_url('default_user.png') %>">
-            <% end %>
+            <i class="fas fa-edit"></i>
           <% end %>
         </div>
         <div class="pt-5 pb-2">
