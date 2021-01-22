@@ -35,11 +35,11 @@
         <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
           <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
           <% comments_active = action_name == 'comments' ? 'active' : ''%>
-          <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border rounded-0 <%= live_blog_active %>"><b>Published Articles</b></a>
+          <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= live_blog_active %>">Published Articles</a>
           <% if current_user == @user %>
-            <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border rounded-0 <%= draft_active %>"><b>Drafts</b></a>
+            <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= draft_active %>">Drafts</a>
           <% end %>
-          <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 <%= comments_active %>"><b>Comments</b></a>
+          <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= comments_active %>">Comments</a>
       </nav>
       <% if @comments.present? %>
         <div class="mb-5 border shadow p-4 ml-lg-5  text-dark border-corner overflow-hidden">

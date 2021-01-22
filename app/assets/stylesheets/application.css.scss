@@ -633,6 +633,16 @@ pre {
   padding: 5px;
 }
 
+.tag:hover {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.f12{
+  font-size: 12px;
+}
+
 @media screen and (min-width:600px){
   .c-wrap
   {
