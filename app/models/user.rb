@@ -30,7 +30,7 @@ class User < ApplicationRecord
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:username, :name, :avatar, :blogs_count]
+      only: [:username, :name, :blogs_count]
     )
   end
 

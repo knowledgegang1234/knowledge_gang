@@ -10,10 +10,10 @@
               <%= link_to user_path(id: user.username) do %>
                 <div class="trending-card">
                   <div class="user-image">
-                    <% if user.avatar %>
-                      <img src="<%= user.avatar %>" class="rounded-circle">
+                    <% if user.avatar.present? %>
+                      <img src="<%= user.avatar %>" class="rounded-circle" alt="user">
                     <% else %>
-                      <img class="card-img-top" src="<%= image_url('default_user.png') %>">
+                      <img class="card-img-top" src="<%= image_url('default_user.png') %>" alt="user">
                     <% end %>
                   </div>
                   <div class="user-detail-body ml-3">

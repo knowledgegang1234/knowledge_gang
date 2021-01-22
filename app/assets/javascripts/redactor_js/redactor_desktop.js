@@ -3,11 +3,11 @@
 
 $R('.redactor-textarea', {
     imageFigure: false,
-    plugins: ['table', 'alignment', 'addbutton', 'nofollow', 'widget'],
-    buttons: ["html","format","bold","italic", "deleted", "underline","lists","link","file","image","horizontalrule"],
+    plugins: ['table', 'alignment', 'nofollow', 'widget'],
+    buttons: ["format","bold","italic", "deleted", "underline","lists","link","file","image","horizontalrule"],
     // handle: "/users.json",
     imageUpload: '/image_upload',
-    minHeight: '400px',
+    minHeight: '100px',
     // handleStart: '1'
 });
 

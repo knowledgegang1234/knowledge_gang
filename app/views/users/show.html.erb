@@ -5,10 +5,10 @@
       <div class="border mb-4 p-4 bg-white text-dark border-corner">
         <div class="row align-items-center">
           <div class="col-md-2 text-center">
-            <% if @user.avatar %>
-              <img src="<%= @user.avatar %>" class="rounded-circle card-img-top">
+            <% if @user.avatar.present? %>
+              <img src="<%= @user.avatar %>" class="rounded-circle card-img-top" alt="user">
             <% else %>
-              <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>">
+              <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>" alt="user">
             <% end %>
           </div>
           <div class="col-md-10 user-detail-profile">

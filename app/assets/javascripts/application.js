@@ -17,6 +17,7 @@
 //= require activestorage
 //= require jquery.easy-autocomplete
 //= require search
+//= require swiper.min
 
 $(document).ready(function() {
 
@@ -93,3 +94,19 @@ function login(){
 $(function () {
   $('[data-toggle="popover"]').popover()
 })
+
+
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 2,
+  spaceBetween: 15,
+  loop: true,
+  grabCursor: true,
+  autoplay: {
+    delay: 5000,
+  },
+  breakpoints: {  
+    768: {
+      slidesPerView: 3,
+    }
+  }
+});

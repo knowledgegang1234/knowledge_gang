@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-2">
         <%= link_to user_path(comment.user.username) do %>
-          <% if comment.user.avatar %>
-            <img src="<%= comment.user.avatar %>" class="rounded-circle card-img-top">
+          <% if comment.user.avatar.present? %>
+            <img src="<%= comment.user.avatar %>" class="rounded-circle card-img-top" alt="user">
           <% else %>
-            <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>">
+            <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>" alt="user">
           <% end %>
         <% end %>
       </div>

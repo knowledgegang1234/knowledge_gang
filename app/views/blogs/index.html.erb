@@ -17,47 +17,59 @@
 <!-- end of banner -->
 <div class="main-container">
   <div class="container">
-    <div class="row justify-content-between">
-      <div class="col-lg-3 d-none d-lg-block">
-        <div class="left-sidenav c-wrap">
-          <div class="">
-            <h3 class="mb-0">Trending</h3>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="c-wrap">
+          <div class="swiper-container">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide">Trending 1</div>
+                  <div class="swiper-slide">Trending 2</div>
+                  <div class="swiper-slide">Trending 3</div>
+              </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 px-0">
-        <%= render 'blogs' %>
-      </div>
-      <div class="col-lg-3 d-none d-lg-block">
-        <div class="right-sidenav bg-white c-border">
-          <div class="text-dark">
-            <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
-              <h2 class="category text-capitalize mb-0">Top Categories</h2>
-              <a href="#" class="btn btn-theme btn-sm rounded-0">VIEW ALL</a>
-            </div>
-            <% @trending_categories.each do |category| %>
-              <%= link_to category_path(category.slug)do %>
-                <div class="category-wrap d-flex align-items-center justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <div class="category-img"></div>
-                    <span class="category-name"><%= category.name %></span>
-                  </div>
-                  <span class="category-count">
-                    <i class="fas fa-newspaper mr-2"></i><%= category.blogs_count || 0 %>
-                  </span>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row justify-content-between">
+          <div class="col-lg-8">
+            <%= render 'blogs' %>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="right-sidenav bg-white c-border">
+              <div class="text-dark">
+                <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+                  <h2 class="category text-capitalize mb-0">Top Categories</h2>
+                  <a href="#" class="btn btn-theme btn-sm rounded-0">VIEW ALL</a>
                 </div>
-              <% end %>
-            <% end %>
-            <div class="p-3 mt-3 border-top">
-              <div class="tag-wrap">
-                <% @home_tags.each do |tag_name, tag_detail| %>
-                  <div class="tag mr-2 mb-2 btn btn-sm btn-outline-dark text-capitalize">
-                    <%= link_to tag_path(tag_detail[:slug]) do %>
-                      <i class="fa fa-tag mr-1"></i>
-                      <%= tag_name %>
+                <% @trending_categories.each do |category| %>
+                  <%= link_to category_path(category.slug)do %>
+                    <div class="category-wrap d-flex align-items-center justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <div class="category-img"></div>
+                        <span class="category-name"><%= category.name %></span>
+                      </div>
+                      <span class="category-count">
+                        <i class="fas fa-newspaper mr-2"></i><%= category.blogs_count || 0 %>
+                      </span>
+                    </div>
+                  <% end %>
+                <% end %>
+                <div class="p-3 mt-3 border-top">
+                  <div class="">
+                    <% @home_tags.each do |tag_name, tag_detail| %>
+                      <div class="tag mr-2 mb-2 btn btn-sm text-capitalize">
+                        <%= link_to tag_path(tag_detail[:slug]) do %>
+                          <i class="fa fa-tag mr-1"></i>
+                          <%= tag_name %>
+                        <% end %>
+                      </div>
                     <% end %>
                   </div>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
