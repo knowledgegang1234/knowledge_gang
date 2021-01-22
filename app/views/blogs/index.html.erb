@@ -24,9 +24,9 @@
               <!-- Additional required wrapper -->
               <div class="swiper-wrapper">
                   <!-- Slides -->
-                  <div class="swiper-slide">Trending 1</div>
-                  <div class="swiper-slide">Trending 2</div>
-                  <div class="swiper-slide">Trending 3</div>
+                  <div class="swiper-slide skeleton">Trending 1</div>
+                  <div class="swiper-slide skeleton">Trending 2</div>
+                  <div class="swiper-slide skeleton">Trending 3</div>
               </div>
           </div>
         </div>
@@ -38,8 +38,8 @@
           <div class="col-lg-8">
             <%= render 'blogs' %>
           </div>
-          <div class="col-lg-4 d-none d-lg-block">
-            <div class="right-sidenav bg-white c-border">
+          <div class="col-lg-4">
+            <div class="right-sidenav bg-white c-border d-none d-lg-block">
               <div class="text-dark">
                 <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
                   <h2 class="category text-capitalize mb-0">Top Categories</h2>
@@ -70,6 +70,12 @@
                     <% end %>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="footer">
+              <div class="c-wrap my-3">
+                <p class="mb-0 f12 text-center">Company &copy; 2021. All rights reserved
+                </p>
               </div>
             </div>
           </div>

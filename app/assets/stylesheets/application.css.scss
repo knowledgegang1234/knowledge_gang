@@ -53,7 +53,11 @@ body{
 }
 
 .navbar-nav .dropdown-menu {
-  width: 300px;
+  width: 200px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  border: solid 1px #ddd;
 }
 
 .fixed {
@@ -121,7 +125,7 @@ a:hover {
 
 .btn-theme:active {
   background-color: var(--deeptheme);
-  box-shadow: 0 5px #666;
+  box-shadow: 0 2px 3px #666;
   transform: translateY(4px);
 }
 
@@ -610,7 +614,7 @@ body .redactor-focus:focus.redactor-styles-on {
 }
 
 .redactor-air a.re-button-icon:hover, .redactor-toolbar a.re-button-icon:hover {
-  background: #0056b3;
+  background: var(--theme);;
 }
 
 .redactor-air a.re-button-icon:hover i, .redactor-toolbar a.re-button-icon:hover i {
@@ -635,12 +639,74 @@ pre {
 
 .tag:hover {
   color: #212529;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
+  background-color: $primaryColor;
+  border-color: $primaryColor;
 }
 
 .f12{
   font-size: 12px;
+}
+
+.ico-nav-link {
+  margin: 0px 5px;
+}
+
+#navbarDropdown_profile .dropdown-item.active, .dropdown-item:active {
+  background-color: var(--theme);;
+}
+
+.content-wrap{
+  position: relative;
+}
+
+.btn-theme:hover {
+  background: #024894;
+}
+
+.share-blog {
+  position: absolute;
+  right: 15px;
+}
+
+@-webkit-keyframes ssc-loading {
+  from {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+@keyframes ssc-loading {
+  from {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+
+.skeleton{
+    overflow:hidden;
+}
+
+.skeleton::after {
+  content: "";
+  -webkit-animation: ssc-loading 1.3s infinite;
+  animation: ssc-loading 1.3s infinite;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  z-index: 1;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(50%, #E8E8E8), to(transparent));
+  background: linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%);
 }
 
 @media screen and (min-width:600px){
@@ -648,6 +714,17 @@ pre {
   {
     border: solid 1px $cgrey;
     margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width:992px){
+  .share-blog {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .content-wrap:hover .share-blog{
+    opacity: 1;
   }
 }
 

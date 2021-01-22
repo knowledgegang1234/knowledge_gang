@@ -9,12 +9,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item mx-2"  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
+        <li class="nav-item "  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
           <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
             <i class="fas fa-fire c-dark"></i>
           <% end %>
         </li>
-        <li class="nav-item ml-2 mr-3"  data-container="body" data-toggle="popover" data-placement="top" data-content="Popular" data-trigger="hover">
+        <li class="nav-item"  data-container="body" data-toggle="popover" data-placement="top" data-content="Popular" data-trigger="hover">
           <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
             <i class="fas fa-chart-line c-dark"></i>
           <% end %>
@@ -43,31 +43,25 @@
       <ul class="navbar-nav mr-ul">
         <% if current_user %>
           <li class="nav-item">
-            <a class="nav-link waves-effect waves-light"><i class="fas fa-bell"></i></a>
+            <a class="ico-nav-link btn btn-light waves-effect waves-light"><i class="fas fa-bell c-dark"></i></a>
           </li>
           <li class="nav-item">
-            <%= link_to bookmarked_articles_path, class: 'nav-link waves-effect waves-light' do %>
-              <i class="fas fa-bookmark"></i>
+            <%= link_to bookmarked_articles_path, class: 'ico-nav-link btn btn-light waves-effect waves-light' do %>
+              <i class="fas fa-bookmark c-dark"></i>
             <% end %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user"></i>
+            <a class="ico-nav-link btn btn-light dropdown-toggle" href="#" id="navbarDropdown_profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user c-dark"></i>
             </a>
             <div >
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown_profile">
               <%= link_to 'Create Blog', new_blog_path, class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%= user_path(current_user.username) %>">My Dashboard</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">My Performance</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%= edit_user_path(current_user.username) %>">Edit Profile</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Settings</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Recent Activity</a>
-              <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
