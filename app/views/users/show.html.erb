@@ -1,28 +1,32 @@
 <% content_for :title, @user.name || @user.username %>
 <div class="container">
-  <div class="row user-profile">
-    <div class="col-md-9">
-      <div class="border mb-4 p-4 bg-white text-dark border-corner">
-        <div class="row align-items-center">
-          <div class="col-md-2 text-center">
-            <% if @user.avatar.present? %>
-              <img src="<%= @user.avatar %>" class="rounded-circle card-img-top" alt="user">
-            <% else %>
-              <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>" alt="user">
-            <% end %>
-          </div>
-          <div class="col-md-10 user-detail-profile">
-            <div id="user-show">
-              <div class="username-profile mb-2 user-show-profile"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
-              <% if current_user&.id != @user.id %>
-                <div id="follow-container" class="user-show-follow">
-                  <%= render 'followers/follow_action' %>
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="row user-profile">
+        <div class="col-md-9">
+          <div class="border mb-4 p-4 bg-white text-dark border-corner">
+            <div class="row align-items-center">
+              <div class="col-md-2 text-center">
+                <% if @user.avatar.present? %>
+                  <img src="<%= @user.avatar %>" class="rounded-circle card-img-top" alt="user">
+                <% else %>
+                  <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>" alt="user">
+                <% end %>
+              </div>
+              <div class="col-md-10 user-detail-profile">
+                <div id="user-show">
+                  <div class="username-profile mb-2 user-show-profile"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
+                  <% if current_user&.id != @user.id %>
+                    <div id="follow-container" class="user-show-follow">
+                      <%= render 'followers/follow_action' %>
+                    </div>
+                  <% end %>
                 </div>
-              <% end %>
-            </div>
-            <p class="text-15 mt-2 text-capitalize"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
-            <div class="mt-1 bio-text">
-              <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
+                <p class="text-15 text-capitalize"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
+                <div class="mt-1 bio-text">
+                  <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -32,35 +36,40 @@
 </div>
 <br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-9 mb-5 user-articles">
-        <nav class="nav nav-pills nav-justified mt-lg-3 border-corner bg-white">
-          <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
-          <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
-          <% comments_active = action_name == 'comments' ? 'active' : ''%>
-          <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= live_blog_active %>">Published Articles</a>
-          <% if current_user == @user %>
-            <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= draft_active %>">Drafts</a>
-          <% end %>
-          <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= comments_active %>">Comments</a>
-        </nav>
-        <%= render 'blogs/blogs' %>
-    </div>
-    <div class="col-md-3">
-      <div class="mb-4 text-dark mt-5">
-        <h5 class="mb-3"><b>Top tags:</b></h5>
-        <% if @top_tags.present? %>
-          <% @top_tags.each do |tag| %>
-            <%= link_to tag_path(tag.slug) do %>
-              <button type="button" class="btn btn-theme tags-hover mr-2 mb-2">
-                <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
-              </button>
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-9 mb-5 user-articles">
+            <nav class="nav nav-pills nav-justified mt-lg-3 border-corner bg-white">
+              <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
+              <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
+              <% comments_active = action_name == 'comments' ? 'active' : ''%>
+              <a href="<%= user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= live_blog_active %>">Published Articles</a>
+              <% if current_user == @user %>
+                <a href="<%= user_path(@user.username, status: 'draft') %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= draft_active %>">Drafts</a>
+              <% end %>
+              <a href="<%= comments_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= comments_active %>">Comments</a>
+            </nav>
+            <%= render 'blogs/blogs' %>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3"><b>Top tags:</b></h5>
+            <% if @top_tags.present? %>
+              <% @top_tags.each do |tag| %>
+                <%= link_to tag_path(tag.slug) do %>
+                  <button type="button" class="btn btn-theme tags-hover mr-2 mb-2">
+                    <%= tag.name %> <span class="badge badge-light"><%= tag.count %></span>
+                  </button>
+                <% end %>
+              <% end %>
+            <% else %>
+              <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
             <% end %>
-          <% end %>
-        <% else %>
-          <h6 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>No tags used</h6>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  
 </div>
