@@ -1,56 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-1 <%= 'mb-5' unless (controller_name == 'blogs' && action_name == 'index') %>">
   <div class="container">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <img src= "<%= image_url("bootstrap-solid.svg") %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-    <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item "  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
+    <div class="navigation">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <img src= "<%= image_url("bootstrap-solid.svg") %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      <% end %>
+      <div class="navigation-menu">
+        <div class="navigation-item order-1"  data-container="body" data-toggle="popover" data-placement="top" data-content="Trending" data-trigger="hover">
           <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
             <i class="fas fa-fire c-dark"></i>
           <% end %>
-        </li>
-        <li class="nav-item"  data-container="body" data-toggle="popover" data-placement="top" data-content="Popular" data-trigger="hover">
+        </div>
+        <div class="navigation-item order-2"  data-container="body" data-toggle="popover" data-placement="top" data-content="Popular" data-trigger="hover">
           <%= link_to trending_path, class: 'ico-nav-link btn btn-light' do %>
             <i class="fas fa-chart-line c-dark"></i>
           <% end %>
-        </li>
-        <!-- dropdown menu -->
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-          </a>
-          <div class="dropdown-menu scrollable-menu shadow p-0 mb-5 bg-white rounded dropdown-multicol multicol-dd" aria-labelledby="navbarDropdown">
-            <% Category.order(name: :asc).in_batches(of: 3).each do |categories| %>
-              <% categories.each do |category| %>
-                <div class="dropdown-col">
-                  <%= link_to category.name.titleize, category_path(category), class: "dropdown-item" %>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        </li> -->
-        <!-- end of dropdown menu -->
-      </ul>
-      <%= form_with url: search_path, local: true, method: :get, html: { class: 'form-inline' } do |form| %>
-        <%= form.text_field :q, placeholder: 'Search', class: 'form-control c-input rounded-0', style: 'width: 250px;', 'aria-label': "Search", data: { behavior: 'autocomplete' } %>
-        <%= form.button 'Search', class: 'btn btn-theme btn-sm nav-search rounded-0' %>
-      <% end %>
-      <ul class="navbar-nav mr-ul">
+        </div>
+        <%= form_with url: search_path, local: true, method: :get, html: { class: 'form-inline search-nav-form mx-1 order-last order-lg-3' } do |form| %>
+          <%= form.text_field :q, placeholder: 'Search', class: 'form-control c-input rounded-0', style: 'width: 250px;', 'aria-label': "Search", data: { behavior: 'autocomplete' } %>
+          <%= form.button 'Search', class: 'btn btn-theme btn-sm nav-search rounded-0' %>
+        <% end %>
         <% if current_user %>
-          <li class="nav-item">
+          <div class="navigation-item order-4">
             <a class="ico-nav-link btn btn-light waves-effect waves-light"><i class="fas fa-bell c-dark"></i></a>
-          </li>
-          <li class="nav-item">
+          </div>
+          <div class="navigation-item order-5">
             <%= link_to bookmarked_articles_path, class: 'ico-nav-link btn btn-light waves-effect waves-light' do %>
               <i class="fas fa-bookmark c-dark"></i>
             <% end %>
-          </li>
-          <li class="nav-item dropdown">
+          </div>
+          <div class="navigation-item dropdown order-6">
             <a class="ico-nav-link btn btn-light dropdown-toggle" href="#" id="navbarDropdown_profile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-user c-dark"></i>
             </a>
@@ -64,9 +42,9 @@
               <a class="dropdown-item" href="#">Recent Activity</a>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
-          </li>
+          </div>
         <% else %>
-          <li class="nav-item">
+          <li class="navigation-item">
             <div class="cd-main-nav__list js-signin-modal-trigger">
               <%= link_to new_user_session_path do %>
                 Login / SignUp
@@ -74,7 +52,7 @@
             </div>
           </li>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </nav>

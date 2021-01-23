@@ -1,45 +1,49 @@
 <% content_for :title, 'Trending Publishers | Trending Tags | Trending Articles' %>
 <div class="container">
-  <div class="row">
-    <div class="col-md-9 mb-5">
-      <div class="mb-5">
-        <h5 class="mb-3"><b>Trending Publishers</b></h5>
-        <div class="row flex-row flex-nowrap trending-users">
-          <% @trending_users.each do |user|%>
-            <div class="col-12 col-md-6 col-lg-4">
-              <%= link_to user_path(id: user.username) do %>
-                <div class="trending-card">
-                  <div class="user-image">
-                    <% if user.avatar.present? %>
-                      <img src="<%= user.avatar %>" class="rounded-circle" alt="user">
-                    <% else %>
-                      <img class="card-img-top" src="<%= image_url('default_user.png') %>" alt="user">
-                    <% end %>
-                  </div>
-                  <div class="user-detail-body ml-3">
-                    <h5 class="user-detail-name mb-0 font-weight-bold"><%= user.name %></h5>
-                    <p class="user-detail-username"> &#64;<%= user.username %></p>
-                    <p class="user-detail-count mb-0"><b><%= user.blogs_count %></b> Articles published</p>
-                  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="row">
+        <div class="col-md-9 mb-5">
+          <div class="mb-5">
+            <h5 class="mb-3"><b>Trending Publishers</b></h5>
+            <div class="row flex-row flex-nowrap trending-users">
+              <% @trending_users.each do |user|%>
+                <div class="col-12 col-md-6">
+                  <%= link_to user_path(id: user.username) do %>
+                    <div class="trending-card">
+                      <div class="user-image">
+                        <% if user.avatar.present? %>
+                          <img src="<%= user.avatar %>" class="rounded-circle" alt="user">
+                        <% else %>
+                          <img class="card-img-top" src="<%= image_url('default_user.png') %>" alt="user">
+                        <% end %>
+                      </div>
+                      <div class="user-detail-body ml-3">
+                        <h5 class="user-detail-name mb-0 font-weight-bold"><%= user.name %></h5>
+                        <p class="user-detail-username"> &#64;<%= user.username %></p>
+                        <p class="user-detail-count mb-0"><b><%= user.blogs_count %></b> Articles published</p>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             </div>
-          <% end %>
+          </div>
+          <h5 class="mb-3"><b>Trending Articles</b></h5>
+          <%= render 'blogs/blogs' %>
         </div>
-      </div>
-      <h5 class="mb-3"><b>Trending Articles</b></h5>
-      <%= render 'blogs/blogs' %>
-    </div>
-    <div class="col-md-3">
-      <div class="mb-4 text-dark">
-        <h5 class="mb-3"><b>Trending tags</b></h5>
-        <% @trending_tags.each do |tag| %>
-          <%= link_to tag_path(tag.slug) do %>
-            <button type="button" class="btn btn-theme mr-2 mb-2 tags-hover">
-              <b><%= tag.name %> <span class="badge badge-light"><%= tag.count %></span></b>
-            </button>
-          <% end %>
-        <% end %>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark">
+            <h5 class="mb-3"><b>Trending tags</b></h5>
+            <% @trending_tags.each do |tag| %>
+              <%= link_to tag_path(tag.slug) do %>
+                <button type="button" class="btn btn-theme mr-2 mb-2 tags-hover">
+                  <b><%= tag.name %> <span class="badge badge-light"><%= tag.count %></span></b>
+                </button>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
