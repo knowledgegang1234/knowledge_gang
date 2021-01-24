@@ -95,9 +95,8 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 
-
 var swiper = new Swiper('.swiper-container', {
-  slidesPerView: 2,
+  slidesPerView: 1,
   spaceBetween: 15,
   loop: true,
   grabCursor: true,
@@ -106,6 +105,9 @@ var swiper = new Swiper('.swiper-container', {
   },
   breakpoints: {  
     768: {
+      slidesPerView: 2,
+    },
+    992: {
       slidesPerView: 3,
     }
   }

@@ -30,7 +30,6 @@ body{
 
 .main-container{
   padding-top: 30px;
-  padding-bottom: 30px;
 }
 
 .navbar .mr-ul{
@@ -599,6 +598,10 @@ span.category-count * {
   font-size: 14px;
 }
 
+.f16{
+  font-size: 16px;
+}
+
 .blog-form-tags .form-control {
   background: $primaryColor;
 }
@@ -675,7 +678,42 @@ pre {
 
 .share-blog {
   position: absolute;
+  top: 20px;
   right: 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.sharebtn {
+  padding: 10px;
+  color: white;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.facebook-share {
+  background: #3b5998;
+}
+
+.twitter-share {
+  background: #55acee;
+}
+
+.whatsapp-share {
+  background: #43d854;
+}
+
+.telegram-share {
+  background: #00405d;
+}
+
+.sharebtn:hover {
+  color: #ddd;
 }
 
 @-webkit-keyframes ssc-loading {
@@ -770,12 +808,33 @@ pre {
   display: none;
 }
 
+.theme-share {
+  background: #0056b3;
+}
+
+.m-share{
+  display: block;
+}
+
+.d-share{
+  display: none;
+}
+
 @media screen and (min-width:600px){
   .c-wrap
   {
     border: solid 1px $cgrey;
     margin-bottom: 15px;
   }
+
+  .m-share{
+    display: none;
+  }
+  
+  .d-share{
+    display: block;
+  }
+  
 }
 
 
