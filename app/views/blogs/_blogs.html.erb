@@ -47,12 +47,12 @@
                 <span><%= blog.comments_count %> <i class="fas fa-comments dark-color"></i></span>
               </div>
             </div>
-            <p class="mb-0 wb-ba"><%= raw blog.short_description %></p>
+            <p class="mb-0 wb-bw"><%= raw blog.short_description %></p>
           <% end %>
         <% else %>
           <%= link_to edit_blog_path(blog.slug) do %>
             <h3><%= blog.title %></h3>
-            <p class="mb-0 wb-ba"><%= raw blog.short_description %></p>
+            <p class="mb-0 wb-bw"><%= raw blog.short_description %></p>
           <% end %>
         <% end %>
       </div>

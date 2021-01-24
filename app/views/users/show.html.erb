@@ -17,7 +17,7 @@
                 <div id="user-show">
                   <div class="username-profile mb-2 user-show-profile"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
                   <% if current_user&.id != @user.id %>
-                    <div id="follow-container" class="user-show-follow">
+                    <div id="follow-container" class="user-show-follow ml-2">
                       <%= render 'followers/follow_action' %>
                     </div>
                   <% end %>
