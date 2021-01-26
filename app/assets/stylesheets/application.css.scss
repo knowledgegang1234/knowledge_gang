@@ -28,10 +28,6 @@ body{
   background-color: $primaryColor;
 }
 
-.main-container{
-  padding-top: 30px;
-}
-
 .navbar .mr-ul{
   margin-left: 10px;
 }
@@ -421,6 +417,7 @@ div.dropdown-multicol>div.dropdown-col{
 
 #user-show {
   display: flex;
+  align-items: center;
 }
 
 .user-show-follow {
@@ -839,10 +836,12 @@ pre {
   
 }
 
-
 @media screen and (min-width:768px){
   .search-nav-form{
     display: flex;
+  }
+  .main-container{
+    padding-top: 30px;
   }
 }
 
@@ -855,4 +854,8 @@ pre {
   .content-wrap:hover .share-blog{
     opacity: 1;
   }
+}
+
+.category-wrap:hover {
+  background: #eeeeee;
 }

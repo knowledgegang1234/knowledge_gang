@@ -3,22 +3,24 @@
     <div class="col-lg-10 px-lg-0">
       <div class="row user-profile">
         <div class="col-md-9">
-          <div class="border mb-4 p-4 bg-white text-dark">
+          <div class="c-wrap mb-3 p-4">
             <div class="row align-items-center">
               <div class="col-md-2 text-center">
                 <% if @user.avatar.present? %>
-                  <img src="<%= @user.avatar %>" class="rounded-circle card-img-top" alt="user">
+                  <img src="<%= @user.avatar %>" class="rounded-circle card-img-top mb-2" alt="user">
                 <% else %>
-                  <img class="card-img-top rounded-circle" src="<%= image_url('default_user.png') %>" alt="user">
+                  <img class="card-img-top rounded-circle mb-2" src="<%= image_url('default_user.png') %>" alt="user">
                 <% end %>
-              </div>
-              <div class="col-md-10 user-detail-profile">
-                <div class="username-profile mb-2"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
                 <% if current_user&.id != @user.id %>
-                  <div id="follow-container">
+                  <div id="follow-container" class="user-show-follow">
                     <%= render 'followers/follow_action' %>
                   </div>
                 <% end %>
+              </div>
+              <div class="col-md-10 user-detail-profile">
+                <div id="user-show">
+                  <div class="username-profile user-show-profile"><span class="text-20"><b><%= @user.name || @user.username %></b></span></div>
+                </div>
                 <p class="text-15 text-capitalize"> writer since <%= @user.created_at.strftime("%B, %Y") %></p>
                 <div class="mt-1 bio-text">
                   <i class="fas fa-quote-left mr-3"></i><%= @user.bio %><i class="fas fa-quote-right ml-3"></i>
@@ -26,6 +28,29 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-3">
+          <!-- channel info -->
+          <div class="c-wrap p-3">
+            <h4 class="pb-3 font-weight-bold border-bottom">Channel Information</h4>
+            <div class="row mb-0">
+              <div class="col-12">
+                <div class="d-flex">
+                  <dt class="col px-0">Bookmark Posts</dt>
+                  <dd>50</dd>
+                </div>
+                <div class="d-flex">
+                  <dt class="col px-0">Like</dt>
+                  <dd>1.14B</dd>
+                </div>
+                <div class="d-flex">
+                  <dt class="col px-0">Comments</dt>
+                  <dd>5M</dd>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- channel info -->
         </div>
       </div>
     </div>
@@ -37,7 +62,7 @@
     <div class="col-lg-10 px-lg-0">
       <div class="row">
         <div class="col-md-9 mb-5 user-articles">
-          <nav class="nav nav-pills nav-justified mt-lg-3 border-corner bg-white">
+          <nav class="nav nav-pills nav-justified border-corner bg-white">
             <% live_blog_active = action_name == 'show' && params[:status] != 'draft' ? 'active' : ''%>
               <% draft_active = action_name == 'show' && params[:status] == 'draft' ? 'active' : ''%>
               <% comments_active = action_name == 'comments' ? 'active' : ''%>
