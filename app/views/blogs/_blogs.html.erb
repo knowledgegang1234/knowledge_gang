@@ -12,10 +12,11 @@
           <a class="theme-share sharebtn mshare-btn fa fa-share" aria-hidden="true" href="#"></a>
         </div>
         <div class="d-share">
-          <a class="facebook-share sharebtn fa fa-facebook" aria-hidden="true" href="#"></a>
-          <a class="twitter-share sharebtn fa fa-twitter" aria-hidden="true" href="#"></a>
-          <a class="whatsapp-share sharebtn fa fa-whatsapp" aria-hidden="true" href="#"></a>
-          <a class="telegram-share sharebtn fab fa-telegram-plane" aria-hidden="true" href="#"></a>
+          <% blog_url = blog_show_url(id: blog, category_id: blog.category) %>
+          <a class="facebook-share sharebtn fa fa-facebook" aria-hidden="true" href="http://www.facebook.com/share.php?quote=<%= blog.title %>&u=<%= blog_url %>" target="blank"></a>
+          <a class="twitter-share sharebtn fa fa-twitter" aria-hidden="true" href="https://twitter.com/intent/tweet?text=<%= blog.title %> <%= blog_url %>" target="blank"></a>
+          <a class="whatsapp-share sharebtn fa fa-whatsapp" aria-hidden="true" href="https://api.whatsapp.com/send?text= <%= blog.title %> <%= blog_url %>." target="blank"></a>
+          <a class="telegram-share sharebtn fab fa-telegram-plane" aria-hidden="true" href="https://t.me/share/url?url=<%= blog_url %>" target="blank"></a>
         </div>
       </div>
       <div class="blog-info">
