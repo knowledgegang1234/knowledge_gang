@@ -25,6 +25,10 @@ Rails.application.routes.draw do
     member do
       put 'update_username'
       get 'comments'
+      get 'following/suggestions' => 'users#following_suggestions', as: 'follow_suggestions'
+      get 'following/categories' => 'users#following_categories', as: 'follow_categories'
+      get 'following/people' => 'users#following_people', as: 'follow_people'
+      get 'following/tags' => 'users#following_tags', as: 'follow_tags'
     end
   end
   get '/:category_id/:id' => 'blogs#show', as: 'blog_show'

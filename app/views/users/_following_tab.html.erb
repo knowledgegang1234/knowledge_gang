@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="justify-content-center">
+    <div class="px-lg-0">
+        <nav class="nav nav-pills nav-justified border-corner bg-white">
+            <% suggestions_active = tab_selected == 0 ? 'active' : ''%>
+            <% categories_active = tab_selected == 1 ? 'active' : ''%>
+            <% people_active = tab_selected == 2 ? 'active' : ''%>
+            <% tags_active = tab_selected == 3 ? 'active' : ''%>
+            <a href="<%= follow_suggestions_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= suggestions_active %>">Suggestions</a>
+            <a href="<%= follow_categories_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= categories_active %>">Categories</a>
+            <a href="<%= follow_people_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= people_active %>">People</a>
+            <a href="<%= follow_tags_user_path(@user.username) %>" class="nav-item nav-link border rounded-0 font-weight-bold <%= tags_active %>">Tags</a>
+        </nav>
+    </div>
+  </div>
+  
+</div>

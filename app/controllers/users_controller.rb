@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :update_username, :comments]
-  before_action :authenticate_user!, only: [:bookmarked, :edit, :update,:bookmark, :update_username]
-  before_action :authenticate_access, only: [:edit, :update, :update_username]
+  before_action :set_user, only: [:edit, :update, :show, :update_username, :comments, :following_suggestions, :following_categories, :following_people, :following_tags]
+  before_action :authenticate_user!, only: [:bookmarked, :edit, :update,:bookmark, :update_username, :following_suggestions, :following_categories, :following_people, :following_tags]
+  before_action :authenticate_access, only: [:edit, :update, :update_username, :following_suggestions, :following_categories, :following_people, :following_tags]
 
   def show
     blog_status = params[:status] == 'draft' ? 0 : 1
@@ -54,6 +54,18 @@ class UsersController < ApplicationController
 
   def bookmarked
     @blogs = Blog.includes(:category).where(id: current_user.bookmarks.active.pluck(:blog_id)).page(params[:page]).per(12)
+  end
+
+  def following_suggestions
+  end
+
+  def following_categories
+  end
+
+  def following_people
+  end
+
+  def following_tags
   end
 
   private
