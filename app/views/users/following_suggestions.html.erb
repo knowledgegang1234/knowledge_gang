@@ -5,7 +5,26 @@
       <div class="row">
         <div class="col-md-9 mb-5 user-articles">
             <div class="mb-4 text-dark mt-5">
-                Suggestion list
+                <% @suggested_users.each do |category_name, users_list| %>
+                    <div>
+                        <p>Authors writing about <%= category_name %></p>
+                        <% users_list.each do |user| %>
+                            <div class="mb-2">
+                                <% if user.avatar.present? %>
+                                    <img src="<%= user.avatar %>" class="rounded-circle user-img-44 mr-2" alt="user">
+                                <% else %>
+                                    <img class="user-img-44 rounded-circle mr-2" src="<%= image_url('default_user.png') %>" alt="user">
+                                <% end %>
+                                <%= link_to user_path(user.username) do %>
+                                    <%= user.username %>
+                                <% end %>
+                                <p>Article writer on "<%= category_name %>"</p>
+                            </div>
+                            <%= render 'list_follow_btn', entity: user %>
+                            <hr>
+                        <% end %>
+                    </div>
+                <% end %>
             </div>
         </div>
         <div class="col-md-3">

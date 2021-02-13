@@ -57,8 +57,10 @@ class UsersController < ApplicationController
   end
 
   def following_suggestions
-    @following_people = User.where.not(id: current_user.id).last(5)
-    @following_tags = Tag.last(5)
+    # N+1 Query, need to handle includes for polymorphic association
+    @following_people = User.joins(:followers).where(followers: {followable_type: 'User',  user_id: current_user.id}).distinct
+    @following_tags = Tag.joins(:followers).where(followers: {followable_type: 'Tag',  user_id: current_user.id}).distinct
+    @suggested_users = current_user.people_suggestion_on_category
   end
 
   def following_categories

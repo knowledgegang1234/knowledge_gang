@@ -75,6 +75,25 @@ class User < ApplicationRecord
     self.tags.select('tags.id,tags.name,tags.slug,count(taggings.tag_id) as count').group('tags.id,taggings.tag_id,tags.name,tags.slug').to_a.sort_by(&:count).reverse
   end
 
+  def people_suggestion_on_category
+    categories_follow = self.following_categories
+    users_suggestions = {}
+    if categories_follow.count > 1
+      # N+1 Query is here Danger !!!
+      categories_follow.first(3).each do |category_follow|
+        curr_category = category_follow.followable
+        users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct
+      end
+    elsif categories_follow.count == 1
+      curr_category = categories_follow.first.followable
+      users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct
+    else
+      curr_category = Category.first
+      users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct
+    end
+    users_suggestions
+  end
+
   def reindex_blogs
     blogs.each do |blog|
       blog.es_reindex
