@@ -1,1 +1,36 @@
 <%= render 'following_header', tab_selected: 0 %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 px-lg-0">
+      <div class="row">
+        <div class="col-md-9 mb-5 user-articles">
+            <div class="mb-4 text-dark mt-5">
+                sdhbvh
+            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3"><b>People you follow</b></h5>
+            <a class="" href="<%= follow_people_user_path(current_user.username) %>">See all</a>
+            <% if @following_people.present? %>
+              <% @following_people.each do |people| %>
+                <%= link_to  people.name, user_path(people.username) %><br>
+                <div id="follow-container-1-<%= people.id %>" class="user-show-follow">
+                    <% follow_action = current_user&.following?(people) ? 'unfollow' : 'follow'%>
+                    <% if follow_action == 'follow' %>
+                        <button class="btn btn-theme follow-btn btn-sm d-flex align-items-center" data-followable_type="<%= 'User' %>" data-followable_id="<%= people.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"> <i class="fas fa-user-plus f12 mr-1 text-white"></i>Follow</button>
+                    <% else %>
+                        <button class="btn btn-theme follow-btn btn-sm align-items-center" data-followable_type="<%= 'User' %>" data-followable_id="<%= people.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"><i class="fas fa-check f12 mr-1 text-white "></i>Following</button>
+                    <% end %>
+                </div>
+              <% end %>
+            <% else %>
+              <h5 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>You are not following to any one...</h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
