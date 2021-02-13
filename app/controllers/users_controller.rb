@@ -58,6 +58,7 @@ class UsersController < ApplicationController
 
   def following_suggestions
     @following_people = User.where.not(id: current_user.id).last(5)
+    @following_tags = Tag.last(5)
   end
 
   def following_categories
