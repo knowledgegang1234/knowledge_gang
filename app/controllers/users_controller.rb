@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     # N+1 Query, need to handle includes for polymorphic association
     @following_people = User.joins(:followers).where(followers: {followable_type: 'User',  user_id: current_user.id}).distinct
     @following_tags = Tag.joins(:followers).where(followers: {followable_type: 'Tag',  user_id: current_user.id}).distinct
-    @suggested_users = current_user.people_suggestion_on_category
+    @suggested_users = current_user.people_suggestion_on_category(@following_people)
   end
 
   def following_categories

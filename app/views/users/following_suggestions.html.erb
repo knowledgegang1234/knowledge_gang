@@ -6,8 +6,8 @@
         <div class="col-md-9 mb-5 user-articles">
             <div class="mb-4 text-dark mt-5">
                 <% @suggested_users.each do |category_name, users_list| %>
-                    <div>
-                        <p>Authors writing about <%= category_name %></p>
+                    <div class="mb-5">
+                        <p><b>Authors writing about <%= category_name %></b></p>
                         <% users_list.each do |user| %>
                             <div class="mb-2">
                                 <% if user.avatar.present? %>
@@ -21,9 +21,9 @@
                                 <p>Article writer on "<%= category_name %>"</p>
                             </div>
                             <%= render 'list_follow_btn', entity: user %>
-                            <hr>
                         <% end %>
                     </div>
+                    <hr size="10">
                 <% end %>
             </div>
         </div>
