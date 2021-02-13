@@ -26,14 +26,7 @@
                         <%= people.username %>
                     <% end %>
                 </div>
-                <div id="follow-container-1-<%= people.id %>" class="user-show-follow">
-                    <% follow_action = current_user&.following?(people) ? 'unfollow' : 'follow'%>
-                    <% if follow_action == 'follow' %>
-                        <button class="btn btn-theme follow-btn btn-sm d-flex align-items-center" data-followable_type="<%= 'User' %>" data-followable_id="<%= people.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"> <i class="fas fa-user-plus f12 mr-1 text-white"></i>Follow</button>
-                    <% else %>
-                        <button class="btn btn-theme follow-btn btn-sm align-items-center" data-followable_type="<%= 'User' %>" data-followable_id="<%= people.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"><i class="fas fa-check f12 mr-1 text-white "></i>Following</button>
-                    <% end %>
-                </div>
+                <%= render 'list_follow_btn', entity: people %>
                 <hr>
               <% end %>
             <% else %>
