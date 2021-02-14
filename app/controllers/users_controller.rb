@@ -64,6 +64,7 @@ class UsersController < ApplicationController
   end
 
   def following_categories
+    @categories = Category.all
   end
 
   def following_people
