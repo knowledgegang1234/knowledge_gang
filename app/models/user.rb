@@ -80,7 +80,7 @@ class User < ApplicationRecord
     users_suggestions = {}
     if categories_follow.count > 1
       # N+1 Query is here Danger !!!
-      categories_follow.first(3).each do |category_follow|
+      categories_follow.each do |category_follow|
         curr_category = category_follow.followable
         users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct - already_following_users
       end
