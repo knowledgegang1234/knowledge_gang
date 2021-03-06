@@ -1,5 +1,7 @@
 class Follower < ApplicationRecord
 
+  validates :user_id, uniqueness: {scope: [:followable_type, :followable_id]}
+
   default_scope { where(deleted_at: nil) }
 
   belongs_to :followable, polymorphic: true
