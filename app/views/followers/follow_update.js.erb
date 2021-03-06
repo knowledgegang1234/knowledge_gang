@@ -1,6 +1,6 @@
 $('#follow-container').html("<%= j render partial: 'followers/follow_action' %>");
 if("<%= @is_list_page %>"){
-  $("#follow-container-<%= @followable_type_role %>-<%= @followable_id %>").html("<%= j render partial: 'followers/list_follow_action' %>");
+  $(".follow-container-<%= @followable_type_role %>-<%= @followable_id %>").html("<%= j render partial: 'followers/list_follow_action' %>");
 }
 
 $('.follow-btn').click(function() {
