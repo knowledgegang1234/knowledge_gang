@@ -91,7 +91,7 @@ class User < ApplicationRecord
       curr_category = Category.first
       users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct - already_following_users
     end
-    users_suggestions
+    users_suggestions.reject!{|k,v| v.count == 0}
   end
 
   def reindex_blogs
