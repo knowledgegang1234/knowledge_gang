@@ -68,11 +68,11 @@ class UsersController < ApplicationController
   end
 
   def following_people
-    @following_people = User.joins(:followers).where(followers: {followable_type: 'User',  user_id: current_user.id}).distinct
+    @following_people = User.joins(:followers).where(followers: {followable_type: 'User',  user_id: current_user.id}).distinct.page(params[:page]).per(20)
   end
 
   def following_tags
-    @following_tags = Tag.joins(:followers).includes(:taggings).where(followers: {followable_type: 'Tag',  user_id: current_user.id}).distinct
+    @following_tags = Tag.joins(:followers).includes(:taggings).where(followers: {followable_type: 'Tag',  user_id: current_user.id}).distinct.page(params[:page]).per(20)
   end
 
   private
