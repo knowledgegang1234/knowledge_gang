@@ -1,13 +1,17 @@
 $('#follow-container').html("<%= j render partial: 'followers/follow_action' %>");
+if("<%= @is_list_page %>"){
+  $(".follow-container-<%= @followable_type_role %>-<%= @followable_id %>").html("<%= j render partial: 'followers/list_follow_action' %>");
+}
 
 $('.follow-btn').click(function() {
   var followable_type = $(this).data('followable_type');
   var followable_id = $(this).data('followable_id');
   var follow_action = $(this).data('follow_action');
+  var list_page = $(this).data('list_page');
   $.ajax({
     type: 'POST',
     url: '/follow_update',
-    data: { 'followable_type': followable_type, 'followable_id': followable_id, 'follow_action': follow_action },
+    data: { 'followable_type': followable_type, 'followable_id': followable_id, 'follow_action': follow_action, 'list_page': list_page },
     dataType: "script",
     success: function () {
     },

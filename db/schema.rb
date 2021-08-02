@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_193102) do
+ActiveRecord::Schema.define(version: 2021_03_06_074737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_193102) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at"
     t.index ["followable_type", "followable_id"], name: "index_followers_on_followable_type_and_followable_id"
+    t.index ["user_id", "followable_type", "followable_id"], name: "unique_follower_thing", unique: true
     t.index ["user_id"], name: "index_followers_on_user_id"
   end
 
@@ -140,10 +141,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_193102) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "status", default: 2
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.string "avatar"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["country_id"], name: "index_users_on_country_id"
     t.index ["email"], name: "index_users_on_email", unique: true

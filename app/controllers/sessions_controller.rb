@@ -19,12 +19,9 @@ class SessionsController < Devise::SessionsController
       if resource && resource.active_for_authentication?
         sign_in(resource_name, resource)
         flash[:notice] = "Signed in successfully."
-        if session[:return_to].present?
-          url = session[:return_to]
-          session[:return_to] = nil
-          respond_with resource, location: url
-        else
-          respond_with resource, location: after_sign_in_path_for(resource)
+        respond_to do |format|
+          format.js { redirect_to_url }
+          format.html { redirect_to_url }
         end
       else
         @alert = "Invalid Email or Password." if [:not_found_in_database, :invalid].include?(warden.message)
@@ -43,6 +40,16 @@ class SessionsController < Devise::SessionsController
 
   def store_session
     session[:return_to] = request.referer if [root_url, new_user_session_url, new_user_registration_url].exclude?(request.referer)
+  end
+
+  def redirect_to_url
+    if session[:return_to].present?
+      url = session[:return_to]
+      session[:return_to] = nil
+      redirect_to url and return
+    else
+      redirect_to root_path and return
+    end
   end
 
 end

@@ -26,12 +26,11 @@ class User < ApplicationRecord
 
   enum status: { active: 1, pending: 2 }
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/default_user.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  mount_uploader :avatar, ImageUploader
 
   def as_indexed_json(options = {})
     self.as_json(
-      only: [:username, :name, :avatar, :blogs_count]
+      only: [:username, :name, :blogs_count]
     )
   end
 
@@ -76,6 +75,25 @@ class User < ApplicationRecord
     self.tags.select('tags.id,tags.name,tags.slug,count(taggings.tag_id) as count').group('tags.id,taggings.tag_id,tags.name,tags.slug').to_a.sort_by(&:count).reverse
   end
 
+  def people_suggestion_on_category(already_following_users)
+    categories_follow = self.following_categories
+    users_suggestions = {}
+    if categories_follow.count > 1
+      # N+1 Query is here Danger !!!
+      categories_follow.each do |category_follow|
+        curr_category = category_follow.followable
+        users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct - already_following_users
+      end
+    elsif categories_follow.count == 1
+      curr_category = categories_follow.first.followable
+      users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct - already_following_users
+    else
+      curr_category = Category.first
+      users_suggestions["#{curr_category.name}"] = User.joins(:blogs).where(blogs: {category_id: curr_category.id}).distinct - already_following_users
+    end
+    users_suggestions.reject!{|k,v| v.count == 0}
+  end
+
   def reindex_blogs
     blogs.each do |blog|
       blog.es_reindex
@@ -99,7 +117,7 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
-      user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
+      # user.avatar = auth.provider == 'facebook' ? auth.info.image + '&type=normal' : auth.info.image
       user.status = User.statuses[:active] if user.pending?
       user.skip_confirmation! if user.new_record?
       user.save!

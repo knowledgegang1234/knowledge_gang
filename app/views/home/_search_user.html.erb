@@ -2,10 +2,10 @@
   <%= link_to user_path(id: user.username) do %>
     <div class="card card-block trending-card">
       <div class="card-image pt-3">
-        <% if user.avatar %>
-          <img src="<%= user.avatar %>" class="rounded-circle">
+        <% if user.avatar.present? %>
+          <img src="<%= user.avatar %>" class="rounded-circle" alt="user">
         <% else %>
-          <img class="card-img-top" src="<%= image_url('default_user.png') %>">
+          <img class="card-img-top" src="<%= image_url('default_user.png') %>" alt="user">
         <% end %>
       </div>
       <div class="card-body">

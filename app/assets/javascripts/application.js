@@ -15,78 +15,100 @@
 //= require bootstrap
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery.easy-autocomplete
 //= require search
+//= require swiper.min
 
-document.addEventListener("turbolinks:load", function() {
+$(document).ready(function() {
 
-  setTimeout(function() {
-    $('.alert').fadeOut('slow');
-  }, 3000);
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 3000);
 
-  $(".select_two").select2({
-    theme: "bootstrap"
-  });
-
-  var tagsname = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: {
-      url: '/tags-name-list',
-      filter: function(list) {
-        return $.map(list, function(tagname) {
-          return { name: tagname }; });
-      }
-    }
-  });
-  tagsname.initialize();
-
-  $('.tag-select').tagsinput({
-    typeaheadjs: {
-      name: 'tagsname',
-      displayKey: 'name',
-      valueKey: 'name',
-      source: tagsname.ttAdapter()
-    }
-  });
-
-  $('.follow-btn').click(function() {
-    var followable_type = $(this).data('followable_type');
-    var followable_id = $(this).data('followable_id');
-    var follow_action = $(this).data('follow_action');
-    $.ajax({
-      type: 'POST',
-      url: '/follow_update',
-      data: { 'followable_type': followable_type, 'followable_id': followable_id, 'follow_action': follow_action },
-      dataType: "script",
-      success: function () {
-      },
-      error: function () {
-      }
+    $(".select_two").select2({
+        theme: "bootstrap"
     });
-  });
 
-  $('.login-click').click(function() {
-    login()
-  });
+    var tagsname = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: {
+            url: '/tags-name-list',
+            filter: function(list) {
+                return $.map(list, function(tagname) {
+                    return { name: tagname };
+                });
+            }
+        }
+    });
+    tagsname.initialize();
 
-  $('.login-click').on('hidden.bs.modal', function () {
-    $('.error-msg').html('');
-  });
+    $('.tag-select').tagsinput({
+        typeaheadjs: {
+            name: 'tagsname',
+            displayKey: 'name',
+            valueKey: 'name',
+            source: tagsname.ttAdapter()
+        }
+    });
+
+    $('.follow-btn').click(function() {
+        var followable_type = $(this).data('followable_type');
+        var followable_id = $(this).data('followable_id');
+        var follow_action = $(this).data('follow_action');
+        var list_page = $(this).data('list_page');
+        $.ajax({
+            type: 'POST',
+            url: '/follow_update',
+            data: { 'followable_type': followable_type, 'followable_id': followable_id, 'follow_action': follow_action, 'list_page': list_page },
+            dataType: "script",
+            success: function() {},
+            error: function() {}
+        });
+    });
+
+    $('.login-click').click(function() {
+        login()
+    });
+
+    $('.login-click').on('hidden.bs.modal', function() {
+        $('.error-msg').html('');
+    });
 });
 
-function showModalPopUp(obj){
-  $(".modal").modal("hide");
-  $("#"+obj).modal('show');
+function showModalPopUp(obj) {
+    $(".modal").modal("hide");
+    $("#" + obj).modal('show');
 };
 
-function register(){
-  $('.error-msg').html('');
-  showModalPopUp('signup_modal');
+function register() {
+    $('.error-msg').html('');
+    showModalPopUp('signup_modal');
 }
 
-function login(){
-  $('.error-msg').html('');
-  showModalPopUp('login_modal');
+function login() {
+    $('.error-msg').html('');
+    showModalPopUp('login_modal');
 }
+
+$(function() {
+    $('[data-toggle="popover"]').popover()
+})
+
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 1,
+    spaceBetween: 15,
+    loop: true,
+    grabCursor: true,
+    autoplay: {
+        delay: 5000,
+    },
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 3,
+        }
+    }
+});

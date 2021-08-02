@@ -1,9 +1,9 @@
 <% if @follow_action == 'follow' %>
   <% if current_user %>
-    <button class="btn btn-outline-success follow-btn" data-followable_type="<%= @followable_type %>" data-followable_id="<%= @followable_id %>" data-follow_action="<%= @follow_action %>"> +Follow</button>
+    <button class="btn btn-theme follow-btn btn-sm d-flex align-items-center" data-followable_type="<%= @followable_type %>" data-followable_id="<%= @followable_id %>" data-follow_action="<%= @follow_action %>"> <i class="fas fa-user-plus f12 mr-1 text-white"></i>Follow</button>
   <% else %>
-    <button class="btn btn-outline-success follow-btn" onclick="showModalPopUp('login_modal')"> +Follow</button>
+    <a class="btn btn-theme follow-btn btn-sm align-items-center" href="<%= new_user_session_path %>"> <i class="fas fa-user-plus f12 text-white mr-1"></i>Follow</a>
   <% end %>
 <% else %>
-  <button class="btn btn-theme ml-3 follow-btn" data-followable_type="<%= @followable_type %>" data-followable_id="<%= @followable_id %>" data-follow_action="<%= @follow_action %>"><i class="fas fa-check"></i> Following</button>
+  <button class="btn btn-theme follow-btn btn-sm align-items-center" data-followable_type="<%= @followable_type %>" data-followable_id="<%= @followable_id %>" data-follow_action="<%= @follow_action %>"><i class="fas fa-check f12 mr-1 text-white "></i>Following</button>
 <% end %>

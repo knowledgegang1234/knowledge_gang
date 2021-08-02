@@ -1,40 +1,77 @@
 <% if @blogs.present? %>
   <% @blogs.each_with_index do |blog, index| %>
     <% if ((index + 1) % 4 == 0) %>
-      <div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner">
+      <div class="content-wrap c-wrap">
         <div>google ad</div>
       </div>
     <% end %>
-    <div class="border shadow ml-lg-5 mb-4 p-4 text-dark border-corner content-inside">
-      <div><%= link_to(blog.user.name, user_path(id: blog.user.username)) %> in <%= link_to(blog.category.name, category_path(blog.category.slug)) %></div>
-      <% if blog.live? %>
-        <%= link_to blog_show_path(id: blog, category_id: blog.category) do %>
-          <h4><%= blog.title %></h4>
-          <p class="mt-3"><%= raw blog.short_description %></p>
+    <!-- .content-wrap -->
+    <div class="content-wrap c-wrap">
+      <div class="share-blog">
+        <div class="m-share">
+          <a class="theme-share sharebtn mshare-btn fa fa-share" aria-hidden="true" href="#"></a>
+        </div>
+        <div class="d-share">
+          <% blog_url = blog_show_url(id: blog, category_id: blog.category) %>
+          <a class="facebook-share sharebtn fa fa-facebook" aria-hidden="true" href="http://www.facebook.com/share.php?quote=<%= blog.title %>&u=<%= blog_url %>" target="blank"></a>
+          <a class="twitter-share sharebtn fa fa-twitter" aria-hidden="true" href="https://twitter.com/intent/tweet?text=<%= blog.title %> <%= blog_url %>" target="blank"></a>
+          <a class="whatsapp-share sharebtn fa fa-whatsapp" aria-hidden="true" href="https://api.whatsapp.com/send?text= <%= blog.title %> <%= blog_url %>." target="blank"></a>
+          <a class="telegram-share sharebtn fab fa-telegram-plane" aria-hidden="true" href="https://t.me/share/url?url=<%= blog_url %>" target="blank"></a>
+        </div>
+      </div>
+      <div class="blog-info">
+        <div class="user-img">
+          <% if blog.user.avatar.present? %>
+            <img src="<%= blog.user.avatar %>" alt="user" class="rounded-circle">
+          <% else %>
+            <img class="card-img-top" src="<%= image_url('default_user.png') %>" alt="user">
+          <% end %>
+        </div>
+        <div class="blog-detail">
+          <div class="u_name">
+            <%= link_to(blog.user.name, user_path(id: blog.user.username)) %>
+          </div>
+          <div class="blog-category">
+            <%= link_to(blog.category.name, category_path(blog.category.slug)) %> 
+            <span>&#8211;</span>
+            <span class="f12"> <%= blog.updated_at.strftime('%b %d, %Y') %></span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-desc">
+        <% if blog.live? %>
+          <%= link_to blog_show_path(id: blog, category_id: blog.category) do %>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h3 class="blog-title mb-0"><%= blog.title %></h3>
+              <div class="blog-activity">
+                <span class="mx-2"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></span>
+                <span><%= blog.comments_count %> <i class="fas fa-comments dark-color"></i></span>
+              </div>
+            </div>
+            <p class="mb-0 wb-bw"><%= raw blog.short_description %></p>
+          <% end %>
+        <% else %>
+          <%= link_to edit_blog_path(blog.slug) do %>
+            <h3><%= blog.title %></h3>
+            <p class="mb-0 wb-bw"><%= raw blog.short_description %></p>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= link_to edit_blog_path(blog.slug) do %>
-          <h4><%= blog.title %></h4>
-          <p class="mt-3"><%= raw blog.short_description %></p>
-        <% end %>
-      <% end %>
-      <p class="mt-3 inline-para"><%= blog.updated_at.strftime('%b %d, %Y') %></p>
-      <p class="mt-3 inline-para"><%= blog.likes_count %> <i class="fas fa-heart fa-theme-red"></i></p>
-      <p class="mt-3 inline-para"><%= blog.comments_count %> <i class="fas fa-comments"></i></p>
+      </div>
     </div>
+    <!-- end of .content-wrap -->
   <% end %>
-  <div class="ml-lg-5 float-right">
+  <div class="ml-lg-5">
     <%= paginate @blogs %>
   </div>
 <% else %>
-  <div class="ml-lg-5 mb-4 p-4 text-dark border-corner text-center">
+  <div class="content-wrap c-wrap text-center">
     <img src= "<%= image_url('no-content-found.svg') %>" width= "60%" height= "60%" loading="lazy">
     <div class="text-center" style="display: inline-block;">
       <span>No articles found </span>
       <% if current_user %>
         <%= link_to 'Write your Own', new_blog_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
       <% else %>
-        <a href="javascript:void(0)" onclick="showModalPopUp('login_modal')" class="btn btn-bg mt-3 mb-3 btn-theme">Write your Own</a>
+        <%= link_to 'Write your Own', new_user_session_path ,class: 'btn btn-bg mt-3 mb-3 btn-theme' %>
       <% end %>
     </div>
   </div>

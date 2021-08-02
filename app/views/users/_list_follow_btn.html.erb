@@ -1,0 +1,8 @@
+<div class="follow-container-<%= Follower.get_entity_type_role(entity) %>-<%= entity.id %>" class="user-show-follow">
+  <% follow_action = current_user&.following?(entity) ? 'unfollow' : 'follow'%>
+  <% if follow_action == 'follow' %>
+    <button class="btn btn-theme follow-btn btn-sm d-flex align-items-center" data-followable_type="<%= entity.class %>" data-followable_id="<%= entity.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"> <i class="fas fa-user-plus f12 mr-1 text-white"></i>Follow</button>
+  <% else %>
+    <button class="btn btn-theme follow-btn btn-sm align-items-center" data-followable_type="<%= entity.class %>" data-followable_id="<%= entity.id %>" data-list_page="1" data-follow_action="<%= follow_action %>"><i class="fas fa-check f12 mr-1 text-white "></i>Following</button>
+  <% end %>
+</div>

@@ -50,22 +50,22 @@
     </div>
     <div class="col-md-3">
       <div class="user-form-avatar border border-light shadow border-corner text-center mt-5">
-        <div class="pt-5">
-          <%= link_to 'javascript:void(0)' do %>
-            <% if @user.avatar %>
-              <img src="<%= @user.avatar %>" class="rounded-circle">
-            <% else %>
-              <img class="" src="<%= image_url('default_user.png') %>">
-            <% end %>
+        <div class="pt-2">
+          <% if @user.avatar.present? %>
+            <%= cl_image_tag(@user.avatar, :secure=>true, :transformation=>[], :class => 'rounded-circle') %>
+          <% else %>
+            <img class="rounded-circle" src="<%= image_url('default_user.png') %>">
           <% end %>
         </div>
-        <div class="pt-5 pb-2">
+        <div class="pt-2">
           <h5 class=""><%= @user.name %></h5>
           <p class="">@<%= @user.username %>
-            <%= link_to 'javascript:void(0)', 'data-toggle'=>"modal", "data-target"=>"#updateUsername" do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
           </p>
+        </div>
+        <div class="pb-3">
+          <%= link_to 'javascript:void(0)', 'data-toggle'=>"modal", "data-target"=>"#updateUsername" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         </div>
       </div>
     </div>
@@ -86,6 +86,11 @@
           <div class="form-group">
             <label for="username" class="col-form-label">Username:</label>
             <%= form.text_field :username, class: 'form-control' %>
+            <span class="error"></span>
+          </div>
+          <div class="form-group">
+            <label for="avatar" class="col-form-label">Profile Picture:</label>
+            <%= form.file_field :avatar, class: 'form-control' %>
             <span class="error"></span>
           </div>
         </div>

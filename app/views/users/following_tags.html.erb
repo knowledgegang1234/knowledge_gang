@@ -1,0 +1,42 @@
+<%= render 'following_header', tab_selected: 3 %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 px-lg-0">
+      <div class="row">
+        <div class="col-md-9 mb-5">
+          <div class="mb-4 text-dark mt-5">
+            <div class="card-columns">
+              <% @following_tags.each do |tag| %>
+                <div class="card">
+                  <div class="card-block p-2">
+                    <div class="mb-2">
+                      <%= link_to tag_path(tag.slug) do %>
+                        <p class="card-title"><i class="fa fa-tag mr-1"></i><b><%= tag.name %></b></p>
+                        Total Articles: <b><%= tag.taggings.count %></b>
+                      <% end %>
+                    </div>
+                    <%= render 'list_follow_btn', entity: tag %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="">
+            <%= paginate @following_tags %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>Google Ads</b>
+          </div>
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>Google Ads</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

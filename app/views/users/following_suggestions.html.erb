@@ -1,0 +1,80 @@
+<%= render 'following_header', tab_selected: 0 %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 px-lg-0">
+      <div class="row">
+        <div class="col-md-9 mb-5">
+            <div class="mb-4 text-dark mt-5">
+                <% @suggested_users.each do |category_name, users_list| %>
+                    <div class="mb-5">
+                        <p><b>Authors writing about <%= category_name %></b></p>
+                        <% users_list.each do |user| %>
+                            <div class="mb-2">
+                                <% if user.avatar.present? %>
+                                    <img src="<%= user.avatar %>" class="rounded-circle user-img-44 mr-2" alt="user">
+                                <% else %>
+                                    <img class="user-img-44 rounded-circle mr-2" src="<%= image_url('default_user.png') %>" alt="user">
+                                <% end %>
+                                <%= link_to user_path(user.username) do %>
+                                    <%= user.username %>
+                                <% end %>
+                                <p>Article writer on "<%= category_name %>"</p>
+                            </div>
+                            <%= render 'list_follow_btn', entity: user %>
+                        <% end %>
+                    </div>
+                    <hr size="10">
+                <% end %>
+            </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>People you follow</b>
+            <a class="pl-3" href="<%= follow_people_user_path(current_user.username) %>">See all</a>
+            </h5>
+            <% if @following_people.present? %>
+              <% @following_people.each do |people| %>
+                <div class="mb-2">
+                    <% if people.avatar.present? %>
+                        <img src="<%= people.avatar %>" class="rounded-circle user-img-30 mr-2" alt="user">
+                    <% else %>
+                        <img class="user-img-30 rounded-circle mr-2" src="<%= image_url('default_user.png') %>" alt="user">
+                    <% end %>
+                    <%= link_to user_path(people.username) do %>
+                        <%= people.username %>
+                    <% end %>
+                </div>
+                <%= render 'list_follow_btn', entity: people %>
+                <hr>
+              <% end %>
+            <% else %>
+              <h5 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>You are not following to any one...</h5>
+            <% end %>
+          </div>
+
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>Tags you follow</b>
+            <a class="pl-3" href="<%= follow_tags_user_path(current_user.username) %>">See all</a>
+            </h5>
+            <% if @following_tags.present? %>
+              <% @following_tags.each do |tag| %>
+                <div class="mb-2">
+                    <%= link_to tag_path(tag.slug) do %>
+                        <b><i class="fa fa-tag mr-1"></i><%= tag.name %></b>
+                    <% end %>
+                </div>
+                <%= render 'list_follow_btn', entity: tag %>
+                <hr>
+              <% end %>
+            <% else %>
+              <h5 class="mb-3 pl-3"><i class="fas fa-tag mr-2"></i>You are not following to any one...</h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

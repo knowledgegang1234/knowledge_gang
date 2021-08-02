@@ -1,0 +1,47 @@
+<%= render 'following_header', tab_selected: 2 %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 px-lg-0">
+      <div class="row">
+        <div class="col-md-9 mb-5">
+          <div class="mb-4 text-dark mt-5">
+            <div class="card-columns">
+              <% @following_people.each do |people| %>
+                <div class="card">
+                  <div class="card-block p-2">
+                    <div class="mb-2">
+                        <% if people.avatar.present? %>
+                            <img src="<%= people.avatar %>" class="rounded-circle user-img-44 mr-2" alt="user">
+                        <% else %>
+                            <img class="user-img-44 rounded-circle mr-2" src="<%= image_url('default_user.png') %>" alt="user">
+                        <% end %>
+                        <%= link_to user_path(people.username) do %>
+                            <%= people.username %>
+                        <% end %>
+                        <br>Total Blogs: <b><%= people.blogs_count %></b>
+                    </div>
+                    <%= render 'list_follow_btn', entity: people %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="">
+            <%= paginate @following_people %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>Google Ads</b>
+          </div>
+          <div class="mb-4 text-dark mt-5">
+            <h5 class="mb-3">
+            <b>Google Ads</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
