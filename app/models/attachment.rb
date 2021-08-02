@@ -10,7 +10,7 @@ class Attachment < ApplicationRecord
                     :s3_region => 'us-east-1',
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "attachments/:attachment/:id/:style/:basename.:extension",
-                    :s3_host_alias => AppConfig.cdn['url'],
+                    :s3_host_alias => '',
                     :url => ':s3_alias_url',
                     :s3_headers => { 'Cache-Control' => 'max-age=315576000', 'Expires' => 10.years.from_now.httpdate },
                     :s3_protocol => :https
